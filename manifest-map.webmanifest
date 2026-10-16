@@ -1,0 +1,29 @@
+{
+ "name": "Roseln Village Map",
+ "short_name": "Roseln Map",
+ "description": "Choose anyone from the Roseln church book and follow their ancestors house by house.",
+ "start_url": "./map.html",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "any",
+ "background_color": "#faf7f1",
+ "theme_color": "#1f4b4a",
+ "icons": [
+  {
+   "src": "icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

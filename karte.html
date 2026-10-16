@@ -1,0 +1,2013 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Choose anyone from the Roseln (Ruja) church book and see where their Transylvanian Saxon ancestors lived, year by year.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Roseln Village Map">
+<script></script>
+<link rel="manifest" href="manifest-de.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); background: #e9e4d8; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+.fm-open{display:block;margin-top:14px;padding:11px 13px 12px;border-radius:12px;background:var(--rh-accent);color:#fff;text-decoration:none;box-shadow:0 2px 8px rgba(31,75,74,.18)}
+.fm-open:hover{filter:brightness(1.08)}
+.fm-k{display:block;font:600 15px var(--rh-font-display)}
+.fm-w{display:block;margin-top:5px;font-size:12px;line-height:1.5;opacity:.9}
+.fm-w span{display:block}
+.fm-w span:before{content:"· ";opacity:.7}
+.fm-go{display:inline-block;margin-top:8px;font:600 12px var(--rh-font-ui);background:rgba(255,255,255,.16);padding:4px 10px;border-radius:999px}
+.load-err{position:fixed;left:50%;top:40%;transform:translateX(-50%);max-width:340px;background:#fff;border:1px solid #ddd4c2;border-radius:10px;padding:14px 16px;font:14px/1.5 Inter,sans-serif;color:#2c2620;z-index:99;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+
+#fam-back{position:fixed;left:12px;top:calc(12px + env(safe-area-inset-top,0px));z-index:25;display:inline-flex;align-items:center;gap:2px;padding:8px 14px 8px 8px;border-radius:999px;background:var(--rh-paper-solid);color:var(--rh-accent);font:600 14px var(--rh-font-ui);text-decoration:none;box-shadow:0 3px 12px rgba(0,0,0,.22);border:1px solid var(--rh-hairline)}
+#fam-back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+body.from-fam #map-title{top:64px}
+@media (max-width:760px){ body.from-fam #map-title{top:calc(60px + env(safe-area-inset-top,0px))} }
+@media (max-width:1100px){ body.from-fam #controls{top:112px} body.from-fam .maplibregl-ctrl-top-left{top:200px} }
+@media (max-width:760px){ body.from-fam #controls{top:calc(108px + env(safe-area-inset-top,0px))} }
+.hs-fam{display:block;margin:12px 0 4px;padding:10px 12px;border-radius:10px;background:var(--rh-accent);color:#fff;font:600 13px var(--rh-font-ui);text-decoration:none;text-align:center}
+#house-card a.fl{color:var(--rh-accent);font-weight:600;text-decoration:underline;text-decoration-color:rgba(31,75,74,.35);text-underline-offset:2px}
+</style>
+<title>Dorfplan Roseln</title>
+<meta name="theme-color" content="#faf7f1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<style>
+.maplibregl-map{font:12px/20px Helvetica Neue,Arial,Helvetica,sans-serif;overflow:hidden;position:relative;-webkit-tap-highlight-color:rgb(0 0 0/0)}.maplibregl-canvas{left:0;position:absolute;top:0}.maplibregl-map:fullscreen{height:100%;width:100%}.maplibregl-ctrl-group button.maplibregl-ctrl-compass{touch-action:none}.maplibregl-canvas-container.maplibregl-interactive,.maplibregl-ctrl-group button.maplibregl-ctrl-compass{cursor:grab;-webkit-user-select:none;-moz-user-select:none;user-select:none}.maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer{cursor:pointer}.maplibregl-canvas-container.maplibregl-interactive:active,.maplibregl-ctrl-group button.maplibregl-ctrl-compass:active{cursor:grabbing}.maplibregl-canvas-container.maplibregl-touch-zoom-rotate,.maplibregl-canvas-container.maplibregl-touch-zoom-rotate .maplibregl-canvas{touch-action:pan-x pan-y}.maplibregl-canvas-container.maplibregl-touch-drag-pan,.maplibregl-canvas-container.maplibregl-touch-drag-pan .maplibregl-canvas{touch-action:pinch-zoom}.maplibregl-canvas-container.maplibregl-touch-zoom-rotate.maplibregl-touch-drag-pan,.maplibregl-canvas-container.maplibregl-touch-zoom-rotate.maplibregl-touch-drag-pan .maplibregl-canvas{touch-action:none}.maplibregl-canvas-container.maplibregl-touch-drag-pan.maplibregl-cooperative-gestures,.maplibregl-canvas-container.maplibregl-touch-drag-pan.maplibregl-cooperative-gestures .maplibregl-canvas{touch-action:pan-x pan-y}.maplibregl-ctrl-bottom-left,.maplibregl-ctrl-bottom-right,.maplibregl-ctrl-top-left,.maplibregl-ctrl-top-right{pointer-events:none;position:absolute;z-index:2}.maplibregl-ctrl-top-left{left:0;top:0}.maplibregl-ctrl-top-right{right:0;top:0}.maplibregl-ctrl-bottom-left{bottom:0;left:0}.maplibregl-ctrl-bottom-right{bottom:0;right:0}.maplibregl-ctrl{clear:both;pointer-events:auto;transform:translate(0)}.maplibregl-ctrl-top-left .maplibregl-ctrl{float:left;margin:10px 0 0 10px}.maplibregl-ctrl-top-right .maplibregl-ctrl{float:right;margin:10px 10px 0 0}.maplibregl-ctrl-bottom-left .maplibregl-ctrl{float:left;margin:0 0 10px 10px}.maplibregl-ctrl-bottom-right .maplibregl-ctrl{float:right;margin:0 10px 10px 0}.maplibregl-ctrl-group{background:#fff;border-radius:4px}.maplibregl-ctrl-group:not(:empty){box-shadow:0 0 0 2px rgba(0,0,0,.1)}.maplibregl-ctrl-group button{background-color:transparent;border:0;box-sizing:border-box;cursor:pointer;display:block;height:29px;outline:none;padding:0;width:29px}.maplibregl-ctrl-group button+button{border-top:1px solid #ddd}.maplibregl-ctrl button .maplibregl-ctrl-icon{background-position:50%;background-repeat:no-repeat;display:block;height:100%;width:100%}.maplibregl-ctrl button::-moz-focus-inner{border:0;padding:0}.maplibregl-ctrl-attrib-button:focus,.maplibregl-ctrl-group button:focus{box-shadow:0 0 2px 2px #0096ff}.maplibregl-ctrl button:disabled{cursor:not-allowed}.maplibregl-ctrl button:disabled .maplibregl-ctrl-icon{opacity:.25}.maplibregl-ctrl button:not(:disabled):hover{background-color:rgb(0 0 0/5%)}.maplibregl-ctrl-group button:focus:focus-visible{box-shadow:0 0 2px 2px #0096ff}.maplibregl-ctrl-group button:focus:not(:focus-visible){box-shadow:none}.maplibregl-ctrl-group button:focus:first-child{border-radius:4px 4px 0 0}.maplibregl-ctrl-group button:focus:last-child{border-radius:0 0 4px 4px}.maplibregl-ctrl-group button:focus:only-child{border-radius:inherit}.maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 29 29'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 29 29'%3E%3Cpath d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3h-3c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h3v3c0 .75.75 1.5 1.5 1.5S16 19.75 16 19v-3h3c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-3v-3c0-.75-.75-1.5-1.5-1.5'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-fullscreen .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 29 29'%3E%3Cpath d='M24 16v5.5c0 1.75-.75 2.5-2.5 2.5H16v-1l3-1.5-4-5.5 1-1 5.5 4 1.5-3zM6 16l1.5 3 5.5-4 1 1-4 5.5 3 1.5v1H7.5C5.75 24 5 23.25 5 21.5V16zm7-11v1l-3 1.5 4 5.5-1 1-5.5-4L6 13H5V7.5C5 5.75 5.75 5 7.5 5zm11 2.5c0-1.75-.75-2.5-2.5-2.5H16v1l3 1.5-4 5.5 1 1 5.5-4 1.5 3h1z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-shrink .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' viewBox='0 0 29 29'%3E%3Cpath d='M18.5 16c-1.75 0-2.5.75-2.5 2.5V24h1l1.5-3 5.5 4 1-1-4-5.5 3-1.5v-1zM13 18.5c0-1.75-.75-2.5-2.5-2.5H5v1l3 1.5L4 24l1 1 5.5-4 1.5 3h1zm3-8c0 1.75.75 2.5 2.5 2.5H24v-1l-3-1.5L25 5l-1-1-5.5 4L17 5h-1zM10.5 13c1.75 0 2.5-.75 2.5-2.5V5h-1l-1.5 3L5 4 4 5l4 5.5L5 12v1z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-compass .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 29 29'%3E%3Cpath d='m10.5 14 4-8 4 8z'/%3E%3Cpath fill='%23ccc' d='m10.5 16 4 8 4-8z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/svg%3E")}.maplibregl-ctrl-attrib{background-color:hsla(0,0%,100%,.5);margin:0;padding:0 5px}.maplibregl-ctrl-attrib.maplibregl-compact{background-color:#fff;border-radius:12px;box-sizing:content-box;color:#000;margin:10px;min-height:20px;padding:2px 24px 2px 0;position:relative}.maplibregl-ctrl-attrib.maplibregl-compact-show{padding:2px 28px 2px 8px;visibility:visible}.maplibregl-ctrl-bottom-left>.maplibregl-ctrl-attrib.maplibregl-compact-show,.maplibregl-ctrl-top-left>.maplibregl-ctrl-attrib.maplibregl-compact-show{border-radius:12px;padding:2px 8px 2px 28px}.maplibregl-ctrl-attrib.maplibregl-compact .maplibregl-ctrl-attrib-inner{display:none}.maplibregl-ctrl-attrib-button{background-color:hsla(0,0%,100%,.5);border:0;border-radius:12px;box-sizing:border-box;cursor:pointer;display:none;height:24px;outline:none;position:absolute;right:0;top:0;width:24px}.maplibregl-ctrl-bottom-left .maplibregl-ctrl-attrib-button,.maplibregl-ctrl-top-left .maplibregl-ctrl-attrib-button{left:0}.maplibregl-ctrl-attrib.maplibregl-compact .maplibregl-ctrl-attrib-button,.maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner{display:block}.maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-button{background-color:rgb(0 0 0/5%)}.maplibregl-ctrl-attrib a{color:rgba(0,0,0,.75);text-decoration:none}.maplibregl-ctrl-attrib a:hover{color:inherit;text-decoration:underline}.maplibregl-attrib-empty{display:none}.maplibregl-ctrl-scale{background-color:hsla(0,0%,100%,.75);border:2px solid #333;border-top:#333;box-sizing:border-box;color:#333;font-size:10px;padding:0 5px}.maplibregl-popup{display:flex;left:0;pointer-events:none;position:absolute;top:0;will-change:transform}.maplibregl-popup-anchor-top,.maplibregl-popup-anchor-top-left,.maplibregl-popup-anchor-top-right{flex-direction:column}.maplibregl-popup-anchor-bottom,.maplibregl-popup-anchor-bottom-left,.maplibregl-popup-anchor-bottom-right{flex-direction:column-reverse}.maplibregl-popup-anchor-left{flex-direction:row}.maplibregl-popup-anchor-right{flex-direction:row-reverse}.maplibregl-popup-tip{border:10px solid transparent;height:0;width:0;z-index:1}.maplibregl-popup-anchor-top .maplibregl-popup-tip{align-self:center;border-bottom-color:#fff;border-top:none}.maplibregl-popup-anchor-top-left .maplibregl-popup-tip{align-self:flex-start;border-bottom-color:#fff;border-left:none;border-top:none}.maplibregl-popup-anchor-top-right .maplibregl-popup-tip{align-self:flex-end;border-bottom-color:#fff;border-right:none;border-top:none}.maplibregl-popup-anchor-bottom .maplibregl-popup-tip{align-self:center;border-bottom:none;border-top-color:#fff}.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip{align-self:flex-start;border-bottom:none;border-left:none;border-top-color:#fff}.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip{align-self:flex-end;border-bottom:none;border-right:none;border-top-color:#fff}.maplibregl-popup-anchor-left .maplibregl-popup-tip{align-self:center;border-left:none;border-right-color:#fff}.maplibregl-popup-anchor-right .maplibregl-popup-tip{align-self:center;border-left-color:#fff;border-right:none}.maplibregl-popup-close-button{background-color:transparent;border:0;border-radius:0 3px 0 0;cursor:pointer;position:absolute;right:0;top:0}.maplibregl-popup-close-button:hover{background-color:rgb(0 0 0/5%)}.maplibregl-popup-content{background:#fff;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.1);padding:15px 10px;pointer-events:auto;position:relative}.maplibregl-popup-anchor-top-left .maplibregl-popup-content{border-top-left-radius:0}.maplibregl-popup-anchor-top-right .maplibregl-popup-content{border-top-right-radius:0}.maplibregl-popup-anchor-bottom-left .maplibregl-popup-content{border-bottom-left-radius:0}.maplibregl-popup-anchor-bottom-right .maplibregl-popup-content{border-bottom-right-radius:0}.maplibregl-popup-track-pointer{display:none}.maplibregl-popup-track-pointer *{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.maplibregl-map:hover .maplibregl-popup-track-pointer{display:flex}.maplibregl-map:active .maplibregl-popup-track-pointer{display:none}.maplibregl-marker{left:0;position:absolute;top:0;transition:opacity .2s;will-change:transform}.maplibregl-user-location-dot,.maplibregl-user-location-dot:before{background-color:#1da1f2;border-radius:50%;height:15px;width:15px}.maplibregl-user-location-dot:before{animation:maplibregl-user-location-dot-pulse 2s infinite;content:"";position:absolute}.maplibregl-user-location-dot:after{border:2px solid #fff;border-radius:50%;box-shadow:0 0 3px rgba(0,0,0,.35);box-sizing:border-box;content:"";height:19px;left:-2px;position:absolute;top:-2px;width:19px}@keyframes maplibregl-user-location-dot-pulse{0%{opacity:1;transform:scale(1)}70%{opacity:0;transform:scale(3)}to{opacity:0;transform:scale(1)}}.maplibregl-user-location-dot-stale{background-color:#aaa}.maplibregl-user-location-dot-stale:after{display:none}.maplibregl-user-location-accuracy-circle{background-color:#1da1f233;border-radius:100%;height:1px;width:1px}.maplibregl-crosshair,.maplibregl-crosshair .maplibregl-interactive,.maplibregl-crosshair .maplibregl-interactive:active{cursor:crosshair}.maplibregl-boxzoom{background:#fff;border:2px dotted #202020;height:0;left:0;opacity:.5;position:absolute;top:0;width:0}.maplibregl-cooperative-gesture-screen{align-items:center;background:rgba(0,0,0,.4);color:#fff;display:flex;font-size:1.4em;inset:0;justify-content:center;line-height:1.2;opacity:0;padding:1rem;pointer-events:none;position:absolute;transition:opacity 1s ease 1s;z-index:99999}.maplibregl-cooperative-gesture-screen.maplibregl-show{opacity:1;transition:opacity .05s}.maplibregl-cooperative-gesture-screen .maplibregl-mobile-message{display:none}@media (hover:none),(width <= 480px){.maplibregl-cooperative-gesture-screen .maplibregl-desktop-message{display:none}.maplibregl-cooperative-gesture-screen .maplibregl-mobile-message{display:block}}.maplibregl-pseudo-fullscreen{height:100%!important;left:0!important;position:fixed!important;top:0!important;width:100%!important;z-index:99999}
+:root {
+  /* Deliberately single-theme (map over satellite imagery). */
+  --rh-paper: #faf7f1;
+  --rh-paper-solid: #fbf9f4;
+  --rh-glass: rgba(250, 247, 241, 0.86);
+  --rh-ink: #2c2620;
+  --rh-ink-soft: #6b6255;
+  --rh-hairline: #ddd4c2;
+  --rh-accent: #1f4b4a;
+  --rh-accent-soft: rgba(31, 75, 74, 0.09);
+  --side-b: #1f78b4;      /* father's side */
+  --side-t: #d4891a;      /* mother's side */
+  --side-both: #7a4bb5;   /* on both sides (pedigree collapse) */
+  --rh-shadow: 0 4px 16px rgba(44, 38, 32, 0.16);
+  --rh-radius: 10px;
+  --rh-radius-sm: 7px;
+  --rh-font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --rh-font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: var(--rh-font-ui); background: #e9e4d8; color: var(--rh-ink); overflow: hidden; }
+#app { position: relative; height: 100%; }
+#map { position: absolute; inset: 0; background: #d9d3c4; }
+.glass {
+  background: var(--rh-glass); backdrop-filter: blur(12px) saturate(1.4); -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border: 1px solid var(--rh-hairline); border-radius: var(--rh-radius); box-shadow: var(--rh-shadow);
+}
+button { font-family: inherit; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--rh-accent); outline-offset: 2px; }
+
+/* ---------- Title ---------- */
+#map-title {
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%); z-index: 3;
+  padding: 8px 20px; text-align: center; white-space: nowrap;
+}
+#map-title h1 { margin: 0; font: 600 19px/1.25 var(--rh-font-display); letter-spacing: .2px; }
+#map-title p { margin: 1px 0 0; font-size: 11.5px; color: var(--rh-ink-soft); }
+
+/* ---------- People panel ---------- */
+#panel {
+  position: absolute; top: 14px; left: 12px; bottom: calc(150px + var(--badge, 0px)); width: 300px; z-index: 3;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+#panel-head { padding: 12px 14px 10px; border-bottom: 1px solid var(--rh-hairline); }
+#panel-head .eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--rh-accent); }
+#panel-head .count { font: 600 20px/1.2 var(--rh-font-display); margin-top: 2px; font-variant-numeric: tabular-nums; }
+#panel-head .sub { font-size: 12px; color: var(--rh-ink-soft); margin-top: 2px; }
+#panel-toggle { display: none; }
+#people { flex: 1; overflow-y: auto; padding: 4px 0 8px; }
+.gen-head {
+  position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; gap: 8px; align-items: baseline;
+  padding: 9px 14px 5px; background: var(--rh-paper-solid);
+  font-size: 11.5px; font-weight: 600; color: var(--rh-ink); border-bottom: 1px solid var(--rh-hairline);
+}
+.gen-head span { font-weight: 400; color: var(--rh-ink-soft); }
+.person {
+  display: grid; grid-template-columns: 12px 1fr; gap: 9px; align-items: start; width: 100%;
+  padding: 7px 14px; border: 0; background: transparent; text-align: left; cursor: pointer; color: var(--rh-ink);
+}
+.person:hover { background: var(--rh-accent-soft); }
+.person .dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(44,38,32,.25); }
+.person .dot.est { background: #fff !important; border-width: 2px; border-style: solid; }
+.person .nm { font-size: 13px; font-weight: 600; line-height: 1.3; }
+.person .where { font-size: 11.5px; color: var(--rh-ink-soft); line-height: 1.35; }
+.panel-empty { padding: 18px 14px; font-size: 12.5px; color: var(--rh-ink-soft); font-style: italic; }
+#panel-foot { border-top: 1px solid var(--rh-hairline); padding: 9px 14px 11px; font-size: 11px; color: var(--rh-ink-soft); line-height: 1.45; }
+#panel-foot details summary { cursor: pointer; font-weight: 600; color: var(--rh-ink); }
+#panel-foot details p { margin: 6px 0 0; }
+
+/* ---------- Search ---------- */
+#search { position: relative; margin-top: 10px; }
+#search-input {
+  width: 100%; font: 13px/1.4 var(--rh-font-ui); padding: 8px 11px 8px 32px; color: var(--rh-ink);
+  border: 1px solid var(--rh-hairline); border-radius: 999px; background: var(--rh-paper-solid);
+}
+#search-input:focus { outline: none; border-color: var(--rh-accent); box-shadow: 0 0 0 3px var(--rh-accent-soft); }
+#search svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: var(--rh-ink-soft); pointer-events: none; }
+#search-results {
+  position: absolute; left: 0; right: 0; top: calc(100% + 5px); z-index: 5; max-height: 320px; overflow-y: auto;
+  background: var(--rh-paper-solid); border: 1px solid var(--rh-hairline); border-radius: var(--rh-radius); box-shadow: var(--rh-shadow);
+}
+.sr { display: grid; grid-template-columns: 30px 1fr; gap: 9px; align-items: center; width: 100%; padding: 7px 11px; border: 0; background: transparent; text-align: left; cursor: pointer; color: var(--rh-ink); border-bottom: 1px solid var(--rh-hairline); }
+.sr:last-child { border-bottom: 0; }
+.sr:hover, .sr.kb { background: var(--rh-accent-soft); }
+.sr .nm { font-size: 13px; font-weight: 600; }
+.sr .meta { font-size: 11.5px; color: var(--rh-ink-soft); }
+.sr-empty { padding: 10px 12px; font-size: 12.5px; color: var(--rh-ink-soft); font-style: italic; }
+.av { width: 30px; height: 30px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid var(--c, #999); box-sizing: border-box; flex: none; }
+.av.dotonly { width: 12px; height: 12px; margin: 0 auto; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(44,38,32,.25); }
+.person .av { width: 26px; height: 26px; margin-top: 0; }
+.person.hasphoto { grid-template-columns: 26px 1fr; }
+.pop-head { display: flex; gap: 11px; align-items: center; }
+.pop-photo { width: 58px; height: 58px; border-radius: 50%; background-size: cover; background-position: center; border: 3px solid var(--c, #999); flex: none; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+.mk.photo { width: 34px; height: 34px; background-size: cover !important; background-position: center !important; border-width: 3px; }
+.mk.flash { animation: flash 1.2s ease-out 2; }
+@keyframes flash { 0% { box-shadow: 0 0 0 0 rgba(31,75,74,.8); } 100% { box-shadow: 0 0 0 16px rgba(31,75,74,0); } }
+@media (prefers-reduced-motion: reduce) { .mk.flash { animation: none; } }
+.place-lbl { pointer-events: none; white-space: nowrap; font: 600 12px/1.2 var(--rh-font-ui); color: #fff; letter-spacing: .02em;
+  text-shadow: 0 0 3px rgba(0,0,0,.95), 0 0 6px rgba(0,0,0,.7); transform: translateY(-16px); text-align: center; }
+.place-lbl small { display: block; font-weight: 400; font-size: 10.5px; opacity: .92; }
+.place-lbl.region { font: 600 14px/1.2 var(--rh-font-display); letter-spacing: .06em; text-transform: uppercase; transform: none; }
+.place-lbl.county { font-weight: 500; font-style: italic; transform: none; }
+.plain .place-lbl { color: var(--rh-ink); text-shadow: 0 0 3px #faf7f1, 0 0 6px #faf7f1; }
+
+/* ---------- Right controls ---------- */
+#controls { position: absolute; top: 14px; right: 12px; z-index: 3; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; width: 250px; }
+#basemap { display: flex; border-radius: 999px; overflow: hidden; }
+.bm-btn { font: 500 12px/1.4 var(--rh-font-ui); padding: 8px 15px; border: 0; background: transparent; color: var(--rh-ink); cursor: pointer; }
+.bm-btn + .bm-btn { border-left: 1px solid var(--rh-hairline); }
+.bm-btn:hover { background: var(--rh-accent-soft); }
+.bm-btn.on { background: var(--rh-accent); color: #fff; font-weight: 600; }
+.card { padding: 10px 13px 11px; width: 100%; box-sizing: border-box; font-size: 12.5px; }
+.card-title { font-weight: 600; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.card-title .hint { font-weight: 400; color: var(--rh-ink-soft); font-size: 11px; }
+.switch { display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+.switch input { accent-color: var(--rh-accent); width: 15px; height: 15px; margin: 0; }
+.range-row { display: flex; align-items: center; gap: 8px; margin-top: 7px; }
+.range-row input[type=range] { flex: 1; accent-color: var(--rh-accent); }
+.range-row output { font-variant-numeric: tabular-nums; color: var(--rh-ink-soft); width: 34px; text-align: right; font-size: 11.5px; }
+.legend-item { display: flex; align-items: center; gap: 8px; margin: 4px 0; cursor: pointer; border-radius: 6px; padding: 2px 6px; margin-inline: -6px; }
+.legend-item:hover { background: var(--rh-accent-soft); }
+.legend-item.off { opacity: .4; }
+.legend-item .sw { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(44,38,32,.3); flex: none; }
+.legend-item.static { cursor: default; }
+.legend-item.static:hover { background: none; }
+.sw.est { background: #fff; border: 2.5px solid var(--rh-ink-soft); box-shadow: none; width: 9px; height: 9px; }
+.sw.grp { width: 16px; height: 16px; border-radius: 8px; background: var(--rh-paper-solid); border: 2px solid var(--rh-ink); box-shadow: none; font: 700 9px/12px var(--rh-font-ui); text-align: center; color: var(--rh-ink); }
+.jumps { display: flex; flex-wrap: wrap; gap: 6px; }
+.jump { font: 500 11.5px var(--rh-font-ui); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--rh-hairline); background: var(--rh-paper-solid); color: var(--rh-ink); cursor: pointer; }
+.jump:hover { background: var(--rh-accent-soft); }
+.jump .badge { display: inline-block; min-width: 16px; padding: 0 4px; margin-left: 4px; border-radius: 8px; background: var(--rh-accent); color: #fff; font-size: 10px; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; }
+.jump .badge:empty { display: none; }
+
+/* ---------- Timeline ---------- */
+#timeline {
+  position: absolute; left: 12px; right: 12px; bottom: calc(14px + var(--badge, 0px)); z-index: 3; padding: 10px 16px 10px;
+  display: grid; grid-template-columns: auto auto 1fr; gap: 6px 16px; align-items: center;
+}
+#play {
+  width: 42px; height: 42px; border-radius: 50%; border: 0; background: var(--rh-accent); color: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(31,75,74,.35);
+}
+#play:hover { filter: brightness(1.12); }
+#play svg { width: 18px; height: 18px; }
+#yearbox { min-width: 128px; }
+#year { font: 600 34px/1 var(--rh-font-display); font-variant-numeric: tabular-nums; letter-spacing: .5px; }
+#gens { font-size: 11.5px; color: var(--rh-ink-soft); margin-top: 3px; white-space: nowrap; }
+#track { position: relative; height: 58px; }
+#spark { position: absolute; left: 0; right: 0; top: 0; height: 30px; width: 100%; }
+#slider { position: absolute; left: 0; right: 0; top: 24px; width: 100%; margin: 0; accent-color: var(--rh-accent); height: 18px; }
+#ticks { position: absolute; left: 0; right: 0; top: 44px; height: 14px; font-size: 10.5px; color: var(--rh-ink-soft); font-variant-numeric: tabular-nums; }
+#ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+#ticks span.ev { color: var(--rh-accent); font-weight: 600; }
+#speed { grid-column: 1 / 3; display: flex; gap: 4px; }
+.sp { font: 500 11px var(--rh-font-ui); padding: 3px 8px; border-radius: 999px; border: 1px solid var(--rh-hairline); background: transparent; color: var(--rh-ink-soft); cursor: pointer; }
+.sp.on { background: var(--rh-ink); color: #fff; border-color: var(--rh-ink); }
+.sp.all { margin-left: 6px; border-color: var(--rh-accent); color: var(--rh-accent); font-weight: 600; }
+.sp.all.on { background: var(--rh-accent); color: #fff; }
+#timeline.all-on #slider { opacity: .45; }
+#timeline.all-on #year { font-size: 26px; }
+#tl-note { font-size: 11px; color: var(--rh-ink-soft); }
+
+/* ---------- Markers ---------- */
+.mk { width: 15px; height: 15px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,.5); cursor: pointer; box-sizing: border-box; transition: transform .15s; }
+.mk:hover { transform: scale(1.25); }
+.mk.est { background: #fff !important; border-width: 3px; }
+.mk-grp {
+  min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px; box-sizing: border-box; cursor: pointer;
+  background: var(--rh-paper-solid); border: 2.5px solid var(--rh-ink); color: var(--rh-ink);
+  font: 700 11px/17px var(--rh-font-ui); text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,.45);
+  display: flex; align-items: center; justify-content: center; gap: 3px;
+}
+.mk-grp i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; }
+.hn-label { font: 700 10px/1 var(--rh-font-ui); color: #fff; text-shadow: 0 0 3px #000, 0 0 2px #000; pointer-events: none; transform: translate(10px,-14px); white-space: nowrap; }
+
+#overlay1869 { position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: none; will-change: transform; max-width: none !important; max-height: none !important;
+  filter: brightness(0) invert(1) sepia(.35) drop-shadow(0 0 1px rgba(0,0,0,.9)); }
+.plain #overlay1869 { filter: none; }
+.sat { position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: none; max-width: none !important; user-select: none; }
+.plain .sat { display: none; }
+#map { background: #d9d3c4; }
+.maplibregl-ctrl-bottom-right { bottom: calc(118px + var(--badge, 0px)); }
+@media (max-width: 1100px) { .maplibregl-ctrl-bottom-right { bottom: calc(164px + var(--badge, 0px)); } }
+.maplibregl-ctrl-attrib { font-size: 10.5px; background: rgba(250,247,241,.85) !important; }
+
+/* ---------- Popups ---------- */
+.maplibregl-popup-content { padding: 0 !important; border-radius: var(--rh-radius); overflow: hidden; box-shadow: 0 6px 20px rgba(44,38,32,.35); }
+.maplibregl-popup-close-button { width: 32px; height: 32px; font-size: 21px; line-height: 32px; color: var(--rh-ink-soft); border-radius: 50%; }
+.maplibregl-popup-close-button:hover { background-color: var(--rh-accent-soft); color: var(--rh-ink); }
+.pop { background: var(--rh-paper-solid); padding: 12px 38px 12px 14px; font: 12.5px/1.45 var(--rh-font-ui); color: var(--rh-ink); width: 290px; box-sizing: border-box; border-top: 4px solid var(--c, #999); }
+.pop-place { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--rh-accent); margin-bottom: 6px; }
+.pop-list { max-height: 300px; overflow-y: auto; padding-right: 2px; }
+.pop-item { padding: 7px 0; border-bottom: 1px solid var(--rh-hairline); }
+.pop-item:last-child { border-bottom: 0; }
+.pop-name { font: 600 14.5px/1.3 var(--rh-font-display); }
+.pop-rel { font-style: italic; color: var(--rh-ink-soft); font-size: 12px; }
+.pop-when { margin-top: 3px; }
+.pop-when b { font-variant-numeric: tabular-nums; }
+.pop-meta { color: var(--rh-ink-soft); font-size: 11.5px; margin-top: 2px; }
+.pill { display: inline-block; font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: 999px; margin-top: 4px; border: 1px solid var(--rh-hairline); color: var(--rh-ink-soft); background: #fff; }
+.pill.rec { color: #2e6b3a; border-color: #b8d6bd; background: #f0f7f1; }
+.pill.est { color: #8a5a12; border-color: #e7cf9e; background: #fdf6e7; }
+.pop details { margin-top: 5px; font-size: 11.5px; color: var(--rh-ink-soft); }
+.pop details summary { cursor: pointer; color: var(--rh-accent); font-weight: 500; }
+
+/* ---------- Family links & "Show my line" ---------- */
+.pop-life { margin-top: 6px; }
+.pl-occ { font-size: 12px; font-weight: 600; color: var(--rh-ink); line-height: 1.4; }
+.pop details.pl-more { margin-top: 3px; }
+.pl-more summary { font-size: 11.5px; }
+.pl-fl { display: inline-block; margin-left: 4px; font-size: 9.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #8a5a12; background: #fdf6e7; border: 1px solid #e7cf9e; border-radius: 999px; padding: 0 6px; vertical-align: 1px; }
+.pl-list { margin: 5px 0 2px; padding-left: 16px; color: var(--rh-ink); font-size: 11.5px; line-height: 1.45; }
+.pl-list li { margin: 1px 0; }
+.pl-note { margin: 6px 0 0; color: var(--rh-ink); font-size: 12px; line-height: 1.5; }
+.pl-src { display: block; font-size: 10.5px; font-style: italic; color: var(--rh-ink-soft); margin-top: 1px; }
+.pl-flag { margin-top: 7px; padding: 6px 8px; border-radius: 6px; background: #fdf6e7; border: 1px solid #e7cf9e; color: #5e4210; font-size: 11.5px; line-height: 1.45; }
+.pl-flag b { display: block; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: #8a5a12; }
+.pop-fam { margin-top: 6px; font-size: 12px; line-height: 1.55; }
+.pop-fam .lbl { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--rh-ink-soft); margin-right: 3px; }
+.fl { font: 600 12px/1.4 var(--rh-font-ui); color: var(--rh-accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: rgba(31,75,74,.35); text-underline-offset: 2px; }
+.fl:hover { text-decoration-color: currentColor; }
+.fl.off { color: var(--rh-ink); font-weight: 500; text-decoration: none; cursor: help; }
+.fl-y { color: var(--rh-ink-soft); font-size: 11px; font-variant-numeric: tabular-nums; }
+.pop-actions { display: flex; align-items: center; gap: 6px 9px; flex-wrap: wrap; margin-top: 7px; }
+.line-btn { display: inline-flex; align-items: center; gap: 5px; font: 600 11.5px var(--rh-font-ui); padding: 4px 11px 4px 9px; border-radius: 999px; border: 1px solid #d9a93a; background: #fdf6e7; color: #7a5410; cursor: pointer; }
+.line-btn:hover { background: #f8e9c6; }
+.line-btn svg { width: 13px; height: 13px; }
+.collapse-note { font-size: 11.5px; color: var(--side-both); font-weight: 500; line-height: 1.35; }
+
+#line-svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.mk.dim, .mk-grp.dim { opacity: .3; filter: grayscale(.7); }
+.mk.online { box-shadow: 0 0 0 2.5px #f2c14e, 0 1px 4px rgba(0,0,0,.6); }
+.mk-grp.online { border-color: #b8892a; box-shadow: 0 0 0 2px #f2c14e, 0 1px 4px rgba(0,0,0,.5); }
+.mk.target, .mk-grp.target { box-shadow: 0 0 0 4px #f2c14e, 0 0 12px 4px rgba(242,193,78,.85); }
+
+#line-card { position: absolute; top: 74px; left: 50%; transform: translateX(-50%); z-index: 4; width: 360px; max-width: calc(100% - 24px);
+  max-height: calc(100% - 74px - var(--tlh, 110px) - var(--badge, 0px) - 34px); display: flex; flex-direction: column; box-sizing: border-box; border-top: 4px solid #d9a93a; overflow: hidden; }
+#line-card[hidden] { display: none; }
+.lc-head { display: flex; gap: 10px; align-items: flex-start; padding: 9px 8px 5px 14px; }
+.lc-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #8a5a12; }
+.lc-title { font: 600 17px/1.25 var(--rh-font-display); }
+.lc-sub { font-size: 12px; color: var(--rh-ink-soft); margin-top: 1px; }
+.lc-sub b { color: var(--side-both); font-weight: 600; }
+#lc-close { margin-left: auto; flex: none; width: 30px; height: 30px; border: 0; border-radius: 50%; background: transparent; color: var(--rh-ink-soft); font-size: 20px; line-height: 30px; cursor: pointer; }
+#lc-close:hover { background: var(--rh-accent-soft); color: var(--rh-ink); }
+.lc-routes { display: flex; align-items: center; gap: 8px; padding: 0 14px 7px; font-size: 12px; }
+.lc-routes:empty { display: none; }
+.lc-routes button { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--rh-hairline); background: var(--rh-paper-solid); color: var(--rh-ink); cursor: pointer; font-size: 15px; line-height: 22px; padding: 0; }
+.lc-routes button:hover { background: var(--rh-accent-soft); }
+.lc-routes span { font-variant-numeric: tabular-nums; }
+#lc-details { border-top: 1px solid var(--rh-hairline); overflow-y: auto; min-height: 0; }
+#lc-details summary { padding: 7px 14px; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--rh-accent); position: sticky; top: 0; background: var(--rh-paper-solid); z-index: 1; }
+#lc-chain { list-style: none; margin: 0; padding: 2px 14px 10px; }
+#lc-chain li { display: grid; grid-template-columns: 24px 1fr; gap: 9px; align-items: start; padding: 3px 0; position: relative; }
+#lc-chain li + li::before { content: ''; position: absolute; left: 11px; top: -6px; height: 10px; border-left: 2px solid #e6c878; }
+.gn { width: 22px; height: 22px; border-radius: 50%; background: #fdf6e7; border: 1.5px solid #d9a93a; font: 700 10.5px/19px var(--rh-font-ui); text-align: center; color: #7a5410; box-sizing: border-box; }
+#lc-chain li.tg .gn { background: #d9a93a; color: #fff; }
+.lc-rel { font-size: 11px; color: var(--rh-ink-soft); font-style: italic; }
+/* ---------- Header + person picker ---------- */
+#map-title { display: flex; align-items: center; gap: 12px; text-align: left; max-width: calc(100% - 560px); }
+#map-title .mt-text { min-width: 0; }
+#map-title h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.change-btn { flex: none; display: inline-flex; align-items: center; gap: 6px; font: 600 12px var(--rh-font-ui); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--rh-accent); background: var(--rh-accent); color: #fff; cursor: pointer; }
+.change-btn:hover { filter: brightness(1.12); }
+.change-btn svg { width: 14px; height: 14px; }
+#picker { position: fixed; inset: 0; z-index: 30; display: flex; align-items: flex-start; justify-content: center; padding: 8vh 16px 16px; background: rgba(28, 24, 20, .42); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); box-sizing: border-box; }
+#picker[hidden] { display: none; }
+.pk { width: 560px; max-width: 100%; max-height: 84vh; display: flex; flex-direction: column; padding: 22px 22px 14px; box-sizing: border-box; background: var(--rh-paper-solid); border-top: 4px solid var(--rh-accent); }
+.pk-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--rh-accent); }
+.pk h2 { margin: 4px 0 6px; font: 600 24px/1.2 var(--rh-font-display); }
+.pk-lead { margin: 0 0 14px; font-size: 13.5px; line-height: 1.5; color: var(--rh-ink-soft); }
+.pk-search { position: relative; }
+.pk-search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--rh-ink-soft); pointer-events: none; }
+#pk-input { width: 100%; box-sizing: border-box; font: 15px/1.4 var(--rh-font-ui); padding: 11px 14px 11px 38px; border: 1px solid var(--rh-hairline); border-radius: 999px; background: #fff; color: var(--rh-ink); }
+#pk-input:focus { outline: none; border-color: var(--rh-accent); box-shadow: 0 0 0 3px var(--rh-accent-soft); }
+#pk-results { margin-top: 10px; overflow-y: auto; min-height: 0; flex: 1; }
+.pkr { display: block; width: 100%; text-align: left; padding: 9px 10px; border: 0; border-bottom: 1px solid var(--rh-hairline); background: transparent; cursor: pointer; color: var(--rh-ink); font: inherit; }
+.pkr:hover, .pkr.kb { background: var(--rh-accent-soft); }
+.pkr .nm { font: 600 14.5px/1.3 var(--rh-font-display); }
+.pkr .nm i { font: italic 400 12px var(--rh-font-ui); color: var(--rh-ink-soft); }
+.pkr .meta { font-size: 12px; color: var(--rh-ink-soft); margin-top: 1px; }
+.pkr .anc { float: right; font-size: 11px; font-weight: 600; color: var(--rh-accent); background: var(--rh-accent-soft); border-radius: 999px; padding: 1px 8px; margin-left: 8px; }
+.pkr .anc.none { color: var(--rh-ink-soft); background: #f1ece2; font-weight: 500; }
+.pk-empty { padding: 14px 4px; font-size: 13px; color: var(--rh-ink-soft); font-style: italic; }
+.pk-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; font-size: 11.5px; color: var(--rh-ink-soft); }
+.pk-link { font: 600 12px var(--rh-font-ui); color: var(--rh-accent); background: none; border: 0; cursor: pointer; padding: 4px 6px; text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 1100px) {
+  #map-title { max-width: calc(100% - 24px); left: 12px; right: 12px; transform: none; gap: 8px; padding: 5px 6px 5px 12px; }
+  #map-title h1 { font-size: 14px; }
+  .change-btn span { display: none; }
+  .change-btn { padding: 6px 8px; }
+  #controls { top: 60px; }
+  .pk { padding: 18px 16px 12px; max-height: 88vh; }
+  .pk h2 { font-size: 20px; }
+  #picker { padding-top: 5vh; }
+}
+
+/* ---------- House histories ---------- */
+#house-card { position: absolute; top: 74px; left: 50%; transform: translateX(-50%); z-index: 4; width: 390px; max-width: calc(100% - 24px);
+  max-height: calc(100% - 74px - var(--tlh, 110px) - var(--badge, 0px) - 34px); display: flex; flex-direction: column; box-sizing: border-box; border-top: 4px solid var(--rh-accent); overflow: hidden; }
+#house-card[hidden] { display: none; }
+#house-card .lc-eyebrow { color: var(--rh-accent); }
+.hs-note { font: 13px/1.55 var(--rh-font-ui); margin: 0 0 8px; }
+.hs-h { font-size: 10.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--rh-ink-soft); margin: 10px 0 4px; }
+.hs-lists { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 12px; }
+.hs-lists b { font-variant-numeric: tabular-nums; color: var(--rh-accent); }
+.hs-hh { list-style: none; margin: 0; padding: 0; }
+.hs-hh li { display: grid; grid-template-columns: 78px 1fr; gap: 8px; padding: 4px 0; border-bottom: 1px solid var(--rh-hairline); font-size: 12px; line-height: 1.4; }
+.hs-hh li:last-child { border-bottom: 0; }
+.hs-y { font-variant-numeric: tabular-nums; color: var(--rh-ink-soft); font-size: 11.5px; }
+.hs-hh li.anc .hs-y { color: #7a5410; font-weight: 600; }
+.hs-hh li.anc { background: linear-gradient(90deg, rgba(242,193,78,.16), transparent); }
+.hs-rel { display: block; font-size: 11px; color: var(--side-both); font-style: italic; }
+.hs-sub { font-size: 10px; font-weight: 700; color: var(--rh-ink-soft); border: 1px solid var(--rh-hairline); border-radius: 4px; padding: 0 3px; margin-left: 3px; }
+.hs-more summary { cursor: pointer; font-size: 12px; font-weight: 600; color: var(--rh-accent); margin-top: 8px; }
+.house-btn { display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; font: 600 10.5px var(--rh-font-ui); letter-spacing: 0; text-transform: none; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--rh-accent); background: var(--rh-accent-soft); color: var(--rh-accent); cursor: pointer; vertical-align: 1px; }
+.house-btn:hover { background: var(--rh-accent); color: #fff; }
+a.house-btn { text-decoration: none; }
+.hs-sv { display: flex; gap: 10px; align-items: center; margin: 2px 0 6px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--rh-hairline); background: var(--rh-paper-solid); color: var(--rh-ink); text-decoration: none; }
+.hs-sv:hover { border-color: var(--rh-accent); background: var(--rh-accent-soft); }
+.hs-sv svg { width: 22px; height: 22px; flex: none; color: #d4891a; }
+.hs-sv b { display: block; font-size: 12.5px; color: var(--rh-accent); }
+.hs-sv small { display: block; font-size: 11px; color: var(--rh-ink-soft); line-height: 1.35; margin-top: 1px; }
+.hs-nosv { font-size: 11.5px; color: var(--rh-ink-soft); font-style: italic; margin: 0 0 4px; }
+.house-btn svg { width: 11px; height: 11px; }
+#app.housing #toast { display: none; }
+@media (max-width: 1100px) { #house-card { top: auto; bottom: calc(var(--tlh, 92px) + 14px + var(--badge, 0px)); left: 8px; right: 8px; transform: none; width: auto; max-width: none; max-height: 55%; } }
+
+/* ---------- Story of Roseln ---------- */
+.sp.story { display: inline-flex; align-items: center; gap: 5px; border-color: #d9a93a; color: #7a5410; font-weight: 600; background: #fdf6e7; }
+.sp.story svg { width: 13px; height: 13px; }
+.sp.story.on { background: #d9a93a; color: #fff; border-color: #d9a93a; }
+#marks { position: absolute; left: 0; right: 0; top: 17px; height: 0; }
+.mark { position: absolute; top: 0; width: 16px; height: 16px; margin-left: -8px; padding: 0; border: 0; background: transparent; cursor: pointer; z-index: 2; }
+.mark::before { content: ''; position: absolute; left: 4px; top: 4px; width: 7px; height: 7px; background: #d9a93a; border: 1px solid #fff; transform: rotate(45deg); box-shadow: 0 0 0 1px rgba(122,84,16,.45); }
+.mark:hover::before, .mark.on::before { background: #7a5410; width: 9px; height: 9px; left: 3px; top: 3px; }
+#story-card { position: absolute; top: 74px; left: 50%; transform: translateX(-50%); z-index: 4; width: 380px; max-width: calc(100% - 24px);
+  max-height: calc(100% - 74px - var(--tlh, 110px) - var(--badge, 0px) - 34px); display: flex; flex-direction: column; box-sizing: border-box; border-top: 4px solid #d9a93a; overflow: hidden; }
+#story-card[hidden] { display: none; }
+.st-year { font: 600 26px/1.1 var(--rh-font-display); color: #7a5410; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.st-close { margin-left: auto; flex: none; width: 30px; height: 30px; border: 0; border-radius: 50%; background: transparent; color: var(--rh-ink-soft); font-size: 20px; line-height: 30px; cursor: pointer; }
+.st-close:hover { background: var(--rh-accent-soft); color: var(--rh-ink); }
+.st-body { padding: 2px 16px 10px 14px; overflow-y: auto; min-height: 0; }
+.st-text { font: 13.5px/1.55 var(--rh-font-ui); color: var(--rh-ink); }
+.st-text .fl { font-size: 13.5px; }
+.st-src { margin-top: 7px; font-size: 11px; color: var(--rh-ink-soft); font-style: italic; }
+.st-more { color: var(--rh-ink-soft); font-size: 12px; }
+.st-nav { display: flex; align-items: center; gap: 8px; padding: 8px 12px 10px; border-top: 1px solid var(--rh-hairline); }
+.st-btn { font: 600 12.5px var(--rh-font-ui); padding: 6px 13px; border-radius: 999px; border: 1px solid var(--rh-hairline); background: var(--rh-paper-solid); color: var(--rh-ink); cursor: pointer; white-space: nowrap; }
+.st-btn:hover { background: var(--rh-accent-soft); }
+.st-btn.primary { background: var(--rh-accent); border-color: var(--rh-accent); color: #fff; }
+.st-btn.primary:hover { filter: brightness(1.12); background: var(--rh-accent); }
+.st-btn:disabled { opacity: .35; cursor: default; }
+.st-dots { flex: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; }
+.st-dots button { width: 8px; height: 8px; padding: 0; border-radius: 50%; border: 0; background: var(--rh-hairline); cursor: pointer; }
+.st-dots button.on { background: #d9a93a; transform: scale(1.3); }
+@media (min-width: 1101px) { #app.storying #toast { top: auto; bottom: calc(var(--tlh, 110px) + 26px + var(--badge, 0px)); } }
+@media (max-width: 1100px) {
+  #story-card { top: auto; bottom: calc(var(--tlh, 92px) + 14px + var(--badge, 0px)); left: 8px; right: 8px; transform: none; width: auto; max-width: none; max-height: 52%; }
+  .st-year { font-size: 21px; }
+  .st-text { font-size: 13px; }
+  #marks { top: 7px; pointer-events: none; }
+  .mark { pointer-events: none; }
+  .mark::before { width: 5px; height: 5px; left: 5px; top: 5px; }
+  .mark.on::before { width: 7px; height: 7px; left: 4px; top: 4px; }
+}
+@media (max-width: 520px) { .st-dots button { width: 6px; height: 6px; } .st-dots { gap: 3px; } }
+@media (min-width: 1101px) { #app.lining #toast { top: auto; bottom: calc(var(--tlh, 110px) + 26px + var(--badge, 0px)); } }
+@media (max-width: 1100px) {
+  #line-card { top: auto; bottom: calc(var(--tlh, 92px) + 14px + var(--badge, 0px)); left: 8px; right: 8px; transform: none; width: auto; max-width: none; max-height: 48%; }
+  .lc-title { font-size: 15.5px; }
+}
+
+/* ---------- Narrow screens ---------- */
+@media (max-width: 1100px) {
+  #map-title { top: 8px; padding: 5px 12px; }
+  #map-title h1 { font-size: 15px; }
+  #map-title p { display: none; }
+  #controls { top: 56px; width: auto; max-width: calc(100% - 24px); }
+  #controls .card { display: none; }
+  #controls.open .card { display: block; width: 250px; max-width: calc(100vw - 24px); }
+  #ctl-toggle { display: inline-flex !important; }
+  #panel { top: auto; bottom: calc(176px + var(--badge, 0px)); left: 12px; right: 12px; width: auto; max-height: 42%; }
+  #panel.collapsed #people, #panel.collapsed #panel-foot { display: none; }
+  #panel-toggle { display: inline-flex; margin-left: auto; font: 500 12px var(--rh-font-ui); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--rh-hairline); background: var(--rh-paper-solid); color: var(--rh-ink); cursor: pointer; }
+  #panel-head { display: flex; align-items: center; gap: 10px; }
+  #timeline { grid-template-columns: auto 1fr; padding: 8px 12px; left: 8px; right: 8px; bottom: calc(8px + var(--badge, 0px)); }
+  #timeline #track { grid-column: 1 / -1; }
+  #year { font-size: 26px; }
+  #speed { grid-column: auto; justify-content: flex-end; }
+  #tl-note { display: none; }
+  .maplibregl-popup { position: fixed !important; left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important; transform: none !important; max-width: 100% !important; z-index: 6; }
+  .maplibregl-popup-tip { display: none; }
+  .maplibregl-popup-content { border-radius: 16px 16px 0 0 !important; }
+  .pop { width: 100%; padding-bottom: max(14px, env(safe-area-inset-bottom)); }
+  .maplibregl-ctrl-top-left { top: 148px; left: auto; right: 12px; transform: none; }
+  .maplibregl-ctrl-top-left .maplibregl-ctrl { margin: 0; }
+}
+#toast { position: absolute; left: 50%; top: 74px; transform: translate(-50%, -8px); z-index: 4; padding: 9px 16px; font: 500 13px var(--rh-font-ui); color: var(--rh-ink); opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; max-width: calc(100% - 32px); text-align: center; }
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { #toast { transition: none; } }
+@media (max-width: 760px) { .maplibregl-ctrl-top-left { display: none !important; } }
+@media (max-width: 520px) {
+  #timeline { gap: 4px 10px; }
+  #yearbox { min-width: 0; }
+  #gens { white-space: normal; font-size: 11px; line-height: 1.3; }
+  #speed { flex-wrap: wrap; justify-content: flex-start; }
+  .sp { white-space: nowrap; padding: 4px 9px; }
+  .sp.all { margin-left: 2px; }
+}
+#ctl-toggle { display: none; align-items: center; gap: 6px; font: 500 12px var(--rh-font-ui); padding: 8px 13px; border-radius: 999px; border: 1px solid var(--rh-hairline); color: var(--rh-ink); cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .mk { transition: none; } }
+
+/* ---------- Compact bottom bar for phones & tablets ---------- */
+.mbar { display: none; }
+@media (max-width: 1100px) {
+  #timeline { grid-template-columns: 36px auto 1fr; gap: 6px 10px; padding: 8px 12px 8px; }
+  #play { width: 36px; height: 36px; }
+  #play svg { width: 15px; height: 15px; }
+  #yearbox { min-width: 0; }
+  #year { font-size: 21px; }
+  #gens, #tl-note, #ticks { display: none; }
+  #timeline #track { grid-column: auto; height: 34px; }
+  #spark { height: 18px; }
+  #slider { top: 14px; }
+  #speed { grid-column: 1 / -1; display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; justify-content: flex-start; }
+  .mbar { display: flex; gap: 6px; margin-right: auto; }
+  .mb { display: inline-flex; align-items: center; gap: 6px; font: 600 12px var(--rh-font-ui); padding: 5px 11px; border-radius: 999px;
+        border: 1px solid var(--rh-hairline); background: var(--rh-paper-solid); color: var(--rh-ink); cursor: pointer; white-space: nowrap; }
+  .mb svg { width: 15px; height: 15px; }
+  .mb.icon { padding: 5px 8px; }
+  .mb[aria-expanded="true"] { background: var(--rh-accent); color: #fff; border-color: var(--rh-accent); }
+  #panel { bottom: calc(var(--tlh, 92px) + 14px + var(--badge, 0px)); max-height: 55%; }
+  #panel.collapsed { display: none; }
+  #panel-head { padding: 9px 12px 8px; }
+  #panel-head .count { font-size: 17px; }
+  #search-wrap { padding: 0 12px 8px !important; }
+  .maplibregl-ctrl-bottom-right { bottom: calc(var(--tlh, 92px) + 14px + var(--badge, 0px)) !important; }
+}
+@media (max-width: 760px) {
+  .sp[data-sp] { display: none; }
+  .maplibregl-ctrl-attrib { font-size: 9px !important; line-height: 1.35; padding: 1px 6px !important; min-height: 0 !important; }
+  .maplibregl-ctrl-attrib.maplibregl-compact-show { padding: 1px 22px 1px 6px !important; }
+  .maplibregl-ctrl-attrib-inner { white-space: nowrap; }
+  .maplibregl-ctrl-attrib-button { width: 18px; height: 18px; }
+  .maplibregl-ctrl-bottom-right .maplibregl-ctrl { margin: 0 8px 0 0; }
+}
+
+/* ---------- Panel tabs: People · Details · Tree ---------- */
+#ptabs { display: flex; align-items: center; gap: 5px; padding: 10px 12px 9px; border-bottom: 1px solid var(--rh-hairline); flex: none; }
+.ptab { font: 600 12px var(--rh-font-ui); padding: 5px 12px; border-radius: 999px; border: 1px solid var(--rh-hairline); background: var(--rh-paper-solid); color: var(--rh-ink); cursor: pointer; white-space: nowrap; }
+.ptab:hover { background: var(--rh-accent-soft); }
+.ptab[aria-selected="true"] { background: var(--rh-accent); border-color: var(--rh-accent); color: #fff; }
+#ptabs #panel-toggle { margin-left: auto; }
+#panel[data-view="details"] #panel-head, #panel[data-view="details"] #search-wrap, #panel[data-view="details"] #people, #panel[data-view="details"] #panel-foot,
+#panel[data-view="tree"] #panel-head, #panel[data-view="tree"] #search-wrap, #panel[data-view="tree"] #people, #panel[data-view="tree"] #panel-foot { display: none !important; }
+#v-details, #v-tree { flex: 1; overflow-y: auto; min-height: 0; padding: 12px 14px 14px; }
+#v-details[hidden], #v-tree[hidden] { display: none; }
+@media (min-width: 1101px) { #panel[data-view="details"], #panel[data-view="tree"] { width: 360px; } }
+
+/* ---------- Details: record card ---------- */
+.dt-head { display: flex; gap: 11px; align-items: center; }
+.dt-av { flex: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 600 16px var(--rh-font-display); color: var(--c, var(--rh-accent)); background: #fff center/cover no-repeat; border: 2px solid var(--c, var(--rh-accent)); box-sizing: border-box; }
+.dt-name { font: 600 20px/1.2 var(--rh-font-display); }
+.dt-name i { font: italic 400 12.5px var(--rh-font-ui); color: var(--rh-ink-soft); }
+.dt-sub { font-size: 12px; color: var(--rh-ink-soft); margin-top: 2px; line-height: 1.4; }
+.dt-rel { display: inline-block; margin-top: 4px; font-size: 11px; font-weight: 600; color: var(--c, var(--rh-accent)); }
+.dt-h { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--rh-accent); margin: 14px 0 5px; padding-bottom: 4px; border-bottom: 1px solid var(--rh-hairline); display: flex; justify-content: space-between; gap: 8px; }
+.dt-h span { font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--rh-ink-soft); font-size: 11px; }
+.dt-kv { display: grid; grid-template-columns: 68px 1fr; gap: 5px 10px; font-size: 12.5px; line-height: 1.45; margin: 0; }
+.dt-kv dt { color: var(--rh-ink-soft); font-size: 12px; }
+.dt-kv dd { margin: 0; }
+.dt-kv dd small, .dt-src { color: var(--rh-ink-soft); font-size: 11.5px; }
+.dt-src i { font-style: italic; }
+.dt-list { margin: 0; padding-left: 16px; font-size: 12.5px; line-height: 1.5; }
+.dt-list li { margin: 2px 0; }
+.dt-note { margin: 7px 0 0; font-size: 12.5px; line-height: 1.55; }
+.dt-note b { font-variant-numeric: tabular-nums; color: var(--rh-ink); }
+.dt-homes { display: flex; flex-wrap: wrap; gap: 5px; }
+.dt-home { display: inline-flex; align-items: center; gap: 5px; font: 600 11.5px var(--rh-font-ui); padding: 4px 10px 4px 8px; border-radius: 999px; border: 1px solid var(--rh-accent); background: var(--rh-paper-solid); color: var(--rh-accent); cursor: pointer; }
+.dt-home:hover { background: var(--rh-accent-soft); }
+.dt-home svg { width: 12px; height: 12px; }
+.dt-home small { font-weight: 500; color: var(--rh-ink-soft); font-variant-numeric: tabular-nums; }
+.dt-away { font-size: 12.5px; line-height: 1.5; margin: 6px 0 0; padding: 0; list-style: none; }
+.dt-away li { display: grid; grid-template-columns: 74px 1fr; gap: 8px; padding: 2px 0; }
+.dt-away li > b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.dt-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.dt-btn { display: inline-flex; align-items: center; gap: 5px; font: 600 11.5px var(--rh-font-ui); padding: 5px 11px; border-radius: 999px; border: 1px solid var(--rh-hairline); background: var(--rh-paper-solid); color: var(--rh-ink); cursor: pointer; }
+.dt-btn:hover { background: var(--rh-accent-soft); }
+.dt-btn.pri { background: var(--rh-accent); border-color: var(--rh-accent); color: #fff; }
+.dt-btn svg { width: 13px; height: 13px; }
+.dt-foot { margin-top: 14px; font-size: 11px; line-height: 1.5; color: var(--rh-ink-soft); }
+.dt-empty { font-size: 12.5px; color: var(--rh-ink-soft); font-style: italic; padding: 8px 0; }
+
+.dt-by { color: var(--rh-ink-soft); }
+.dt-ev { display: block; margin-top: 2px; }
+.dt-lat { margin-top: 4px; font-size: 12px; line-height: 1.5; color: var(--rh-ink); }
+.dt-q .dt-orig { margin-top: 3px; }
+.dt-kv dd small { font-size: 11.5px; }
+.dt-orig { margin-top: 4px; }
+.dt-orig summary, .dt-roll summary { cursor: pointer; font-size: 11.5px; font-weight: 600; color: var(--rh-accent); }
+.dt-orig p { margin: 4px 0 0; font-size: 12px; line-height: 1.5; color: var(--rh-ink-soft); font-style: italic; }
+.dt-roll { margin: 4px 0 6px; }
+.dt-roll .dt-away { margin-top: 4px; }
+.dt-orig-h { margin: 12px 0 2px; font-size: 11.5px; font-weight: 600; color: var(--rh-ink); display: flex; justify-content: space-between; gap: 8px; }
+.dt-orig-h span { font-weight: 500; color: var(--rh-ink-soft); }
+.dt-q { margin: 7px 0 0; padding: 6px 9px; border-left: 2px solid var(--rh-hairline); background: rgba(255,255,255,.45); border-radius: 0 6px 6px 0; font-size: 12px; line-height: 1.5; }
+.dt-q > b { display: block; font-size: 11px; font-variant-numeric: tabular-nums; color: var(--rh-ink-soft); }
+.dt-q p { margin: 2px 0 0; }
+.dt-q details summary { cursor: pointer; list-style: none; }
+.dt-q details summary::-webkit-details-marker { display: none; }
+.dt-q details[open] summary { display: none; }
+.dt-more { font-weight: 600; color: var(--rh-accent); white-space: nowrap; }
+.dt-q .dt-src { display: block; margin-top: 2px; }
+/* ---------- Tree: family navigator + pedigree ---------- */
+.tr-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.tr-seg { display: inline-flex; border: 1px solid var(--rh-hairline); border-radius: 999px; overflow: hidden; background: var(--rh-paper-solid); }
+.tr-seg button { font: 600 11.5px var(--rh-font-ui); padding: 5px 12px; border: 0; background: transparent; color: var(--rh-ink); cursor: pointer; }
+.tr-seg button[aria-pressed="true"] { background: var(--rh-accent-soft); color: var(--rh-accent); }
+.tr-back { margin-left: auto; font: 600 11.5px var(--rh-font-ui); color: var(--rh-accent); background: none; border: 0; cursor: pointer; padding: 4px 2px; }
+.tr-lbl { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--rh-ink-soft); margin: 10px 0 5px; display: flex; justify-content: space-between; }
+.tr-lbl span { letter-spacing: 0; text-transform: none; font-weight: 500; }
+.tr-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px; }
+.tn { display: block; width: 100%; box-sizing: border-box; text-align: left; font: inherit; color: var(--rh-ink); background: #fff; border: 1px solid var(--rh-hairline); border-left: 3px solid var(--c, #b9ae98); border-radius: var(--rh-radius-sm); padding: 6px 8px 6px 9px; cursor: pointer; min-width: 0; }
+.tn:hover { background: #fdfbf6; border-color: #cbbfa8; border-left-color: var(--c, #b9ae98); }
+.tn .n { display: block; font-size: 12.5px; font-weight: 600; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tn .y { display: block; font-size: 11px; color: var(--rh-ink-soft); font-variant-numeric: tabular-nums; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tn.me { border: 2px solid var(--rh-accent); border-left-width: 4px; border-left-color: var(--c, var(--rh-accent)); background: #f5f8f7; }
+.tn.me .n { font: 600 14px/1.25 var(--rh-font-display); white-space: normal; }
+.tn.gone { border-style: dashed; border-left-style: solid; background: transparent; color: var(--rh-ink-soft); cursor: default; }
+.tn.gone .n { font-weight: 500; font-style: italic; }
+.tn .more { float: right; color: var(--rh-ink-soft); font-weight: 600; margin-left: 4px; }
+.tr-stem { width: 2px; height: 10px; background: var(--rh-hairline); margin: 3px auto; }
+.tr-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.tr-chip { font: 500 11.5px var(--rh-font-ui); padding: 3px 9px; border-radius: 999px; border: 1px solid var(--rh-hairline); background: #fff; color: var(--rh-ink); cursor: pointer; white-space: nowrap; }
+.tr-chip:hover { background: var(--rh-accent-soft); }
+.tr-chip small { color: var(--rh-ink-soft); font-variant-numeric: tabular-nums; }
+.tr-with { font-size: 11px; color: var(--rh-ink-soft); font-style: italic; margin: 6px 0 4px; }
+.tr-key { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 12px; font-size: 11px; color: var(--rh-ink-soft); }
+.tr-key i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+.pg { overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 14px; -webkit-overflow-scrolling: touch; margin: 0 -14px; padding: 0 14px 6px; }
+.pg-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 132px; gap: 0 14px; height: 392px; }
+.pg-col { display: flex; flex-direction: column; gap: 6px; scroll-snap-align: start; min-width: 0; }
+.pg-cards { flex: 1; display: flex; flex-direction: column; justify-content: space-around; gap: 4px; min-height: 0; }
+.pg-h { display: block; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--rh-ink-soft); }
+.pg-col .tn { padding: 4px 6px 4px 7px; }
+.pg-col .tn .n { font-size: 11.5px; }
+.pg-col .tn.me .n { font-size: 13px; }
+.pg-slot { min-height: 0; }
+.pg-hint { font-size: 11px; color: var(--rh-ink-soft); text-align: center; margin-top: 4px; }
+.pop-actions .dt-btn { padding: 4px 10px; }
+@media (max-width: 1100px) {
+  #ptabs { padding: 8px 10px 7px; }
+  .ptab { padding: 5px 11px; }
+  #v-details, #v-tree { padding: 10px 12px 12px; }
+  .pg-grid { height: 360px; grid-auto-columns: 124px; }
+  #panel[data-view="details"], #panel[data-view="tree"] { max-height: 72%; }
+}
+
+/* film markers and player */
+.film-mk { cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 4px 9px 4px 4px; border-radius: 999px; background: var(--rh-paper-solid); border: 1px solid var(--rh-hairline); box-shadow: 0 2px 8px rgba(0,0,0,.3); font: 600 11.5px/1.15 var(--rh-font-ui); color: var(--rh-ink); white-space: nowrap; }
+.film-mk i { width: 22px; height: 22px; border-radius: 50%; background: var(--rh-accent); display: grid; place-items: center; flex: none; }
+.film-mk i:after { content: ""; border-left: 8px solid #fff; border-top: 5px solid transparent; border-bottom: 5px solid transparent; margin-left: 2px; }
+.film-mk small { display: block; font-weight: 400; font-size: 10px; color: var(--rh-ink-soft); }
+.filmbox { position: fixed; inset: 0; z-index: 60; background: rgba(10,10,10,.88); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; }
+.filmbox .fb-bar { width: min(960px,100%); display: flex; align-items: center; gap: 10px; color: #fff; margin-bottom: 10px; font: 14px var(--rh-font-ui); }
+.filmbox .fb-bar b { flex: 1; min-width: 0; }
+.filmbox button { background: #fff; color: #111; border: 0; border-radius: 999px; padding: 7px 14px; font: 600 13px var(--rh-font-ui); cursor: pointer; }
+.filmbox .fb-v { width: min(960px,100%); aspect-ratio: 16/9; max-height: calc(100vh - 140px); background: #000; border-radius: 10px; overflow: hidden; }
+.filmbox iframe { width: 100%; height: 100%; border: 0; display: block; }
+.filmbox p { color: #ccc; font: 12px var(--rh-font-ui); margin: 10px 0 0; max-width: 960px; text-align: center; }
+</style>
+
+<div id="app">
+  <div id="map"></div>
+
+  <header id="map-title" class="glass">
+    <div class="mt-text"><h1 id="t-h1">Dorfplan Roseln</h1><p id="t-sub">Aus dem Roselner Familienbuch, 1560–1925</p></div>
+    <button type="button" id="change-btn" class="change-btn" aria-label="Eine andere Person wählen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>Person wechseln</span></button>
+  </header>
+
+  <div id="picker" role="dialog" aria-modal="true" aria-labelledby="pk-title">
+    <div class="pk glass">
+      <div class="pk-eyebrow">Familienbuch Roseln · Siebenbürgen · bis 1925</div>
+      <h2 id="pk-title">Wessen Vorfahren möchten Sie sehen?</h2>
+      <p class="pk-lead">Suchen Sie eine beliebige Person im Ortsfamilienbuch Roseln. Die Karte verfolgt dann alle Vorfahren, die sich in den Kirchenbüchern finden, wo jeder von ihnen wohnte und wann.</p>
+      <div class="pk-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input type="search" id="pk-input" placeholder="Name, z. B. Johann Balthes 1884" autocomplete="off" aria-label="Familienbuch nach Namen durchsuchen" aria-controls="pk-results"></div>
+      <div id="pk-results" role="listbox"></div>
+      <div class="pk-foot"><span id="pk-count"></span><span class="pk-btns"><button type="button" id="pk-example" class="pk-link">Beispiel ansehen</button><button type="button" id="pk-cancel" class="pk-link" hidden>Zurück zur Karte</button></span></div>
+    </div>
+  </div>
+
+  <section id="line-card" class="glass" hidden aria-label="Abstammungslinie">
+    <div class="lc-head">
+      <div><div class="lc-eyebrow">Abstammungslinie</div><div class="lc-title" id="lc-title"></div><div class="lc-sub" id="lc-sub"></div></div>
+      <button type="button" id="lc-close" aria-label="Linie schließen">×</button>
+    </div>
+    <div class="lc-routes" id="lc-routes"></div>
+    <details id="lc-details" open><summary id="lc-sum"></summary><ol id="lc-chain"></ol></details>
+  </section>
+
+  <section id="house-card" class="glass" hidden aria-label="Hausgeschichte">
+    <div class="lc-head">
+      <div><div class="lc-eyebrow">Hausgeschichte</div><div class="lc-title" id="hs-title"></div><div class="lc-sub" id="hs-sub"></div></div>
+      <button type="button" class="st-close" id="hs-close" aria-label="Hausgeschichte schließen">×</button>
+    </div>
+    <div class="st-body" id="hs-body"></div>
+  </section>
+
+  <section id="story-card" class="glass" hidden aria-label="Geschichte von Roseln" aria-live="polite">
+    <div class="lc-head">
+      <div><div class="lc-eyebrow" id="st-eyebrow"></div><div class="st-year" id="st-year"></div><div class="lc-title" id="st-title"></div></div>
+      <button type="button" class="st-close" id="st-close" aria-label="Geschichte schließen">×</button>
+    </div>
+    <div class="st-body"><div class="st-text" id="st-text"></div><div class="st-src" id="st-src"></div></div>
+    <div class="st-nav">
+      <button type="button" id="st-back" class="st-btn">‹ Zurück</button>
+      <div class="st-dots" id="st-dots"></div>
+      <button type="button" id="st-next" class="st-btn primary">Weiter ›</button>
+    </div>
+  </section>
+
+  <aside id="panel" class="glass" aria-label="Vorfahren auf der Karte">
+    <div id="panel-head">
+      <div>
+        <div class="eyebrow" id="p-eyebrow">Auf der Karte 1620</div>
+        <div class="count" id="p-count">–</div>
+        <div class="sub" id="p-sub"></div>
+      </div>
+      <button id="panel-toggle" type="button" aria-expanded="true">Liste ausblenden</button>
+    </div>
+    <div id="search-wrap" style="padding:0 14px 10px;border-bottom:1px solid var(--rh-hairline)">
+      <div id="search" role="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input type="search" id="search-input" placeholder="In dieser Familie nach Name oder Beruf suchen …" autocomplete="off" aria-label="In dieser Familie nach Name oder Beruf suchen" aria-controls="search-results">
+        <div id="search-results" role="listbox" hidden></div>
+      </div>
+    </div>
+    <div id="people"></div>
+    <div id="panel-foot">
+      <details>
+        <summary>Über diese Karte</summary>
+        <p>Jeder Punkt ist eine Person an einem Wohnort, gezeigt für die Jahre, in denen die Einträge sie dort belegen: vom ersten Beleg (Geburt, Heirat, eine datierte Adresse, ein im Haus geborenes Kind) bis zum Tod oder zum ersten Beleg an einem anderen Ort.</p>
+        <p>Personen, Familien und Wohnorte stammen aus dem Ortsfamilienbuch Roseln bis 1925 (Albrich), das aus den Roselner Kirchenmatrikeln erstellt wurde. Die Geschichten unter „Leben &amp; Einträge“ schöpfen außerdem aus Christian Weiss, <i>Roseln mitten in Siebenbürgen</i> (2010): rund 700 Angaben aus dem ganzen Buch – Ämter, Spenden an die Kirche, Streitigkeiten, die Pest von 1719, beide Weltkriege, die Deportation 1945 –, jeweils der genannten Person zugeordnet und mit Seitenzahl belegt. Wo das Buch mehr als eine Person meinen könnte, wurde die Angabe weggelassen. Eltern sind über die Familiennummern des Buches verknüpft. Die Häuser sind nach den Hausnummern von 1869 verortet, abgelesen vom Dorfplan von 1869 bei Weiss, <i>Roseln mitten in Siebenbürgen</i> (2010), S. 455. Personen ohne Hausnummer werden bei der Kirche gezeigt.</p>
+        <p id="undated-note"></p>
+      </details>
+    </div>
+  </aside>
+
+  <div id="controls">
+    <button id="ctl-toggle" class="glass" type="button" aria-expanded="false">Kartenoptionen</button>
+    <div id="basemap" class="glass" role="group" aria-label="Grundkarte">
+      <button type="button" class="bm-btn on" data-bm="satellite">Satellit</button>
+      <button type="button" class="bm-btn" data-bm="plain">Plan</button>
+    </div>
+    <div class="card glass">
+      <div class="card-title">Dorfplan von 1869 <span class="hint">Weiss S. 455</span></div>
+      <label class="switch" for="ov-on"><input type="checkbox" id="ov-on" checked> Hausgrundstücke &amp; Nummern zeigen</label>
+      <label class="switch" for="lbl-on" style="margin-top:6px"><input type="checkbox" id="lbl-on" checked> Ortsnamen &amp; Grenzen</label>
+      <div class="range-row"><label for="ov-op" class="hint" style="font-size:11px;color:var(--rh-ink-soft)">Deckkraft</label><input type="range" id="ov-op" min="0" max="100" value="75"><output id="ov-op-out" for="ov-op">75%</output></div>
+    </div>
+    <div class="card glass">
+      <div class="card-title">Familienseite <span class="hint">zum Ausblenden klicken</span></div>
+      <div class="legend-item" data-side="self" role="button" tabindex="0"><span class="sw" style="background:var(--rh-accent)"></span>Gewählte Person <span class="hint" id="lg-self" style="color:var(--rh-ink-soft);font-size:11px"></span></div>
+      <div class="legend-item" data-side="B" role="button" tabindex="0"><span class="sw" style="background:var(--side-b)"></span>Väterliche Seite <span class="hint" id="lg-b" style="color:var(--rh-ink-soft);font-size:11px"></span></div>
+      <div class="legend-item" data-side="T" role="button" tabindex="0"><span class="sw" style="background:var(--side-t)"></span>Mütterliche Seite <span class="hint" id="lg-t" style="color:var(--rh-ink-soft);font-size:11px"></span></div>
+      <div class="legend-item" data-side="both" role="button" tabindex="0"><span class="sw" style="background:var(--side-both)"></span>Beide Seiten <span class="hint" style="color:var(--rh-ink-soft);font-size:11px">stammt von beiden ab</span></div>
+      <div class="legend-item static"><span class="sw est"></span>Daten geschätzt</div>
+      <div class="legend-item static"><span class="sw grp">3</span>Mehrere an einem Ort</div>
+    </div>
+    <div class="card glass">
+      <div class="card-title">Gehe zu</div>
+      <div class="jumps">
+        <button type="button" class="jump" data-go="village">Roseln<span class="badge" id="b-village"></span></button>
+        <button type="button" class="jump" data-go="valley">Harbachtal<span class="badge" id="b-valley"></span></button>
+        <button type="button" class="jump" data-go="mures">Johannisdorf<span class="badge" id="b-mures"></span></button>
+        <button type="button" class="jump" data-go="america">Nordamerika<span class="badge" id="b-america"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <section id="timeline" class="glass" aria-label="Jahr">
+    <button id="play" type="button" aria-label="Durch die Jahre abspielen">
+      <svg viewBox="0 0 24 24" fill="currentColor" id="play-ico"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+    </button>
+    <div id="yearbox">
+      <div id="year">1620</div>
+      <div id="gens"></div>
+    </div>
+    <div id="track">
+      <canvas id="spark" aria-hidden="true"></canvas>
+      <input type="range" id="slider" min="1620" max="2009" step="1" value="1620" aria-label="Jahr">
+      <div id="ticks"></div>
+      <div id="marks"></div>
+    </div>
+    <div id="speed" role="group" aria-label="Abspielgeschwindigkeit">
+      <span class="mbar">
+        <button type="button" id="m-people" class="mb" aria-controls="panel" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.9-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2c2.3.1 4.2 1.7 4.8 4.8"/></svg><span id="m-count">–</span></button>
+        <button type="button" id="m-search" class="mb icon" aria-label="Vorfahren suchen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+      </span>
+      <button type="button" class="sp" data-sp="4">Langsam</button>
+      <button type="button" class="sp on" data-sp="10">Normal</button>
+      <button type="button" class="sp" data-sp="25">Schnell</button>
+      <button type="button" id="all-btn" class="sp all" aria-pressed="false" title="Alle Generationen an allen Wohnorten zeigen">Alle Jahre</button>
+      <button type="button" id="story-btn" class="sp story" title="Eine Führung durch die Geschichte der Familie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5c3-1.3 6-1.3 9 .5 3-1.8 6-1.8 9-.5v13c-3-1.3-6-1.3-9 .5-3-1.8-6-1.8-9-.5z"/><path d="M12 6v13"/></svg>Geschichte</button>
+    </div>
+    <div id="tl-note">Die Kurve zeigt, wie viele dieser Vorfahren die Einträge in jedem Jahr an einem Wohnort belegen.</div>
+  </section>
+</div>
+
+
+
+<script type="application/json" id="overlay-json">{"tl": [24.6420246, 46.0116546], "tr": [24.6495246, 46.0153248], "bl": [24.6495927, 46.0042408], "br": [24.6570922, 46.0079105], "w": 1294, "h": 1759}</script>
+<script>
+Promise.all([fetch('data/people.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }), fetch('data/de_karte.json').then(r => r.ok ? r.json() : {}).catch(() => ({}))]).then(function ([DATA, DEX]) {
+  window.__DEX = DEX;
+  const OV = JSON.parse(document.getElementById('overlay-json').textContent);
+  const PP = DATA.P, IDS = DATA.IDS, LOCS = DATA.LOC, PH = DATA.PH || {};
+  const IDX = new Map(IDS.map((id, i) => [id, i]));
+  const DEXD = window.__DEX || {};
+  Object.entries(DEXD.L || {}).forEach(([k, v]) => { const l = DATA.L[k]; if (!l) return; Object.entries(v).forEach(([f, val]) => { if (f === 'notes') val.forEach((t, n) => { if (t && l.notes && l.notes[n]) { l.notes[n][0] = t[0]; l.notes[n][1] = t[1]; } }); else l[f] = val; }); });
+  Object.entries(DEXD.H || {}).forEach(([k, v]) => { if (DATA.H[k]) Object.assign(DATA.H[k], v); });
+  Object.entries(DEXD.RR || {}).forEach(([n, v]) => { const rw = DATA.R[+n]; if (rw) { rw[11] = v[0]; rw[12] = v[1]; rw[13] = v[2]; rw[14] = v[3]; } });
+  const RAW = new Map();
+  DATA.R.forEach(rw => { if (!RAW.has(rw[0])) RAW.set(rw[0], []); RAW.get(rw[0]).push(rw); });
+  const CERT = { r: 'Daten aus Einträgen', a: 'ungefähr (Jahres- oder ungefähre Daten)', e: 'geschätzt', w: 'nach dem letzten datierten Eintrag (Datum im Familienbuch gesperrt)', k: 'geschätzt aus der Geburt eines Kindes (±20 Jahre)' };
+  const SIDE_COLOR = { B: 'var(--side-b)', T: 'var(--side-t)', both: 'var(--side-both)', self: 'var(--rh-accent)' };
+  const SIDE_HEX = { B: '#1f78b4', T: '#d4891a', both: '#7a4bb5', self: '#1f4b4a' };
+  const SIDE_NAME = { B: 'Väterliche Seite', T: 'Mütterliche Seite', both: 'Beide Seiten', self: 'Gewählte Person' };
+  const hidden = new Set();
+  const photoOf = r => PH[r.k] || null;
+  let year = 1620;
+  let allMode = false;
+  // everything below is rebuilt by setPerson() for whoever is chosen
+  let SIDES = new Map(), ROWS = [], FAM = {}, ROOT = null, PEOPLE = [], PBYK = new Map(), STORY = [], ANC = new Set(), MAXG = 0, RC = new Map();
+  let Y0 = 1560, Y1 = 2009;
+  const pname = i => PP[i][0], pyear = s => ((s || '').match(/\d{4}/) || [])[0] || '';
+  const rootName = () => ROOT != null ? titleName(pname(+ROOT)) : '';
+  const rootFirst = () => rootName().split(' ')[0];
+
+  // ---------- helpers ----------
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function titleName(n) { // "Johann BALTHES" -> "Johann Balthes"
+    return n.replace(/[\p{Lu}ß]{2,}/gu, w => w.charAt(0) + w.slice(1).toLowerCase());
+  }
+  function fmtDate(t) {
+    if (!t) return '?';
+    const m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(t);
+    if (!m) return t;
+    return `${m[3]}.${m[2]}.${m[1]}`;
+  }
+  function genLabel(g) {
+    if (g === 0) return 'Gewählte Person';
+    if (g === 1) return 'Eltern';
+    if (g === 2) return 'Großeltern';
+    if (g === 3) return 'Urgroßeltern';
+    return `${g - 2}× Urgroßeltern`;
+  }
+  function relWord(g) { return g === 0 ? 'gewählte Person' : g === 1 ? 'Elternteil' : g === 2 ? 'Großelternteil' : g === 3 ? 'Urgroßelternteil' : `${g - 2}× Urgroßelternteil`; }
+  function relLabel(r) { const w = relWord(r.g); return w.charAt(0).toUpperCase() + w.slice(1); }
+  function shortPlace(r) {
+    if (r.h) return `Roseln, Haus Nr. ${r.h}`;
+    return r.pl.replace(/ — Haus nicht verzeichnet/, '').replace(/, Sibiu$/, '').replace(/ \(county-level\)/, ' (county)');
+  }
+  function active(y) { return ROWS.filter(r => (allMode || (r.y0 <= y && y <= r.y1)) && !hidden.has(r.s)); }
+
+  // ---------- map ----------
+  // Satellite imagery is built into the page (live tile servers are blocked inside published pages).
+  // Four Esri World Imagery snapshots, stitched from Web Mercator tiles, so each sits exactly on its bounds.
+  const SAT = [{"id": "ontario", "src": "sat_ontario.jpg", "west": -82.265625, "north": 43.580390855607845, "east": -79.453125, "south": 40.44694705960049}, {"id": "mures", "src": "sat_mures.jpg", "west": 24.43359375, "north": 46.43785689502421, "east": 24.78515625, "south": 46.07323062540836}, {"id": "valley", "src": "sat_valley.jpg", "west": 24.4775390625, "north": 46.10370875598026, "east": 24.9169921875, "south": 45.92058734473366}, {"id": "village", "src": "sat_village.jpg", "west": 24.63409423828125, "north": 46.01985337287632, "east": 24.664306640625, "south": 46.00077756855661}];
+  const VIEWS = {
+    village: { center: [24.6497, 46.0094], zoom: 16.2 },
+    valley: { bounds: [[24.52, 45.95], [24.88, 46.08]] },
+    mures: { bounds: [[24.50, 46.10], [24.70, 46.35]] },
+    america: { bounds: [[-81.4, 40.8], [-80.1, 43.1]] }
+  };
+  const map = new maplibregl.Map({
+    container: 'map', style: { version: 8, sources: {}, layers: [] },
+    center: VIEWS.village.center, zoom: VIEWS.village.zoom, maxPitch: 0, maxZoom: 19,
+    dragRotate: false, pitchWithRotate: false, touchPitch: false, attributionControl: false
+  });
+  map.touchZoomRotate.disableRotation();
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+  map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'Bilder © Esri, Maxar, Earthstar Geographics · Plan 1869: Weiss 2010' }), 'bottom-right');
+  const satImgs = SAT.map(s => {
+    const im = document.createElement('img');
+    im.className = 'sat'; im.alt = ''; im.src = s.src; im._s = s;
+    map.getCanvasContainer().appendChild(im);
+    return im;
+  });
+  function placeSat() {
+    satImgs.forEach(im => {
+      const s = im._s, a = map.project([s.west, s.north]), b = map.project([s.east, s.south]);
+      im.style.transform = `translate(${a.x}px,${a.y}px)`;
+      im.style.width = (b.x - a.x) + 'px'; im.style.height = (b.y - a.y) + 'px';
+    });
+  }
+  map.on('move', placeSat); map.on('resize', placeSat); placeSat();
+  let basemap = 'satellite';
+  function setBase(k) {
+    basemap = k;
+    document.getElementById('app').classList.toggle('plain', k === 'plain');
+    document.querySelectorAll('.bm-btn').forEach(x => x.classList.toggle('on', x.dataset.bm === k));
+  }
+  document.querySelectorAll('.bm-btn').forEach(b => b.addEventListener('click', () => setBase(b.dataset.bm)));
+
+  // 1869 village map: a plain <img> kept in register with the map by an affine CSS transform
+  // computed from three georeferenced corners (map is never rotated or pitched).
+  const ov = document.createElement('img');
+  ov.id = 'overlay1869'; ov.alt = ''; ov.src = 'roseln1869.png';
+  ov.width = OV.w; ov.height = OV.h; ov.style.width = OV.w + 'px'; ov.style.height = OV.h + 'px';
+  map.getCanvasContainer().appendChild(ov);
+  function placeOverlay() {
+    const p0 = map.project(OV.tl), p1 = map.project(OV.tr), p2 = map.project(OV.bl);
+    const a = (p1.x - p0.x) / OV.w, b = (p1.y - p0.y) / OV.w, c = (p2.x - p0.x) / OV.h, d = (p2.y - p0.y) / OV.h;
+    ov.style.transform = `matrix(${a},${b},${c},${d},${p0.x},${p0.y})`;
+  }
+  map.on('move', placeOverlay); map.on('resize', placeOverlay); map.on('load', placeOverlay); placeOverlay();
+  const ovOn = document.getElementById('ov-on'), ovOp = document.getElementById('ov-op'), ovOut = document.getElementById('ov-op-out');
+  function applyOv() { ov.style.display = ovOn.checked ? 'block' : 'none'; ov.style.opacity = ovOp.value / 100; ovOut.value = ovOp.value + '%'; }
+  ovOn.addEventListener('change', applyOv); ovOp.addEventListener('input', applyOv); applyOv();
+
+  // ---------- family graph (parents / children within the chosen person's pedigree) ----------
+  const LINE_ICO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2.2"/><circle cx="6" cy="19.5" r="2.2"/><circle cx="18" cy="19.5" r="2.2"/><path d="M12 6.7v5.3M12 12l-5.2 5.5M12 12l5.2 5.5"/></svg>';
+  function routeCount(k) { // number of distinct lines of descent from an ancestor down to the chosen person
+    if (k === ROOT) return 1; if (RC.has(k)) return RC.get(k); RC.set(k, 0);
+    const v = ((FAM[k] || {}).c || []).reduce((s, c) => s + routeCount(c), 0); RC.set(k, v); return v;
+  }
+  function yrs(f) { return f.b || f.d ? `${f.b || '?'}–${f.d || '?'}` : ''; }
+  function famBtn(k) {
+    const f = FAM[k]; if (!f) return '';
+    const y = yrs(f) ? ` <span class="fl-y">${yrs(f)}</span>` : '';
+    return PBYK.has(k)
+      ? `<button type="button" class="fl" data-k="${esc(k)}">${esc(titleName(f.n))}</button>${y}`
+      : `<span class="fl off" title="Kein datierter Wohnort in den Einträgen, daher nicht auf der Karte">${esc(titleName(f.n))}</span>${y}`;
+  }
+  const LIFE = DATA.L || {};
+  function lifeHTML(k) {
+    const e = LIFE[k]; if (!e) return '';
+    const head = [e.occ, ...(e.roles || [])].filter(Boolean);
+    const rows = [];
+    (e.tax || []).forEach(x => rows.push(`<li>${esc(x)}</li>`));
+    if (e.death) rows.push(`<li>${esc(e.death)}</li>`);
+    if (e.church) rows.push(`<li>${esc(e.church)}</li>`);
+    const notes = (e.notes || []).map(([tx, src]) => `<p class="pl-note">${esc(tx)} <span class="pl-src">${esc(src)}</span></p>`).join('');
+    const flag = e.flag ? `<div class="pl-flag"><b>Forschungsnotiz</b> ${esc(e.flag)}</div>` : '';
+    const n = rows.length + (e.notes || []).length;
+    const more = n || flag ? `<details class="pl-more"${e.flag ? ' data-flag' : ''}><summary>Leben &amp; Einträge${e.notes ? ` · ${e.notes.length} ${e.notes.length > 1 ? 'Geschichten' : 'Geschichte'}` : ''}${e.flag ? ' <span class="pl-fl">Forschungsnotiz</span>' : ''}</summary>${rows.length ? `<ul class="pl-list">${rows.join('')}</ul>` : ''}${notes}${flag}</details>` : '';
+    return `<div class="pop-life">${head.length ? `<div class="pl-occ">${head.map(esc).join(' · ')}</div>` : ''}${more}</div>`;
+  }
+  function famHTML(k) {
+    const f = FAM[k]; if (!f) return '';
+    const par = f.p.length ? f.p.map(famBtn).join(' &amp; ') : '<span class="fl-y">nicht im Familienbuch verzeichnet</span>';
+    const kids = f.c.length ? `<div><span class="lbl">${f.c.length > 1 ? 'Kinder in dieser Linie' : 'Kind in dieser Linie'}</span> ${f.c.map(famBtn).join(', ')}</div>` : '';
+    const n = routeCount(k);
+    const dt = `<button type="button" class="dt-btn" data-det="${esc(k)}">Details</button><button type="button" class="dt-btn" data-tree="${esc(k)}">Stammbaum</button>`;
+    const act = k === ROOT ? `<div class="pop-actions">${dt}</div>` : `<div class="pop-actions"><button type="button" class="line-btn" data-line="${esc(k)}">${LINE_ICO}Linie zeigen</button>${dt}${n > 1 ? `<span class="collapse-note">${esc(rootName())} stammt auf ${n} verschiedenen Wegen von ${esc(titleName(f.n))} ab</span>` : ''}</div>`;
+    return `<div class="pop-fam"><div><span class="lbl">Eltern</span> ${par}</div>${kids}</div>${act}`;
+  }
+
+  // ---------- markers ----------
+  let markers = [];
+  let openPopup = null;
+  function clearMarkers() { markers.forEach(m => m.remove()); markers = []; }
+  function popupHTML(list, focus) {
+    const r0 = list[0];
+    const sides = [...new Set(list.map(r => r.s))];
+    const col = sides.length === 1 ? SIDE_HEX[sides[0]] : '#2c2620';
+    const isF = r => focus && r.k === focus;
+    const items = list.slice().sort((a, b) => isF(b) - isF(a) || a.g - b.g || a.n.localeCompare(b.n)).map(r => {
+      const pill = r.est ? '<span class="pill est">Daten geschätzt</span>' : (r.c === 'Daten aus Einträgen' ? '<span class="pill rec">Daten aus Einträgen</span>' : '<span class="pill">Ungefähre Daten</span>');
+      const life = [r.b && `geb. ${esc(r.b)}`, r.d && `gest. ${esc(r.d)}`].filter(Boolean).join(' · ');
+      const ph = photoOf(r);
+      return `<div class="pop-item">
+        <div class="pop-head">${ph ? `<div class="pop-photo" style="--c:${SIDE_HEX[r.s]};background-image:url('${ph}')" role="img" aria-label="Foto von ${esc(titleName(r.n))}"></div>` : ''}<div>
+        <div class="pop-name">${esc(titleName(r.n))}</div>
+        <div class="pop-rel">${esc(relLabel(r))} · ${esc(SIDE_NAME[r.s])}</div></div></div>
+        <div class="pop-when">Hier <b>${esc(r.f ? fmtDate(r.f) : r.y0)}</b> → <b>${esc(r.t ? fmtDate(r.t) : r.y1)}</b></div>
+        <div class="pop-meta">${esc(r.fb)}${r.tb ? ' → ' + esc(r.tb) : ''}</div>
+        ${life ? `<div class="pop-meta">${life}</div>` : ''}
+        ${pill}
+        ${lifeHTML(r.k)}
+        ${famHTML(r.k)}
+        <details><summary>Belege</summary><div>${esc(r.ev || '—')}</div>${r.no ? `<div style="margin-top:4px">${esc(r.no)}</div>` : ''}<div style="margin-top:4px">Familienbuch Nr. ${esc(r.o)} · Lage ±${r.acc >= 1000 ? (r.acc / 1000) + ' km' : r.acc + ' m'}</div></details>
+      </div>`;
+    }).join('');
+    const hb = r0.h && HOUSES[r0.h] ? `<button type="button" class="house-btn" data-house="${esc(r0.h)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7v9H3z"/><path d="M10 20v-5h4v5"/></svg>Hausgeschichte</button>` : '';
+    const sv = r0.h && (DATA.SV || {})[r0.h];
+    const svb = sv ? `<a class="house-btn sv-btn" href="${esc(sv.u)}" target="_blank" rel="noopener" title="Öffnet Google Street View mit Blick auf das Haus (Kamera etwa ${sv.d} m entfernt)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><path d="M9.5 21v-5l-1.5-1V10a4 4 0 0 1 8 0v5l-1.5 1v5z"/></svg>Street View</a>` : '';
+    return `<div class="pop" style="--c:${col}"><div class="pop-place">${esc(shortPlace(r0))} · ${allMode ? 'alle Jahre' : year}${hb}${svb}</div><div class="pop-list">${items}</div></div>`;
+  }
+  function render() {
+    const act = active(year);
+    clearMarkers();
+    const onLine = r => lineMode && lineMode.set.has(r.k);
+    const lineAct = lineMode ? act.filter(onLine) : null;
+    if (lineMode) { addGroups(act.filter(r => !onLine(r)), 'dim'); addGroups(lineAct, 'online'); }
+    else addGroups(act, '');
+    renderPanel(lineAct || act);
+    renderBadges(lineAct || act);
+    renderYear(act);
+    drawLine();
+  }
+  function addGroups(rows, mode) {
+    const groups = new Map();
+    rows.forEach(r => { const k = r.x.toFixed(6) + ',' + r.y.toFixed(6); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(r); });
+    groups.forEach(list => {
+      let el;
+      if (list.length === 1) {
+        const r = list[0];
+        el = document.createElement('div');
+        const ph = photoOf(r);
+        el.className = 'mk' + (r.est ? ' est' : '') + (ph ? ' photo' : '');
+        el.style.background = ph ? `${SIDE_HEX[r.s]} url('${ph}')` : SIDE_HEX[r.s];
+        el.style.borderColor = (r.est || ph) ? SIDE_HEX[r.s] : '#fff';
+      } else {
+        el = document.createElement('div'); el.className = 'mk-grp';
+        const sides = [...new Set(list.map(r => r.s))];
+        el.innerHTML = `${list.length}` + sides.map(s => `<i style="background:${SIDE_HEX[s]}"></i>`).join('');
+      }
+      if (mode) el.classList.add(mode);
+      if (mode === 'online' && list.some(r => r.k === lineMode.k)) el.classList.add('target');
+      if (storyFocus && list.some(r => storyFocus.has(r.k))) el.classList.add('target');
+      el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0');
+      el.setAttribute('aria-label', list.map(r => titleName(r.n)).join(', ') + ' in ' + shortPlace(list[0]));
+      const r0 = list[0];
+      const mk = new maplibregl.Marker({ element: el }).setLngLat([r0.x, r0.y]).addTo(map);
+      const open = focus => {
+        if (openPopup) openPopup.remove();
+        openPopup = new maplibregl.Popup({ offset: 14, maxWidth: '320px' }).setLngLat([r0.x, r0.y]).setHTML(popupHTML(list, typeof focus === 'string' ? focus : null)).addTo(map);
+      };
+      el.addEventListener('click', e => { e.stopPropagation(); open(); });
+      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+      mk._rhList = list; mk._rhOpen = open;
+      markers.push(mk);
+    });
+  }
+
+  // ---------- panel ----------
+  function renderPanel(act) {
+    const people = new Map();
+    act.forEach(r => { if (!people.has(r.k)) people.set(r.k, r); });
+    const list = [...people.values()];
+    document.getElementById('p-eyebrow').textContent = lineMode ? `Linie zu ${titleName(FAM[lineMode.k].n)}` : allMode ? 'Alle Generationen, alle Jahre' : `Auf der Karte ${year}`;
+    document.getElementById('p-count').textContent = list.length === 1 ? '1 Person' : `${list.length} Personen`;
+    document.getElementById('m-count').textContent = list.length === 1 ? '1 Person' : `${list.length} Personen`;
+    const homes = new Set(act.map(r => r.x.toFixed(5) + r.y.toFixed(5))).size;
+    document.getElementById('p-sub').textContent = list.length ? `an ${homes} ${homes === 1 ? 'Ort' : 'Orten'}` : '';
+    const byGen = new Map();
+    list.forEach(r => { if (!byGen.has(r.g)) byGen.set(r.g, []); byGen.get(r.g).push(r); });
+    const box = document.getElementById('people');
+    if (!list.length) { box.innerHTML = allMode ? '<div class="panel-empty">Alle Familienseiten sind ausgeblendet. Schalten Sie eine in der Legende wieder ein.</div>' : `<div class="panel-empty">Niemand aus diesem Stammbaum ist ${year} an einem Wohnort belegt. Schieberegler ziehen oder abspielen.</div>`; return; }
+    box.innerHTML = [...byGen.keys()].sort((a, b) => a - b).map(g => {
+      const ppl = byGen.get(g).sort((a, b) => a.n.localeCompare(b.n));
+      return `<div class="gen-head">${genLabel(g)} <span>${g ? `Gen. ${g} · ` : ''}${ppl.length} ${ppl.length === 1 ? 'Person' : 'Personen'}</span></div>` + ppl.map(r =>
+        `<button type="button" class="person${photoOf(r) ? ' hasphoto' : ''}" data-i="${r.i}">${photoOf(r) ? `<span class="av" style="--c:${SIDE_HEX[r.s]};background-image:url('${photoOf(r)}')"></span>` : `<span class="dot${r.est ? ' est' : ''}" style="background:${SIDE_HEX[r.s]};${r.est ? 'border-color:' + SIDE_HEX[r.s] : ''}"></span>`}<span><span class="nm">${esc(titleName(r.n))}</span><br><span class="where">${esc(shortPlace(r))} · ${esc(r.y0)}–${esc(r.y1)}</span></span></button>`).join('');
+    }).join('');
+  }
+  document.getElementById('people').addEventListener('click', e => {
+    const b = e.target.closest('.person'); if (!b) return;
+    const r = ROWS.find(x => x.i === +b.dataset.i); if (!r) return;
+    const zoom = r.h ? 17.2 : (/county/.test(r.pl) ? 9 : Math.max(map.getZoom(), 12));
+    map.flyTo({ center: [r.x, r.y], zoom, duration: 900, offset: [0, Math.round(map.getContainer().clientHeight * 0.18)] });
+    map.once('moveend', () => { const m = markers.find(m => m._rhList.includes(r)); if (m) m._rhOpen(r.k); });
+    if (window.matchMedia('(max-width: 1100px)').matches) setPanel(false);
+  });
+  const panel = document.getElementById('panel'), ptog = document.getElementById('panel-toggle');
+  const compact = () => window.matchMedia('(max-width: 1100px)').matches;
+  function setPanel(open) {
+    panel.classList.toggle('collapsed', !open);
+    ptog.textContent = open ? (compact() ? 'Schließen' : 'Liste ausblenden') : 'Liste zeigen';
+    ptog.setAttribute('aria-expanded', open);
+    const mp = document.getElementById('m-people'); if (mp) mp.setAttribute('aria-expanded', open);
+  }
+  document.getElementById('m-people').addEventListener('click', () => setPanel(panel.classList.contains('collapsed')));
+  document.getElementById('m-search').addEventListener('click', () => { setPanel(true); setTimeout(() => document.getElementById('search-input').focus(), 30); });
+  const tlEl = document.getElementById('timeline');
+  const setTlh = () => document.documentElement.style.setProperty('--tlh', tlEl.offsetHeight + 'px');
+  if (window.ResizeObserver) new ResizeObserver(setTlh).observe(tlEl); setTlh();
+  ptog.addEventListener('click', () => setPanel(panel.classList.contains('collapsed')));
+  if (window.matchMedia('(max-width: 1100px)').matches) setPanel(false);
+  const ctl = document.getElementById('controls'), ctog = document.getElementById('ctl-toggle');
+  // keep Map options and the Satellite / Plan switch below the title bar on phones and tablets
+  function placeCtl() {
+    const title = document.getElementById('map-title'), host = ctl.offsetParent || document.body;
+    if (!window.matchMedia('(max-width: 1100px)').matches || !title) { ctl.style.top = ''; return; }
+    const tb = title.getBoundingClientRect().bottom - host.getBoundingClientRect().top;
+    ctl.style.top = Math.round(tb + 8) + 'px';
+    const tl = document.querySelector('.maplibregl-ctrl-top-left'), bm = document.getElementById('basemap');
+    if (tl && bm) tl.style.top = Math.round(bm.getBoundingClientRect().bottom - host.getBoundingClientRect().top + 8) + 'px';
+  }
+  window.addEventListener('resize', placeCtl); window.addEventListener('load', placeCtl);
+  if (window.ResizeObserver) new ResizeObserver(placeCtl).observe(document.getElementById('map-title'));
+  setTimeout(placeCtl, 0); setTimeout(placeCtl, 800);
+  new MutationObserver(placeCtl).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  ctog.addEventListener('click', () => { const o = !ctl.classList.contains('open'); ctl.classList.toggle('open', o); ctog.setAttribute('aria-expanded', o); });
+
+  // ---------- search ----------
+  const fold = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/ß/g, 'ss');
+  const sIn = document.getElementById('search-input'), sOut = document.getElementById('search-results');
+  let sHits = [], sKb = -1;
+  function lifeSpan(p) {
+    const by = (p.b.match(/\d{4}/) || [])[0], dy = (p.d.match(/\d{4}/) || [])[0];
+    return by || dy ? `${by || '?'}–${dy || '?'}` : `auf der Karte ${p.y0}–${p.y1}`;
+  }
+  function runSearch() {
+    const q = fold(sIn.value.trim());
+    if (q.length < 2) { sOut.hidden = true; sHits = []; return; }
+    const words = q.split(/\s+/);
+    sHits = PEOPLE.filter(p => words.every(w => p.key.includes(w)))
+      .sort((a, b) => a.g - b.g || a.key.localeCompare(b.key)).slice(0, 40);
+    sKb = -1;
+    sOut.innerHTML = sHits.length ? sHits.map((p, i) => {
+      const ph = PH[p.k];
+      const homes = new Set(p.rows.map(r => shortPlace(r))).size;
+      return `<button type="button" class="sr" role="option" data-k="${i}">${ph ? `<span class="av" style="--c:${SIDE_HEX[p.s]};background-image:url('${ph}')"></span>` : `<span class="av dotonly" style="background:${SIDE_HEX[p.s]}"></span>`}<span><span class="nm">${esc(titleName(p.n))}</span><br><span class="meta">${esc(lifeSpan(p))} · ${p.g ? `Gen. ${p.g} · ` : ''}${homes} ${homes === 1 ? 'Wohnort' : 'Wohnorte'}${p.job && !/^Bauer$|^Bäuerin$/.test(p.job) ? ` · ${esc(p.job.length > 48 ? p.job.slice(0, 46) + '…' : p.job)}` : ''}</span></span></button>`;
+    }).join('') : `<div class="sr-empty">Niemand in diesem Stammbaum passt zu „${esc(sIn.value.trim())}“.</div>`;
+    sOut.hidden = false;
+  }
+  function pickPerson(p) {
+    sOut.hidden = true; sIn.blur();
+    if (SEL !== p.k) { if (SEL != null) TR.hist.push(SEL); SEL = p.k; refreshView(); }
+    // stay on the current year if the person is on the map now; otherwise jump to their first home
+    const now = allMode ? p.rows[0] : p.rows.find(r => r.y0 <= year && year <= r.y1);
+    const r = now || p.rows[0];
+    hidden.delete(r.s); document.querySelectorAll(`.legend-item[data-side="${r.s}"]`).forEach(el => el.classList.remove('off'));
+    if (!allMode && !now) setYear(r.y0); else { render(); drawSpark(); }
+    const zoom = r.h ? 17.2 : (/county/.test(r.pl) ? 9 : 13);
+    map.flyTo({ center: [r.x, r.y], zoom, duration: 1100, offset: [0, Math.round(map.getContainer().clientHeight * 0.18)] });
+    map.once('moveend', () => setTimeout(() => {
+      const m = markers.find(m => m._rhList.some(x => x.k === p.k));
+      if (m) { m._rhOpen(p.k); const el = m.getElement(); el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 2600); }
+    }, 60));
+    toast(p.rows.length > 1 ? `${titleName(p.n)}: ${p.rows.length} Wohnorte belegt, gezeigt wird ${r.y0}` : `${titleName(p.n)}, ${r.y0}–${r.y1}`);
+    if (window.matchMedia('(max-width: 1100px)').matches) setPanel(false);
+  }
+  sIn.addEventListener('input', runSearch);
+  sIn.addEventListener('focus', runSearch);
+  sIn.addEventListener('keydown', e => {
+    const items = [...sOut.querySelectorAll('.sr')];
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault(); if (!items.length) return;
+      sKb = (sKb + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+      items.forEach((el, i) => el.classList.toggle('kb', i === sKb)); items[sKb].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') { e.preventDefault(); const p = sHits[sKb < 0 ? 0 : sKb]; if (p) pickPerson(p); }
+    else if (e.key === 'Escape') { sOut.hidden = true; }
+  });
+  sOut.addEventListener('click', e => { const b = e.target.closest('.sr'); if (b) pickPerson(sHits[+b.dataset.k]); });
+  document.addEventListener('click', e => { if (!e.target.closest('#search')) sOut.hidden = true; });
+
+  // ---------- "Show my line": every route of descent from an ancestor down to the chosen person ----------
+  let lineMode = null, preLine = null;
+  const lineSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  lineSvg.id = 'line-svg'; lineSvg.setAttribute('aria-hidden', 'true');
+  map.getCanvasContainer().insertBefore(lineSvg, ov.nextSibling);
+  function routesTo(k) { // arrays ordered chosen person → … → ancestor, shortest first
+    const out = [];
+    const walk = (x, path) => {
+      if (out.length >= 60) return;
+      if (x === ROOT) { out.push([...path, x].reverse()); return; }
+      ((FAM[x] || {}).c || []).forEach(c => walk(c, [...path, x]));
+    };
+    walk(k, []);
+    return out.sort((a, b) => a.length - b.length);
+  }
+  const birthYear = k => (FAM[k] && FAM[k].b) || (PBYK.get(k) ? PBYK.get(k).y0 : null);
+  function homeAt(k, y) { // where this person lived in year y (nearest record if none that year)
+    const p = PBYK.get(k); if (!p) return null;
+    if (y == null) return p.rows[0];
+    return p.rows.find(r => r.y0 <= y && y <= r.y1) ||
+      p.rows.slice().sort((a, b) => Math.min(Math.abs(a.y0 - y), Math.abs(a.y1 - y)) - Math.min(Math.abs(b.y0 - y), Math.abs(b.y1 - y)))[0];
+  }
+  // each parent→child link is drawn from the parent's home in the year the child was born to the child's first home
+  function buildEdges() {
+    const E = new Map();
+    lineMode.routes.forEach((rt, ri) => {
+      for (let i = 0; i < rt.length - 1; i++) {
+        const c = rt[i], p = rt[i + 1], id = p + '>' + c;
+        if (!E.has(id)) {
+          const cr = PBYK.get(c) ? PBYK.get(c).rows[0] : null, pr = homeAt(p, birthYear(c));
+          E.set(id, { a: pr && [pr.x, pr.y], b: cr && [cr.x, cr.y], routes: new Set() });
+        }
+        E.get(id).routes.add(ri);
+      }
+    });
+    lineMode.edges = [...E.values()].filter(e => e.a && e.b && (Math.abs(e.a[0] - e.b[0]) > 1e-7 || Math.abs(e.a[1] - e.b[1]) > 1e-7));
+  }
+  function drawLine() {
+    if (!lineMode) { lineSvg.innerHTML = ''; return; }
+    const sel = lineMode.sel, segs = lineMode.edges.slice().sort((x, y) => x.routes.has(sel) - y.routes.has(sel));
+    lineSvg.innerHTML = segs.map(e => {
+      const a = map.project(e.a), b = map.project(e.b), dx = b.x - a.x, dy = b.y - a.y;
+      const cx = (a.x + b.x) / 2 - dy * 0.18, cy = (a.y + b.y) / 2 + dx * 0.18;
+      const d = `M${a.x.toFixed(1)},${a.y.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${b.x.toFixed(1)},${b.y.toFixed(1)}`;
+      const on = e.routes.has(sel);
+      return on
+        ? `<path d="${d}" fill="none" stroke="rgba(0,0,0,.55)" stroke-width="6" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#f2c14e" stroke-width="3" stroke-linecap="round"/><circle cx="${b.x.toFixed(1)}" cy="${b.y.toFixed(1)}" r="3.2" fill="#f2c14e" stroke="rgba(0,0,0,.6)"/>`
+        : `<path d="${d}" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="3.5" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#f2c14e" stroke-width="1.6" stroke-dasharray="5 4" stroke-linecap="round" opacity=".85"/>`;
+    }).join('');
+  }
+  map.on('move', () => { if (lineMode) drawLine(); });
+  const lcCard = document.getElementById('line-card');
+  function relOf(g) { const w = relWord(g); return w.charAt(0).toUpperCase() + w.slice(1); }
+  function fillLineCard() {
+    const { k, routes, sel } = lineMode, f = FAM[k], rt = routes[sel], nm = titleName(f.n);
+    document.getElementById('lc-title').textContent = nm + (yrs(f) ? ` (${yrs(f)})` : '');
+    document.getElementById('lc-sub').innerHTML = routes.length > 1
+      ? `<b>${esc(rootName())} stammt auf ${routes.length} verschiedenen Wegen von ${esc(nm)} ab</b>`
+      : `${rt.length - 1} ${rt.length === 2 ? 'Generation' : 'Generationen'} über ${esc(rootFirst())}`;
+    document.getElementById('lc-routes').innerHTML = routes.length > 1
+      ? `<button type="button" data-step="-1" aria-label="Vorheriger Weg">‹</button><span>Weg ${sel + 1} von ${routes.length} · ${rt.length - 1} Generationen über ${esc(rootFirst())}</span><button type="button" data-step="1" aria-label="Nächster Weg">›</button>` : '';
+    document.getElementById('lc-sum').textContent = `${rootFirst()} → ${nm} · ${rt.length} Personen`;
+    document.getElementById('lc-chain').innerHTML = rt.map((x, i) =>
+      `<li class="${x === k ? 'tg' : ''}"><span class="gn">${i}</span><div>${famBtn(x)}<div class="lc-rel">${relOf(i)}</div></div></li>`).join('');
+  }
+  function fitLine() {
+    const rt = lineMode.routes[lineMode.sel], pts = [];
+    rt.forEach((x, i) => { const r = homeAt(x, i ? birthYear(rt[i - 1]) : null); if (r) pts.push([r.x, r.y]); });
+    if (pts.length) fitBox(pts, lcCard);
+  }
+  function fitBox(pts, card, maxZoom = 17) {
+    const b = pts.reduce((m, p) => [[Math.min(m[0][0], p[0]), Math.min(m[0][1], p[1])], [Math.max(m[1][0], p[0]), Math.max(m[1][1], p[1])]], [pts[0], pts[0]]);
+    const tlh = document.getElementById('timeline').offsetHeight, ch = card.offsetHeight;
+    const pad = compact() ? { top: 70, bottom: tlh + ch + 40, left: 40, right: 40 } : { top: 110 + Math.min(ch, 200), bottom: tlh + 50, left: panel.classList.contains('collapsed') ? 60 : 340, right: 290 };
+    const H = map.getContainer().clientHeight, W = map.getContainer().clientWidth;
+    if (pad.top + pad.bottom > H - 80) { const s = (H - 80) / (pad.top + pad.bottom); pad.top *= s; pad.bottom *= s; }
+    if (pad.left + pad.right > W - 80) { pad.left = pad.right = 40; }
+    map.fitBounds(b, { padding: pad, maxZoom, duration: 1400 });
+  }
+  function showLine(k) {
+    const routes = routesTo(k); if (!routes.length) return;
+    if (story >= 0) closeStory();
+    closeHouse();
+    if (!lineMode) preLine = { all: allMode, year };
+    setPlaying(false);
+    hidden.clear(); document.querySelectorAll('.legend-item[data-side]').forEach(el => el.classList.remove('off'));
+    lineMode = { k, routes, sel: 0, set: new Set(routes.flat()) };
+    buildEdges();
+    allMode = true;
+    document.getElementById('app').classList.add('lining');
+    if (openPopup) { openPopup.remove(); openPopup = null; }
+    if (compact()) setPanel(false);
+    lcCard.hidden = false;
+    document.getElementById('lc-details').open = !compact();
+    fillLineCard(); render(); drawSpark();
+    requestAnimationFrame(fitLine);
+  }
+  function exitLine(restore = true) {
+    if (!lineMode) return;
+    lineMode = null; lcCard.hidden = true;
+    document.getElementById('app').classList.remove('lining');
+    if (restore && preLine) { allMode = preLine.all; year = preLine.year; slider.value = year; }
+    render(); drawSpark();
+  }
+  function stepRoute(d) {
+    const n = lineMode.routes.length; lineMode.sel = (lineMode.sel + d + n) % n;
+    fillLineCard(); render(); fitLine();
+  }
+  document.getElementById('lc-close').addEventListener('click', () => exitLine());
+  document.getElementById('lc-routes').addEventListener('click', e => { const b = e.target.closest('[data-step]'); if (b) stepRoute(+b.dataset.step); });
+  document.addEventListener('click', e => {
+    const lb = e.target.closest('.line-btn[data-line]');
+    if (lb) { e.stopPropagation(); showLine(lb.dataset.line); return; }
+    const fl = e.target.closest('.fl[data-k]');
+    if (fl && (fl.closest('.maplibregl-popup') || fl.closest('#line-card') || fl.closest('#story-card') || fl.closest('#house-card'))) { const p = PBYK.get(fl.dataset.k); if (p) pickPerson(p); }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lineMode && !e.target.matches('input')) exitLine(); });
+  let story = -1, storyFocus = null;
+
+  // ---------- Story of Roseln: a guided tour through the records ----------
+  const P = (k, label) => `<button type="button" class="fl" data-k="${esc(k)}">${esc(label || titleName(pname(+k)))}</button>`;
+  const firstYearIn = s => { const m = (s || '').match(/\b(1[5-9]\d\d)\b/); return m ? +m[1] : null; };
+  const RANK = [/pfarrer|dechant|dekan/i, /hann|bürgermeister|richter/i, /notar/i, /prediger|diakon|rektor|schulmeister|lehrer|organist|kantor/i, /kirchenvater|kurator|presbyter/i, /geschworen|ältest|vertret|beisitz|sprecher/i, /hüter|wächter|hebamme/i];
+  function rankOf(roles) { for (let i = 0; i < RANK.length; i++) if (roles.some(r => RANK[i].test(r))) return i; return 99; }
+  function buildStory() {
+    const S = [], anc = PEOPLE.filter(p => p.k !== ROOT);
+    const root = PBYK.get(ROOT), rn = rootName(), rf = rootFirst();
+    const who = p => `${relWord(p.g)} von ${rf}`;
+    const Lf = k => LIFE[k] || {};
+    if (anc.length) {
+      const e = anc.slice().sort((a, b) => a.y0 - b.y0)[0];
+      const gens = Math.max(...anc.map(p => p.g));
+      S.push({ y: e.y0, t: 'Der früheste Eintrag', focus: [e.k], zoom: 15,
+        h: () => `Der früheste Vorfahre von ${esc(rn)} im Roselner Familienbuch ist ${P(e.k)}, ${esc(who(e))}, zuerst um ${e.y0} belegt. Die Kirchenbücher verfolgen diese Familie ${gens} ${gens === 1 ? 'Generation' : 'Generationen'} zurück, und ${anc.length} Vorfahren haben mindestens einen datierten Wohnort auf dieser Karte.`,
+        src: `Familienbuch Nr. ${e.o}` });
+      const t98 = anc.filter(p => (Lf(p.k).tax || []).some(x => /1698/.test(x)));
+      if (t98.length) S.push({ y: 1698, t: 'Die Steuerkonskription von 1698', focus: t98.slice(0, 8).map(p => p.k), zoom: 16,
+        h: () => `${t98.length} Vorfahren von ${esc(rf)} stehen in der Steuerkonskription von Roseln 1698: ` + t98.slice(0, 6).map(p => `${P(p.k)} (${esc((Lf(p.k).tax.find(x => /1698/.test(x)) || '').replace(/^[^:]*1698[^:]*: /, '').replace(/ – .*$/, ''))})`).join('; ') + (t98.length > 6 ? `; und ${t98.length - 6} weitere` : '') + '. Vier Zugtiere kennzeichneten einen Vollbauern, sechs einen der Wohlhabendsten im Dorf.',
+        src: 'Familienbuch (Conscriptio 1698); Weiss 2010, S. 123' });
+      const off = anc.filter(p => (Lf(p.k).roles || []).length).map(p => ({ p, roles: Lf(p.k).roles, r: rankOf(Lf(p.k).roles), y: firstYearIn(Lf(p.k).roles.join(' ')) || p.y0 }))
+        .sort((a, b) => a.r - b.r || a.y - b.y);
+      if (off.length) {
+        const top = off.slice(0, 5).sort((a, b) => a.y - b.y);
+        S.push({ y: top[0].y, t: off.length > 1 ? 'Amtsträger in Dorf und Kirche' : 'Ein Amt im Dorf', focus: top.map(x => x.p.k), zoom: 16,
+          h: () => `${off.length} Vorfahren von ${esc(rf)} hatten ein Amt im Dorf oder in der Kirche inne. ` + top.map(x => `${P(x.p.k)} (${esc(x.p.g ? relWord(x.p.g) : '')}): ${esc(x.roles.slice(0, 2).join('; '))}`).join('. ') + '.',
+          src: 'Familienbuch (Berufe und Titel); Weiss 2010, S. 503–517' });
+      }
+      const crafts = anc.filter(p => Lf(p.k).occ && !/^(bauer|bäuerin|hausfrau|landwirt)/i.test(Lf(p.k).occ));
+      if (crafts.length) {
+        const top = crafts.slice(0, 6);
+        S.push({ y: firstYearIn(top.map(p => Lf(p.k).occ).join(' ')) || Math.min(...top.map(p => p.y0)), t: 'Handwerk und Gewerbe', focus: top.map(p => p.k), zoom: 16,
+          h: () => `Die meisten Vorfahren von ${esc(rf)} waren Bauern, einige aber übten ein Gewerbe aus: ` + top.map(p => `${P(p.k)}, ${esc(Lf(p.k).occ)}`).join('; ') + (crafts.length > 6 ? `; und ${crafts.length - 6} weitere` : '') + '.',
+          src: 'Familienbuch (Berufe)' });
+      }
+      const noteYear = n => n[2] && n[2] < 9999 ? n[2] : firstYearIn(n[0]);
+      const themed = (re, cats) => anc.map(p => ({ p, n: (Lf(p.k).notes || []).find(n => cats.includes(n[3]) || re.test(n[0])) })).filter(x => x.n).sort((a, b) => a.p.g - b.p.g);
+      const used = new Set();
+      const plague = themed(/\bPest\b/i, ['epidemic']).filter(x => (noteYear(x.n) || 0) < 1760);
+      if (plague.length) { plague.forEach(x => used.add(x.p.k)); S.push({ y: 1719, t: 'Die Pest von 1719', focus: plague.slice(0, 6).map(x => x.p.k), zoom: 16,
+        h: () => plague.slice(0, 3).map(x => `${P(x.p.k)} (${esc(relWord(x.p.g))}): ${esc(x.n[0])}`).join(' '), src: plague[0].n[1] }); }
+      const war = themed(/\b(gefallen|fiel|vermisst|vermißt|eingezogen|einberufen)\b/i, ['war']);
+      if (war.length) { war.forEach(x => used.add(x.p.k)); const w = war.slice(0, 3).sort((a, b) => (noteYear(a.n) || 0) - (noteYear(b.n) || 0));
+        S.push({ y: noteYear(w[0].n) || 1914, t: war.length > 1 ? 'In den Weltkriegen' : 'Im Krieg', focus: war.slice(0, 8).map(x => x.p.k), zoom: 16,
+          h: () => w.map(x => `${P(x.p.k)} (${esc(relWord(x.p.g))}): ${esc(x.n[0])}`).join(' ') + (war.length > 3 ? ` Weiss nennt in seinen Kriegslisten ${war.length - 3} weitere Verwandte von ${esc(rf)}.` : ''), src: [...new Set(w.map(x => x.n[1]))].join('; ') }); }
+      const dep = themed(/\b(deport|verschlepp|ausgehoben)/i, ['deportation']);
+      if (dep.length) { dep.forEach(x => used.add(x.p.k)); const d = dep.slice(0, 3);
+        S.push({ y: 1945, t: 'Deportiert, Januar 1945', focus: dep.slice(0, 8).map(x => x.p.k), zoom: 16,
+          h: () => `Im Januar 1945 wurden die arbeitsfähigen sächsischen Männer und Frauen aus Roseln in Arbeitslager in der Sowjetunion deportiert. ` + d.map(x => `${P(x.p.k)} (${esc(relWord(x.p.g))}): ${esc(x.n[0])}`).join(' ') + (dep.length > 3 ? ` ${dep.length - 3} weitere Verwandte von ${esc(rf)} stehen auf der Liste.` : ''), src: [...new Set(d.map(x => x.n[1]))].join('; ') }); }
+      const storied = anc.filter(p => !used.has(p.k) && (Lf(p.k).notes || []).length)
+        .sort((a, b) => a.g - b.g || (Lf(b.k).notes.length - Lf(a.k).notes.length)).slice(0, 3);
+      storied.forEach(p => { const n = Lf(p.k).notes; const two = n.length > 1 && (n[0][0].length + n[1][0].length) < 420;
+        S.push({ y: noteYear(n[0]) || p.y0, t: titleName(pname(+p.k)), focus: [p.k], zoom: 16,
+          h: () => `${P(p.k)}, ${esc(who(p))}: ${esc(n[0][0])}${two ? ' ' + esc(n[1][0]) : ''}${n.length > (two ? 2 : 1) ? ` <span class="st-more">(${n.length - (two ? 2 : 1)} weitere unter „Leben &amp; Einträge“ von ${esc(titleName(pname(+p.k)).split(' ')[0])})</span>` : ''}`,
+          src: two && n[1][1] !== n[0][1] ? n[0][1] + '; ' + n[1][1] : n[0][1] }); });
+      const hr = ROWS.filter(r => r.h && r.k !== ROOT).sort((a, b) => a.y0 - b.y0)[0];
+      if (hr) S.push({ y: hr.y0, t: 'Ein Haus im Dorf', focus: [hr.k], zoom: 17.2, ov: true,
+        h: () => `Ab dem 18. Jahrhundert nennen die Einträge Hausnummern. Der erste Vorfahre von ${esc(rf)} in einem nummerierten Haus ist ${P(hr.k)}, ab ${hr.y0} in ${esc(HOUSES[hr.h] && HOUSES[hr.h].street ? HOUSES[hr.h].street + ' ' + hr.h : 'Haus Nr. ' + hr.h)} belegt. Tippen Sie auf der Karte auf „Hausgeschichte“, um alle zu sehen, die dort wohnten.`,
+        src: 'Wohnsitzangaben im Familienbuch; Plan von 1869, Weiss 2010, S. 455' });
+      const away = ROWS.filter(r => r.x < -30 && r.k !== ROOT).sort((a, b) => a.y0 - b.y0)[0];
+      if (away) S.push({ y: away.y0, t: 'Über den Atlantik', focus: ROWS.filter(r => r.x < -30 && r.y0 <= away.y0 + 10).map(r => r.k).filter((v, i, a) => a.indexOf(v) === i), america: true,
+        h: () => `${away.y0} ist ${P(away.k)} in ${esc(away.pl)} belegt: ${esc(away.fb)}.`, src: 'Familienunterlagen' });
+    }
+    if (root) {
+      const r0 = root.rows[0], L = Lf(ROOT);
+      const par = [PP[+ROOT][4], PP[+ROOT][5]].filter(i => i >= 0);
+      S.push({ y: r0.y0, t: rn, focus: [ROOT, ...par.map(String).filter(k => PBYK.has(k))], zoom: r0.h ? 17.2 : 15, ov: !!r0.h,
+        h: () => `${P(ROOT)} ${PP[+ROOT][2] ? `wurde am ${esc(PP[+ROOT][2])} geboren` : `ist zuerst ${r0.y0} belegt`}${r0.h ? `, in ${esc(HOUSES[r0.h] && HOUSES[r0.h].street ? HOUSES[r0.h].street + ' ' + r0.h : 'Haus Nr. ' + r0.h)}` : ''}${par.length ? `, als Kind von ${par.map(i => PBYK.has(String(i)) ? P(String(i)) : esc(titleName(pname(i)))).join(' und ')}` : ''}.${L.occ || L.roles ? ` Verzeichnet als: ${esc([L.occ, ...(L.roles || [])].filter(Boolean).join('; '))}.` : ''}${PP[+ROOT][3] ? ` Gestorben ${esc(PP[+ROOT][3])}.` : ''}`,
+        src: `Familienbuch Nr. ${PP[+ROOT][6]}` });
+      const own = (L.notes || []);
+      if (own.length) { const o = own.slice(0, 2); S[S.length - 1].h2 = ' ' + o.map(n => esc(n[0])).join(' '); S[S.length - 1].src += '; ' + [...new Set(o.map(n => n[1]))].join('; '); }
+    }
+    const rootCh = S[S.length - 1] && root ? S[S.length - 1] : null;
+    let out = S.sort((a, b) => a.y - b.y);
+    if (out.length > 12) { const keep = out.filter(c => c !== rootCh).slice(0, rootCh ? 11 : 12); if (rootCh) keep.push(rootCh); out = keep.sort((a, b) => a.y - b.y); }
+    return out;
+  }
+  const stCard = document.getElementById('story-card'), storyBtn = document.getElementById('story-btn');
+  function drawMarks() {
+    const box = document.getElementById('marks'), inset = 8, w = box.clientWidth;
+    box.innerHTML = STORY.map((c, i) => `<button type="button" class="mark${i === story ? ' on' : ''}" data-ch="${i}" style="left:${inset + (w - 2 * inset) * (c.y - Y0) / (Y1 - Y0)}px" title="${c.y}: ${esc(c.t)}" aria-label="Kapitel ${i + 1}: ${c.y}, ${esc(c.t)}"></button>`).join('');
+  }
+  document.getElementById('marks').addEventListener('click', e => { const b = e.target.closest('.mark'); if (b) showChapter(+b.dataset.ch); });
+  function showChapter(i) {
+    i = Math.max(0, Math.min(STORY.length - 1, i));
+    const c = STORY[i];
+    if (lineMode) exitLine(false);
+    closeHouse();
+    setPlaying(false);
+    story = i; storyFocus = new Set(c.focus);
+    hidden.clear(); document.querySelectorAll('.legend-item[data-side]').forEach(el => el.classList.remove('off'));
+    if (c.ov && !ovOn.checked) { ovOn.checked = true; applyOv(); }
+    if (openPopup) { openPopup.remove(); openPopup = null; }
+    if (compact()) setPanel(false);
+    document.getElementById('app').classList.add('storying');
+    storyBtn.classList.add('on');
+    stCard.hidden = false;
+    document.getElementById('st-eyebrow').textContent = `Geschichte der Vorfahren von ${rootFirst()} · ${i + 1} von ${STORY.length}`;
+    document.getElementById('st-year').textContent = i === 0 ? 'um ' + c.y : c.y;
+    document.getElementById('st-title').textContent = c.t;
+    document.getElementById('st-text').innerHTML = c.h() + (c.h2 || '');
+    document.getElementById('st-src').textContent = 'Quelle: ' + c.src;
+    document.getElementById('st-back').disabled = i === 0;
+    document.getElementById('st-next').textContent = i === STORY.length - 1 ? 'Ende' : 'Weiter ›';
+    document.getElementById('st-dots').innerHTML = STORY.map((s, j) => `<button type="button" class="${j === i ? 'on' : ''}" data-ch="${j}" aria-label="Kapitel ${j + 1}: ${s.y}"></button>`).join('');
+    stCard.querySelector('.st-body').scrollTop = 0;
+    setYear(c.y); drawMarks();
+    requestAnimationFrame(() => {
+      const pts = [];
+      if (c.america) { c.focus.forEach(k => { (PBYK.get(k) || { rows: [] }).rows.filter(r => r.x < -30).forEach(r => pts.push([r.x, r.y])); }); if (pts.length) { fitBox(pts, stCard, 9); return; } }
+      c.focus.forEach(k => { const r = homeAt(k, c.y); if (r) pts.push([r.x, r.y]); });
+      if (c.box) pts.push(...c.box);
+      if (pts.length) fitBox(pts, stCard, c.zoom || 17.2);
+    });
+  }
+  function closeStory() {
+    if (story < 0) return;
+    story = -1; storyFocus = null; stCard.hidden = true;
+    document.getElementById('app').classList.remove('storying');
+    storyBtn.classList.remove('on');
+    render(); drawMarks();
+  }
+  storyBtn.addEventListener('click', () => story >= 0 ? closeStory() : STORY.length ? showChapter(0) : toast('Zu wenige Einträge für eine Führung durch diese Familie.'));
+  document.getElementById('st-close').addEventListener('click', closeStory);
+  document.getElementById('st-back').addEventListener('click', () => showChapter(story - 1));
+  document.getElementById('st-next').addEventListener('click', () => story === STORY.length - 1 ? closeStory() : showChapter(story + 1));
+  document.getElementById('st-dots').addEventListener('click', e => { const b = e.target.closest('[data-ch]'); if (b) showChapter(+b.dataset.ch); });
+  document.addEventListener('keydown', e => {
+    if (story < 0 || e.target.matches('input, textarea')) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); if (story < STORY.length - 1) showChapter(story + 1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); if (story > 0) showChapter(story - 1); }
+    else if (e.key === 'Escape') closeStory();
+  });
+
+  // ---------- House histories: everyone recorded at an ancestor's house ----------
+  const HOUSES = DATA.H || {}, hsCard = document.getElementById('house-card');
+  let houseOpen = null;
+  function hhYears(x) { return x.y0 ? (x.y1 && x.y1 !== x.y0 ? `${x.y0}–${x.y1}` : `${x.y0}`) : 'ohne Datum'; }
+  function hhObj(e, h) { // e = [headIdx, [spouseIdx...], y0, y1, sub]
+    const ids = [e[0], ...e[1]].map(String);
+    const anc = ids.filter(k => ANC.has(k));
+    let rel = '';
+    if (!anc.length) rel = ids.map(k => { const pr = [PP[+k][4], PP[+k][5]].filter(i => i >= 0).map(String); return pr.length && pr.some(q => ANC.has(q)) ? `${titleName(pname(+k)).split(' ')[0]} war ein Kind von ${pr.map(q => titleName(pname(+q))).join(' & ')}` : ''; }).filter(Boolean).join('; ');
+    return { h, ids, anc, rel, a: PP[e[0]][1], y0: e[2], y1: e[3], sub: e[4] };
+  }
+  let HOUSE_ALL = false; // true when the map was opened from a house in Roseln Village
+  const famA = k => `<a class="fl" href="familien.html#p=${encodeURIComponent(IDS[+k])}">${esc(titleName(pname(+k)))}</a>`;
+  function hhNames(x) {
+    const one = k => HOUSE_ALL ? famA(k) : ANC.has(k) && PBYK.has(k) ? famBtn(k) : esc(titleName(pname(+k)));
+    const [hd, ...sp] = x.ids;
+    if (sp.length <= 1) return x.ids.map(one).join(' & ');
+    return `${one(hd)} <span class="hs-y">· verheiratet mit</span> ${sp.map(one).join(' <span class="hs-y">und</span> ')}`;
+  }
+  function hhItem(x) {
+    return `<li class="${x.anc.length ? 'anc' : ''}"><span class="hs-y">${hhYears(x)}</span><span>${hhNames(x)}${x.a ? ` <i>(${esc(titleName(x.a))})</i>` : ''}${x.sub ? `<span class="hs-sub">${esc(x.h)}${esc(x.sub)}</span>` : ''}${x.rel ? `<span class="hs-rel">${esc(x.rel)}</span>` : ''}</span></li>`;
+  }
+  function showHouse(h) {
+    const H = HOUSES[h]; if (!H) return;
+    if (story >= 0) closeStory();
+    if (lineMode) exitLine();
+    if (openPopup) { openPopup.remove(); openPopup = null; }
+    if (compact()) setPanel(false);
+    houseOpen = h;
+    document.getElementById('hs-title').textContent = H.street ? `${H.street} ${h}` : `Haus Nr. ${h}`;
+    const later = (H.addr[0] || '').split('/').slice(1);
+    document.getElementById('hs-sub').textContent = later.length === 3 ? `Nr. ${h} im Jahr 1869 · später ${later[0]} (um 1900), ${later[1] || '–'} (1951/58), ${later[2]} (1964)` : `Nr. ${h} (Nummerierung von 1869)`;
+    const hh = H.hh.map(e => hhObj(e, h));
+    const mine = hh.filter(x => x.anc.length), rel = hh.filter(x => !x.anc.length && x.rel), other = hh.filter(x => !x.anc.length && !x.rel);
+    const lists = H.lists.length ? `<div class="hs-h">Besitzer laut Hauslisten des Dorfes</div><div class="hs-lists">${H.lists.map(([y, n]) => `<b>${esc(y)}</b><span>${esc(n)}</span>`).join('')}</div>` : '';
+    document.getElementById('hs-body').innerHTML =
+      (H.note ? `<p class="hs-note">${esc(H.note)}</p>` : '') +
+      ((DATA.SV || {})[h] ? `<a class="hs-sv" href="${esc(DATA.SV[h].u)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><path d="M9.5 21v-5l-1.5-1V10a4 4 0 0 1 8 0v5l-1.5 1v5z"/></svg><span><b>Das Haus heute in Google Street View</b><small>Öffnet mit Blick von der Straße auf das Grundstück, etwa ${DATA.SV[h].d} m entfernt. Das sichtbare Gebäude kann das Haus selbst oder das eines Nachbarn sein.</small></span></a>` : `<div class="hs-nosv">Für diese Gasse gibt es keine Google-Street-View-Aufnahmen.</div>`) + lists +
+      (HOUSE_ALL ? `<div class="hs-h">Hier verzeichnete Haushalte (${hh.length})</div><ul class="hs-hh">${hh.slice().sort((a, b) => (a.y0 || 9999) - (b.y0 || 9999)).map(hhItem).join('')}</ul><a class="hs-fam" href="familien.html#h=${encodeURIComponent(h)}">Haus in Roseln Dorf öffnen ›</a>` : '') +
+      (HOUSE_ALL ? '' : mine.length ? `<div class="hs-h">Familie von ${esc(rootFirst())} hier</div><ul class="hs-hh">${mine.map(hhItem).join('')}</ul>` : '') +
+      (HOUSE_ALL ? '' : rel.length ? `<div class="hs-h">Nahe Verwandte hier</div><ul class="hs-hh">${rel.map(hhItem).join('')}</ul>` : '') +
+      (HOUSE_ALL ? '' : other.length ? `<details class="hs-more"><summary>Weitere hier verzeichnete Haushalte (${other.length})</summary><ul class="hs-hh">${other.map(hhItem).join('')}</ul></details>` : '') +
+      `<div class="st-src">Quellen: Wohnsitzangaben im Familienbuch (Ortsfamilienbuch Roseln bis 1925); Hauslisten bei Weiss 2010, S. 451–468. Die Jahre sind der erste und letzte Beleg jedes Haushalts unter dieser Adresse; bei „ohne Datum“ sind die Daten aus Datenschutzgründen gesperrt.</div>`;
+    hsCard.querySelector('.st-body').scrollTop = 0;
+    hsCard.hidden = false; document.getElementById('app').classList.add('housing');
+    const L0 = LOCS['H' + h];
+    if (L0) requestAnimationFrame(() => fitBox([[L0[0], L0[1]]], hsCard, 17.6));
+  }
+  function closeHouse() { if (!houseOpen) return; houseOpen = null; HOUSE_ALL = false; hsCard.hidden = true; document.getElementById('app').classList.remove('housing'); }
+  document.getElementById('hs-close').addEventListener('click', closeHouse);
+  document.addEventListener('click', e => { const b = e.target.closest('.house-btn[data-house]'); if (b) { e.stopPropagation(); showHouse(b.dataset.house); } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && houseOpen) closeHouse(); });
+
+  // ---------- choosing a person ----------
+  function sideOf(k, sides) { if (k === ROOT) return 'self'; const s = sides.get(k); return s && s.size === 2 ? 'both' : s ? [...s][0] : 'B'; }
+  function setPerson(i) {
+    const root = String(i);
+    if (lineMode) exitLine(false);
+    if (story >= 0) closeStory();
+    closeHouse(); setPlaying(false);
+    if (openPopup) { openPopup.remove(); openPopup = null; }
+    hidden.clear(); document.querySelectorAll('.legend-item[data-side]').forEach(el => el.classList.remove('off'));
+    ROOT = root;
+    const gen = new Map([[root, 0]]), q = [root];
+    while (q.length) { const x = q.shift(), g = gen.get(x); [PP[+x][4], PP[+x][5]].forEach(y => { if (y >= 0 && !gen.has(String(y))) { gen.set(String(y), g + 1); q.push(String(y)); } }); }
+    const sides = new Map();
+    const up = (start, tag) => { if (start < 0) return; const st = [String(start)], seen = new Set(); while (st.length) { const x = st.pop(); if (seen.has(x)) continue; seen.add(x); if (!sides.has(x)) sides.set(x, new Set()); sides.get(x).add(tag); [PP[+x][4], PP[+x][5]].forEach(y => { if (y >= 0) st.push(String(y)); }); } };
+    up(PP[i][4], 'B'); up(PP[i][5], 'T');
+    ANC = new Set(gen.keys());
+    FAM = {};
+    ANC.forEach(k => { const p = PP[+k]; FAM[k] = { n: p[0], b: pyear(p[2]), d: pyear(p[3]), p: [p[4], p[5]].filter(y => y >= 0).map(String), c: [] }; });
+    ANC.forEach(k => FAM[k].p.forEach(pp => { if (FAM[pp]) FAM[pp].c.push(k); }));
+    RC = new Map();
+    ROWS = []; let n = 0;
+    ANC.forEach(k => {
+      const p = PP[+k], s = sideOf(k, sides), g = gen.get(k);
+      (RAW.get(+k) || []).forEach(rw => {
+        const L = LOCS[rw[1]]; if (!L) return;
+        const isH = rw[1][0] === 'H';
+        ROWS.push({ i: n++, k, x: L[0], y: L[1], n: p[0], g, s, b: p[2], d: p[3],
+          pl: isH ? `Roseln, Haus Nr. ${rw[1].slice(1)} (Nummerierung von 1869)` : (rw[1] === 'VRoseln' ? 'Ruja (Roseln), Sibiu — Haus nicht verzeichnet' : L[3]),
+          h: isH ? rw[1].slice(1) : '', f: rw[4], t: rw[5], fb: rw[11] || rw[6], tb: rw[12] || rw[7], c: CERT[rw[8]] || '', est: rw[8] === 'e' || rw[8] === 'k',
+          ev: rw[13] || rw[9], no: rw[14] || rw[10], o: p[6], acc: L[2], y0: rw[2], y1: rw[3] });
+      });
+    });
+    const m = new Map();
+    ROWS.forEach(r => { if (!m.has(r.k)) m.set(r.k, { k: r.k, n: r.n, o: r.o, g: r.g, s: r.s, b: r.b, d: r.d, rows: [] }); m.get(r.k).rows.push(r); });
+    PEOPLE = [...m.values()];
+    PEOPLE.forEach(p => { p.rows.sort((a, b) => a.y0 - b.y0); const L = LIFE[p.k] || {}; p.job = [L.occ, ...(L.roles || [])].filter(Boolean).join(' · '); p.key = fold(titleName(p.n) + ' ' + p.job); p.y0 = p.rows[0].y0; p.y1 = Math.max(...p.rows.map(r => r.y1)); });
+    PBYK = new Map(PEOPLE.map(p => [p.k, p]));
+    SIDES = new Map([...ANC].map(k => [k, sideOf(k, sides)]));
+    MAXG = Math.max(0, ...gen.values());
+    const ys = ROWS.map(r => r.y0), ye = ROWS.map(r => r.y1);
+    const minY = ys.length ? Math.min(...ys) : 1700, maxY = ye.length ? Math.max(...ye) : 1925;
+    Y0 = Math.max(1500, Math.floor((minY - 5) / 10) * 10); Y1 = Math.min(2010, Math.ceil((maxY + 5) / 10) * 10);
+    if (Y1 - Y0 < 60) Y0 = Y1 - 60;
+    slider.min = Y0; slider.max = Y1; year = minY; slider.value = year;
+    allMode = false; allBtn.classList.remove('on'); allBtn.setAttribute('aria-pressed', 'false');
+    STORY = buildStory();
+    // header, legend, notes
+    const nm = rootName(), p = PP[i], by = pyear(p[2]), dy = pyear(p[3]);
+    document.getElementById('t-h1').textContent = `Vorfahren von ${nm}`;
+    document.getElementById('t-sub').textContent = `${by || dy ? `${by || '?'}–${dy || ''}` : 'Daten nicht verzeichnet'} · Familienbuch Nr. ${p[6]} · ${ANC.size - 1} ${ANC.size === 2 ? 'Vorfahre' : 'Vorfahren'} gefunden`;
+    document.title = `Vorfahren von ${nm} · Roseln`;
+    const hint = j => j >= 0 ? `über ${titleName(pname(j)).split(' ')[0]}${pyear(PP[j][2]) ? ' geb. ' + pyear(PP[j][2]) : ''}` : 'nicht verzeichnet';
+    document.getElementById('lg-b').textContent = hint(p[4]); document.getElementById('lg-t').textContent = hint(p[5]);
+    document.getElementById('lg-self').textContent = nm.split(' ')[0];
+    const noRows = [...ANC].filter(k => !RAW.has(+k)).length;
+    document.getElementById('undated-note').textContent = `${ANC.size - 1} Vorfahren von ${nm} stehen im Familienbuch${noRows ? `; ${noRows} davon haben keine Daten und erscheinen daher nicht auf der Zeitleiste` : ''}.`;
+    const keep = (location.hash.match(/&(from=fam|lang=de|back=[^&]*)/g) || []).join('');
+    try { history.replaceState(null, '', '#p=' + IDS[i] + keep); } catch (e) { location.hash = 'p=' + IDS[i] + keep; }
+    render(); drawSpark(); drawTicks(); drawMarks();
+    SEL = root; TR.hist = []; refreshView();
+    requestAnimationFrame(() => fitFamily(900));
+    if (ANC.size === 1) toast(`Für ${nm} sind im Familienbuch keine Eltern verzeichnet, daher wird nur ${nm.split(' ')[0]} gezeigt.`);
+    else toast(`${ANC.size - 1} Vorfahren von ${nm} über ${MAXG} ${MAXG === 1 ? 'Generation' : 'Generationen'}. Abspielen oder „Geschichte“ antippen.`);
+  }
+  // picker
+  const pk = document.getElementById('picker'), pkIn = document.getElementById('pk-input'), pkOut = document.getElementById('pk-results');
+  const SEARCH = PP.map((p, i) => ({ i, key: fold(titleName(p[0]) + ' ' + (p[1] || '') + ' ' + pyear(p[2]) + ' ' + pyear(p[3])) })).filter(s => PP[s.i][7] !== 't');
+  document.getElementById('pk-count').textContent = `${PP.filter(p => p[7] !== 't').length.toLocaleString('de')} Personen im Buch`;
+  function ancCount(i) { const seen = new Set(), st = [i]; while (st.length) { const x = st.pop(); [PP[x][4], PP[x][5]].forEach(y => { if (y >= 0 && !seen.has(y)) { seen.add(y); st.push(y); } }); } return seen.size; }
+  function describe(i) {
+    const p = PP[i], par = [p[4], p[5]].filter(y => y >= 0).map(y => titleName(pname(y)));
+    const by = pyear(p[2]), dy = pyear(p[3]);
+    return [by || dy ? `${by ? 'geb. ' + by : ''}${by && dy ? ', ' : ''}${dy ? 'gest. ' + dy : ''}` : '', par.length ? `Kind von ${par.join(' & ')}` : '', `Familie ${p[6]}`].filter(Boolean).join(' · ');
+  }
+  let pkHits = [], pkKb = -1;
+  function pkSearch() {
+    const q = fold(pkIn.value.trim());
+    if (q.length < 2) { pkOut.innerHTML = '<div class="pk-empty">Mindestens zwei Buchstaben eines Vor- oder Nachnamens eingeben.</div>'; pkHits = []; return; }
+    const words = q.split(/\s+/);
+    pkHits = SEARCH.filter(s => words.every(w => s.key.includes(w))).map(s => s.i)
+      .sort((a, b) => fold(PP[a][0].split(' ').slice(-1)[0] + PP[a][0]).localeCompare(fold(PP[b][0].split(' ').slice(-1)[0] + PP[b][0])) || (+pyear(PP[a][2]) || 9999) - (+pyear(PP[b][2]) || 9999)).slice(0, 60);
+    pkKb = -1;
+    pkOut.innerHTML = pkHits.length ? pkHits.map((i, j) => { const n = ancCount(i); return `<button type="button" class="pkr" role="option" data-j="${j}"><span class="anc${n ? '' : ' none'}">${n ? `${n} ${n === 1 ? 'Vorfahre' : 'Vorfahren'}` : 'keine Eltern verzeichnet'}</span><div class="nm">${esc(titleName(PP[i][0]))}${PP[i][1] ? ` <i>(${esc(titleName(PP[i][1]))})</i>` : ''}</div><div class="meta">${esc(describe(i))}</div></button>`; }).join('')
+      : `<div class="pk-empty">Niemand im Familienbuch passt zu „${esc(pkIn.value.trim())}“. Versuchen Sie eine andere Schreibweise (Balthes / Baltes, Thomä / Thome).</div>`;
+  }
+  function openPicker(first) {
+    pk.hidden = false; document.getElementById('pk-cancel').hidden = !!first || ROOT == null;
+    pkIn.value = ''; pkSearch(); setTimeout(() => pkIn.focus(), 30);
+  }
+  function choose(i) { pk.hidden = true; setPerson(i); }
+  pkIn.addEventListener('input', pkSearch);
+  pkIn.addEventListener('keydown', e => {
+    const items = [...pkOut.querySelectorAll('.pkr')];
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (!items.length) return; pkKb = (pkKb + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length; items.forEach((el, j) => el.classList.toggle('kb', j === pkKb)); items[pkKb].scrollIntoView({ block: 'nearest' }); }
+    else if (e.key === 'Enter') { e.preventDefault(); const i = pkHits[pkKb < 0 ? 0 : pkKb]; if (i != null) choose(i); }
+    else if (e.key === 'Escape' && ROOT != null) pk.hidden = true;
+  });
+  pkOut.addEventListener('click', e => { const b = e.target.closest('.pkr'); if (b) choose(pkHits[+b.dataset.j]); });
+  document.getElementById('pk-example').addEventListener('click', () => { const i = IDX.get('0201.C1.8'); if (i != null) choose(i); });
+  document.getElementById('pk-cancel').addEventListener('click', () => { pk.hidden = true; });
+  document.getElementById('change-btn').addEventListener('click', () => openPicker(false));
+  function famBack() {
+    const fm = /[#&]from=fam/.test(location.hash), bk = /[#&]back=([^&]+)/.exec(location.hash);
+    if (!fm || document.getElementById('fam-back')) return;
+    const a = document.createElement('a'); a.id = 'fam-back'; const de = true; a.href = (de ? 'familien.html' : 'index.html') + (bk ? decodeURIComponent(bk[1]) : '');
+    a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg><span>' + (de ? 'Roseln Dorf' : 'Roseln Village') + '</span>';
+    a.addEventListener('click', e => { try { const r = new URL(document.referrer); if (r.origin === location.origin && /(\/|index\.html|families\.html|familien\.html)$/.test(r.pathname) && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) { } });
+    document.body.appendChild(a); document.body.classList.add('from-fam');
+  }
+  function boot() {
+    const m = /[#&]p=([^&]+)/.exec(location.hash), i = m ? IDX.get(decodeURIComponent(m[1])) : null;
+    const hm = /[#&]h=([^&]+)/.exec(location.hash), hq = hm ? decodeURIComponent(hm[1]) : null;
+    famBack();
+    if (hq && HOUSES[hq]) {
+      // follow the household that lived there last, so the timeline has someone to show, then open the house
+      const hhs = HOUSES[hq].hh.filter(e => e[2]).sort((a, b) => (b[3] || b[2]) - (a[3] || a[2]));
+      const who = i != null ? i : hhs.length ? hhs[0][0] : HOUSES[hq].hh[0][0];
+      pk.hidden = true; setPerson(who);
+      ovOn.checked = true; applyOv();
+      const go = () => { HOUSE_ALL = true; showHouse(hq); };
+      if (map.loaded()) setTimeout(go, 60); else map.once('load', () => setTimeout(go, 60));
+    } else if (i != null) { pk.hidden = true; setPerson(i); } else openPicker(true);
+    window.addEventListener('hashchange', () => {
+      const h2 = /[#&]h=([^&]+)/.exec(location.hash); if (h2 && HOUSES[decodeURIComponent(h2[1])]) { HOUSE_ALL = true; showHouse(decodeURIComponent(h2[1])); return; }
+      const m2 = /[#&]p=([^&]+)/.exec(location.hash), j = m2 ? IDX.get(decodeURIComponent(m2[1])) : null; if (j != null && String(j) !== ROOT) setPerson(j); });
+  }
+
+
+  // ---------- Details and Tree tabs (whole family book, not just the chosen person's ancestors) ----------
+  const KIDS = new Map(), FAMNO = new Map();
+  PP.forEach((p, i) => {
+    if (p[7] === 't') return; // from the family tree only
+    [p[4], p[5]].forEach(q => { if (q >= 0) { if (!KIDS.has(q)) KIDS.set(q, []); KIDS.get(q).push(i); } });
+    if (!FAMNO.has(p[6])) FAMNO.set(p[6], []); FAMNO.get(p[6]).push(i);
+  });
+  const byear = i => +pyear(PP[i][2]) || +pyear(PP[i][3]) - 40 || 9999;
+  const sortByBirth = a => a.sort((x, y) => byear(x) - byear(y));
+  KIDS.forEach(sortByBirth);
+  const kidsOf = i => KIDS.get(i) || [];
+  function spousesOf(i) {
+    const p = PP[i]; if (p[7] === 'c') return [];
+    return (FAMNO.get(p[6]) || []).filter(j => j !== i && PP[j][7] !== 'c' && PP[j][7] !== p[7]);
+  }
+  function siblingsOf(i) {
+    const p = PP[i], s = new Set();
+    [p[4], p[5]].forEach(q => { if (q >= 0) kidsOf(q).forEach(j => { if (j !== i) s.add(j); }); });
+    return sortByBirth([...s]);
+  }
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  function fmtOfb(s) { // church-book date strings: "05.01.1906", "errech. 1759", "um 1735", "vor 1700", "06.1820"
+    s = (s || '').trim().replace(/\.$/, ''); if (!s) return '';
+    let pre = '', m;
+    if ((m = /^errech\.\s*(.*)$/.exec(s))) { pre = 'errechnet '; s = m[1]; }
+    return pre + s;
+  }
+  const short = i => { const n = titleName(pname(i)); return n; };
+  const span = i => { const b = pyear(PP[i][2]), d = pyear(PP[i][3]); return b || d ? `${b || '?'}–${d || ''}` : 'Daten nicht verzeichnet'; };
+  // "Weiss 2010 p.142" -> (Weiss); "Family book (church-council minutes)" -> (church-council minutes)
+  function srcHTML(src) {
+    const parts = String(src || '').split(/;\s*/).filter(Boolean).map(s => {
+      if (/^Weiss/i.test(s)) return { h: '<i>Weiss</i>', t: s.replace(/^Weiss 2010,?\s*/, 'Weiss, Roseln mitten in Siebenbürgen (2010), ') };
+      const m = /^Family book\s*\((.*)\)$/i.exec(s);
+      if (m) return { h: esc(m[1]), t: 'Ortsfamilienbuch Roseln: ' + m[1] };
+      if (/^Family book$/i.test(s)) return { h: 'church book', t: 'Ortsfamilienbuch Roseln bis 1925' };
+      if (/^family tree$/i.test(s)) return { h: 'family tree', t: 'Family tree' };
+      return { h: esc(s), t: s };
+    });
+    if (!parts.length) return '';
+    return ` <span class="dt-src" title="${esc(parts.map(p => p.t).join('; '))}">(${parts.map(p => p.h).join('; ')})</span>`;
+  }
+  const TREE_TAG = ' <span class="dt-src">(Stammbaum)</span>';
+  const PLACE_NAME = code => code === 'VRoseln' ? 'Roseln' : code[0] === 'H' ? `Roseln, Haus Nr. ${code.slice(1)}` : ((LOCS[code] || [])[3] || code.slice(1)).replace(/, Sibiu$/, '').replace(/ \(county-level\)/, '');
+  function vitals(i) {
+    const rows = RAW.get(i) || [], fromTree = rw => /Family tree/i.test(rw[10] || '');
+    const out = { born: null, bornAt: '', died: null, diedAt: '', diedTree: false, mar: [], away: [], homes: [] };
+    rows.forEach(rw => {
+      const ev = rw[9] || '';
+      if (/\bborn\b/.test(rw[6]) && rw[6] === 'born') out.bornAt = PLACE_NAME(rw[1]);
+      if (/\bdied\b/.test(ev) || rw[7] === 'died') { out.diedAt = PLACE_NAME(rw[1]); if (fromTree(rw)) out.diedTree = true; }
+      (ev.match(/(\d{4}(?:-\d\d-\d\d)?) married/g) || []).forEach(x => {
+        const d = x.split(' ')[0], who = (/married ([^;]+?) in ([^;]+)/.exec(rw[10] || '') || []);
+        if (!out.mar.some(m => m.d === d)) out.mar.push({ d, who: who[1] || '', at: who[2] || '' });
+      });
+      if (rw[1][0] === 'H' && !out.homes.some(h => h.h === rw[1].slice(1))) out.homes.push({ h: rw[1].slice(1), y0: rw[2], y1: rw[3] });
+      else if (rw[1][0] === 'H') { const h = out.homes.find(h => h.h === rw[1].slice(1)); h.y0 = Math.min(h.y0, rw[2]); h.y1 = Math.max(h.y1, rw[3]); }
+      if (rw[1][0] === 'V' && rw[1] !== 'VRoseln') out.away.push({ code: rw[1], y0: rw[2], y1: rw[3], what: rw[6], tree: fromTree(rw) });
+    });
+    return out;
+  }
+  const HOUSE_ICO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7v9H3z"/><path d="M10 20v-5h4v5"/></svg>';
+  const PIN_ICO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
+  const TREE_ICO = LINE_ICO;
+  const sideCol = k => SIDES.has(k) ? SIDE_HEX[SIDES.get(k)] : '';
+  const personLink = j => `<button type="button" class="fl" data-sel="${j}">${esc(short(j))}</button> <span class="fl-y">${esc(span(j))}</span>`;
+  const relToRoot = k => { const r = PBYK.get(k); if (k === ROOT) return 'Gewählte Person'; if (r) return `${relWord(r.g).replace(/^./, c => c.toUpperCase())} · ${SIDE_NAME[r.s]}`; return ANC.has(k) ? `Vorfahre von ${rootFirst()} (kein datierter Wohnort)` : ''; };
+
+  let SEL = null, VIEW = 'people';
+  function renderDetails() {
+    const box = document.getElementById('v-details');
+    if (SEL == null) { box.innerHTML = '<div class="dt-empty">Wählen Sie jemanden auf der Karte, in der Liste oder im Stammbaum, um eine Übersicht zu sehen.</div>'; return; }
+    const i = +SEL, k = String(i), p = PP[i], L = LIFE[k] || {}, v = vitals(i), col = sideCol(k), N = (DATA.N || {})[k] || [0, 0, 0, 0, 0, 0, 0, ''];
+    const ph = PH[k], ini = short(i).split(' ').map(w => w[0]).slice(0, 2).join('');
+    const rel = relToRoot(k);
+    let h = `<div class="dt-head" style="${col ? `--c:${col}` : ''}">
+      <div class="dt-av" ${ph ? `style="background-image:url('${ph}')" role="img" aria-label="Foto von ${esc(short(i))}"` : 'aria-hidden="true"'}>${ph ? '' : esc(ini)}</div>
+      <div style="min-width:0"><div class="dt-name">${esc(short(i))}${p[1] ? ` <i>(${esc(titleName(p[1]))})</i>` : ''}</div>
+      <div class="dt-sub">${esc(span(i))}${L.occ ? ' · ' + esc(L.occ) : ''} · Familie ${esc(p[6])}</div>
+      ${rel ? `<span class="dt-rel">${esc(rel)}</span>` : ''}</div></div>`;
+    // short summary: the key dates (church book first), family, homes
+    const kv = [];
+    const bAt = N[7] || v.bornAt;
+    if (p[2] || bAt) kv.push(['Geboren', `${esc(fmtOfb(p[2]) || 'Datum nicht verzeichnet')}${bAt ? `, ${esc(bAt)}` : ''}`]);
+    const sp = spousesOf(i);
+    if (sp.length) kv.push([sp.length > 1 ? 'Ehepartner' : 'Ehepartner', sp.map(personLink).join('<br>')]);
+    else if (v.mar.length) kv.push(['Verheiratet', v.mar.map(m => `${esc(fmtDate(m.d))}${m.who ? `, ${esc(titleName(m.who))}` : ''}`).join('<br>')]);
+    if (p[3] || v.diedAt) kv.push(['Gestorben', `${esc(fmtOfb(p[3]) || 'Datum gesperrt')}${v.diedAt ? `, ${esc(v.diedAt)}` : ''}${v.diedTree ? TREE_TAG : ''}${L.death ? `<br><small>${esc(L.death.replace(/^Gestorben /, ''))}</small>` : ''}`]);
+    const par = [p[4], p[5]].filter(q => q >= 0);
+    if (par.length) kv.push(['Eltern', par.map(personLink).join('<br>')]);
+    const kc = kidsOf(i); if (kc.length) kv.push(['Kinder', `${kc.length} · <button type="button" class="fl" data-tree="${k}">zum Stammbaum</button>`]);
+    h += `<dl class="dt-kv" style="margin-top:12px">${kv.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`;
+    if (v.homes.length) h += `<div class="dt-h">Häuser in Roseln <span>antippen zum Öffnen</span></div><div class="dt-homes">${v.homes.sort((a, b) => a.y0 - b.y0).map(x => `<button type="button" class="dt-home" data-house="${esc(x.h)}">${HOUSE_ICO}Nr. ${esc(x.h)} <small>${x.y0 === x.y1 ? x.y0 : `${x.y0}–${x.y1}`}</small></button>`).join('')}</div>`;
+    if (v.away.length) h += `<ul class="dt-away">${v.away.map(a => `<li><b>${a.y0 === a.y1 ? a.y0 : `${a.y0}–${a.y1}`}</b><span>${esc(PLACE_NAME(a.code))}${a.tree ? TREE_TAG : ''}</span></li>`).join('')}</ul>`;
+    // what the full record holds, and the way across to Roseln Village
+    // N = [church-book entries, church-book notes, Weiss notes, Magarei (0/1), godparent, witness, offices, birthplace]
+    const what = [];
+    if (N[0]) what.push(`${N[0]} ${N[0] === 1 ? 'Kirchenbucheintrag' : 'Kirchenbucheinträge'} (Taufe, Heirat, Beerdigung …)`);
+    if (N[1]) what.push(`${N[1]} ${N[1] === 1 ? 'Notiz' : 'Notizen'} aus dem Kirchenbuch`);
+    if (N[2]) what.push(`${N[2]} ${N[2] === 1 ? 'Notiz' : 'Notizen'} aus <i>Weiss</i>`);
+    if (N[4] || N[5]) what.push([N[4] && `Pate ${N[4]}×`, N[5] && `Trauzeuge ${N[5]}×`].filter(Boolean).join(', '));
+    if (N[6]) what.push(`${N[6]} ${N[6] === 1 ? 'Amt' : 'Ämter'} im Dorf`);
+    if (N[3]) what.push('auch im Magareier Kirchenbuch');
+    if (L.flag) what.push('eine Notiz zu widersprüchlichen Daten');
+    h += `<a class="fm-open" href="familien.html#p=${encodeURIComponent(IDS[i])}"><span class="fm-k">Alle Einträge in Roseln Dorf</span>
+      <span class="fm-w">${what.length ? what.map(x => `<span>${x}</span>`).join('') : '<span>Familie, Lebenslauf und Quellen</span>'}</span><span class="fm-go">Seite von ${esc(short(i).split(' ')[0])} öffnen ›</span></a>`;
+    // actions
+    const acts = [];
+    if (PBYK.has(k)) acts.push(`<button type="button" class="dt-btn pri" data-mapk="${k}">${PIN_ICO}Auf der Karte</button>`);
+    acts.push(`<button type="button" class="dt-btn" data-tree="${k}">${TREE_ICO}Stammbaum</button>`);
+    if (ANC.has(k) && k !== ROOT) acts.push(`<button type="button" class="dt-btn" data-line="${k}">Linie zeigen</button>`);
+    if (k !== ROOT) acts.push(`<button type="button" class="dt-btn" data-root="${k}">Vorfahren von ${esc(short(i).split(' ')[0])}</button>`);
+    h += `<div class="dt-actions">${acts.join('')}</div>`;
+    h += `<div class="dt-foot">Alle Einträge, mit jeder Notiz aus den Kirchenbüchern und von Christian Weiss, <i>Roseln mitten in Siebenbürgen</i>, stehen in Roseln Dorf.</div>`;
+    box.innerHTML = h; box.scrollTop = 0;
+  }
+  function spByOrder(i, n) { // n-th spouse of a family head, by the book's S1, S2 order
+    const fam = PP[i][6];
+    const j = IDX.get(`${fam}.S${n}`);
+    return j != null ? j : -1;
+  }
+  // a godparent / witness named in the book with its family number: link to that person when we can find them
+  function findInFam(name, fam) {
+    if (!fam || !FAMNO.has(fam)) return -1;
+    const f = fold(name).split(/\s+/).filter(w => !/^(und|bei)$/.test(w));
+    const first = (f[0] || '').slice(0, 4), last = (f[f.length - 1] || '').replace(/s$/, '').slice(0, 4);
+    const cand = FAMNO.get(fam).filter(j => { const n = fold(PP[j][0]).split(/\s+/); return n[0].slice(0, 4) === first && n[n.length - 1].replace(/s$/, '').slice(0, 4) === last; });
+    if (cand.length) return cand[0];
+    const c2 = FAMNO.get(fam).filter(j => fold(PP[j][0]).split(/\s+/)[0].slice(0, 4) === first);
+    return c2.length === 1 ? c2[0] : -1;
+  }
+  function gpLink(n, fam) {
+    const j = findInFam(n, fam);
+    return j >= 0 ? `<button type="button" class="fl" data-sel="${j}">${esc(n)}</button>` : esc(n);
+  }
+  function famLink(couple, fam) {
+    const h = fam && FAMNO.has(fam) ? FAMNO.get(fam).find(j => PP[j][7] === 'h') : null;
+    return h != null ? `<button type="button" class="fl" data-sel="${h}">${esc(couple)}</button>` : esc(couple);
+  }
+  const DE = n => Array.isArray(n) ? n[0] : n, EN = n => Array.isArray(n) ? n[1] : '';
+  function latEntry(n) {
+    const de = DE(n), en = EN(n);
+    return en ? `<div class="dt-lat"><small>Register entry:</small> <span lang="en">${esc(en)}</span><details class="dt-orig"><summary>Original (Latin)</summary><p lang="la">${esc(de)}</p></details></div>` : `<details class="dt-orig"><summary>Register entry (Latin)</summary><p lang="la">${esc(de)}</p></details>`;
+  }
+  function origNote(n, book) {
+    const de = DE(n), en = EN(n);
+    const m = /^(\d\d\.\d\d\.\d{4})[.:]?\s*/.exec(de);
+    const yr = m ? m[1].slice(-4) : ((de.match(/\b(1[5-9]\d\d)\b/) || [])[1] || '');
+    const src = `<span class="dt-src">(${book === 'Ortsfamilienbuch Magarei' ? 'Magarei church book' : 'church book'}${en ? ', translated' : ''})</span>`;
+    const lng = en ? 'en' : 'de', txt = en || de, long = txt.length > 320;
+    const main = long ? `<details><summary><span lang="${lng}">${esc(txt.slice(0, 260).replace(/\s+\S*$/, ''))}…</span> <span class="dt-more">more</span></summary><p lang="${lng}">${esc(txt)}</p></details>` : `<p lang="${lng}">${esc(txt)}</p>`;
+    const orig = en ? `<details class="dt-orig"><summary>German original</summary><p lang="de">${esc(de)}</p></details>` : '';
+    return `<div class="dt-q">${yr ? `<b>${yr}</b>` : ''}${main}${src}${orig}</div>`;
+  }
+
+  // tree
+  const TR = { mode: 'family', hist: [] };
+  function tn(j, cls = '', extra = '') {
+    if (j == null || j < 0) return `<div class="tn gone ${cls}"><span class="n">${extra || 'Nicht verzeichnet'}</span></div>`;
+    const k = String(j), c = sideCol(k);
+    return `<button type="button" class="tn ${cls}" data-tk="${j}" style="${c ? `--c:${c}` : ''}">${extra}<span class="n">${esc(short(j))}</span><span class="y">${esc(span(j))}</span></button>`;
+  }
+  function renderTree() {
+    const box = document.getElementById('v-tree');
+    if (SEL == null) { box.innerHTML = '<div class="dt-empty">Wählen Sie zuerst eine Person.</div>'; return; }
+    const i = +SEL, p = PP[i];
+    let h = `<div class="tr-bar"><div class="tr-seg" role="group" aria-label="Stammbaumansicht"><button type="button" data-mode="family" aria-pressed="${TR.mode === 'family'}">Familie</button><button type="button" data-mode="pedigree" aria-pressed="${TR.mode === 'pedigree'}">Ahnentafel</button></div>${TR.hist.length ? `<button type="button" class="tr-back" data-back>‹ Zurück</button>` : ''}</div>`;
+    if (TR.mode === 'family') {
+      h += `<div class="tr-lbl">Eltern</div><div class="tr-2">${p[4] >= 0 ? tn(p[4]) : tn(null, '', 'Vater nicht verzeichnet')}${p[5] >= 0 ? tn(p[5]) : tn(null, '', 'Mutter nicht verzeichnet')}</div><div class="tr-stem"></div>`;
+      const sp = spousesOf(i);
+      h += `<div class="tr-2">${tn(i, 'me')}${sp.length ? sp.map(j => tn(j, '', '<span class="y">verheiratet</span>')).join('') : '<div class="tn gone"><span class="n">Kein Ehepartner verzeichnet</span></div>'}</div>`;
+      const sib = siblingsOf(i);
+      if (sib.length) h += `<div class="tr-lbl">Geschwister <span>${sib.length}</span></div><div class="tr-chips">${sib.map(j => `<button type="button" class="tr-chip" data-tk="${j}">${esc(short(j).split(' ')[0])} <small>${esc(pyear(PP[j][2]) || '?')}</small></button>`).join('')}</div>`;
+      const kc = kidsOf(i);
+      h += `<div class="tr-lbl">Kinder <span>${kc.length || 'keine verzeichnet'}</span></div>`;
+      if (kc.length) {
+        const other = j => [PP[j][4], PP[j][5]].find(q => q >= 0 && q !== i);
+        const groups = new Map(); kc.forEach(j => { const o = other(j) ?? -1; if (!groups.has(o)) groups.set(o, []); groups.get(o).push(j); });
+        groups.forEach((list, o) => {
+          if (groups.size > 1) h += `<div class="tr-with">mit ${o >= 0 ? esc(short(o)) : 'anderer Elternteil nicht verzeichnet'}</div>`;
+          h += `<div class="tr-2">${list.map(j => tn(j, '', kidsOf(j).length ? `<span class="more" aria-hidden="true">›</span>` : '')).join('')}</div>`;
+        });
+      }
+    } else {
+      const G = 4, cols = [[i]];
+      for (let g = 1; g < G; g++) cols.push(cols[g - 1].flatMap(j => j >= 0 ? [PP[j][4], PP[j][5]] : [-1, -1]));
+      const head = ['Person', 'Eltern', 'Großeltern', 'Urgroßeltern'];
+      h += `<div class="pg"><div class="pg-grid">${cols.map((col, g) => `<div class="pg-col"><span class="pg-h" title="${head[g]}">${head[g]}</span><div class="pg-cards">${col.map(j => j >= 0 ? tn(j, g === 0 ? 'me' : '', g === G - 1 && (PP[j][4] >= 0 || PP[j][5] >= 0) ? `<span class="more" aria-hidden="true">›</span>` : '') : `<div class="pg-slot"></div>`).join('')}</div></div>`).join('')}</div></div>`;
+      h += `<div class="pg-hint">Zur Seite wischen für ältere Generationen · eine Person antippen, um sie in die Mitte zu rücken</div>`;
+    }
+    h += `<div class="tr-key"><span><i style="background:${SIDE_HEX.B}"></i>Väterliche Seite</span><span><i style="background:${SIDE_HEX.T}"></i>Mütterliche Seite</span><span><i style="background:${SIDE_HEX.both}"></i>Beide</span><span>von ${esc(rootName())}</span></div>`;
+    const k = String(i), acts = [`<button type="button" class="dt-btn" data-tab="details">Details</button>`];
+    if (PBYK.has(k)) acts.unshift(`<button type="button" class="dt-btn pri" data-mapk="${k}">${PIN_ICO}Auf der Karte</button>`);
+    if (k !== ROOT) acts.push(`<button type="button" class="dt-btn" data-root="${k}">Vorfahren von ${esc(short(i).split(' ')[0])}</button>`);
+    h += `<div class="dt-actions">${acts.join('')}</div>`;
+    box.innerHTML = h;
+  }
+  function select(k, { tab, keepHist } = {}) {
+    k = String(k);
+    if (SEL != null && SEL !== k && !keepHist) { TR.hist.push(SEL); if (TR.hist.length > 40) TR.hist.shift(); }
+    SEL = k;
+    if (tab) showTab(tab); else refreshView();
+  }
+  function refreshView() { if (VIEW === 'details') renderDetails(); else if (VIEW === 'tree') renderTree(); }
+  function syncBar() {
+    const open = !panel.classList.contains('collapsed');
+    const mt = document.getElementById('m-tree'), mp = document.getElementById('m-people');
+    if (mt) mt.setAttribute('aria-expanded', open && VIEW === 'tree');
+    if (mp) mp.setAttribute('aria-expanded', open && VIEW !== 'tree');
+  }
+  function showTab(t) {
+    VIEW = t;
+    panel.dataset.view = t;
+    document.querySelectorAll('.ptab').forEach(b => b.setAttribute('aria-selected', b.dataset.view === t));
+    document.getElementById('v-details').hidden = t !== 'details';
+    document.getElementById('v-tree').hidden = t !== 'tree';
+    syncBar();
+    refreshView();
+  }
+  // tabs bar (the mobile close button moves into it so it is always reachable)
+  const ptabs = document.createElement('div'); ptabs.id = 'ptabs'; ptabs.setAttribute('role', 'tablist');
+  const TABN = { people: 'Personen', details: 'Details', tree: 'Stammbaum' };
+  ptabs.innerHTML = ['people', 'details', 'tree'].map(t => `<button type="button" class="ptab" role="tab" data-view="${t}" aria-selected="${t === 'people'}">${TABN[t]}</button>`).join('');
+  panel.insertBefore(ptabs, panel.firstChild); ptabs.appendChild(ptog);
+  ['v-details', 'v-tree'].forEach(id => { const d = document.createElement('div'); d.id = id; d.hidden = true; panel.insertBefore(d, document.getElementById('panel-foot')); });
+  panel.dataset.view = 'people';
+  ptabs.addEventListener('click', e => { const b = e.target.closest('.ptab'); if (b) showTab(b.dataset.view); });
+  // phone bottom bar: a Tree button next to People and Search
+  const mTree = document.createElement('button');
+  mTree.type = 'button'; mTree.id = 'm-tree'; mTree.className = 'mb'; mTree.setAttribute('aria-controls', 'panel'); mTree.setAttribute('aria-expanded', 'false');
+  mTree.innerHTML = TREE_ICO + '<span>Stammbaum</span>';
+  document.getElementById('m-search').before(mTree);
+  mTree.addEventListener('click', () => { const open = panel.classList.contains('collapsed') || VIEW !== 'tree'; setPanel(open); showTab('tree'); });
+  new MutationObserver(syncBar).observe(panel, { attributes: true, attributeFilter: ['class'] });
+  document.getElementById('m-people').addEventListener('click', e => { if (VIEW !== 'people' && !panel.classList.contains('collapsed')) { e.stopImmediatePropagation(); } showTab('people'); }, true);
+  document.getElementById('m-search').addEventListener('click', () => showTab('people'), true);
+  function openIn(tab, k) {
+    if (openPopup) { openPopup.remove(); openPopup = null; }
+    if (houseOpen) closeHouse();
+    select(k, { tab }); setPanel(true);
+  }
+  // one delegated handler for everything inside Details, Tree and the map popups
+  document.addEventListener('click', e => {
+    const t = e.target;
+    let b;
+    if ((b = t.closest('#v-tree [data-mode]'))) { TR.mode = b.dataset.mode; renderTree(); return; }
+    if ((b = t.closest('#v-tree [data-back]'))) { const k = TR.hist.pop(); if (k != null) select(k, { keepHist: true }); return; }
+    if ((b = t.closest('#v-tree [data-tk]'))) { const k = b.dataset.tk; if (k === SEL) showTab('details'); else select(k); return; }
+    if ((b = t.closest('[data-tab]')) && b.closest('#panel')) { showTab(b.dataset.tab); return; }
+    if ((b = t.closest('[data-sel]'))) { select(b.dataset.sel); return; }
+    if ((b = t.closest('[data-tree]'))) { e.stopPropagation(); if (b.closest('.maplibregl-popup')) openIn('tree', b.dataset.tree); else select(b.dataset.tree, { tab: 'tree' }); return; }
+    if ((b = t.closest('[data-det]'))) { e.stopPropagation(); openIn('details', b.dataset.det); return; }
+    if ((b = t.closest('.dt-home[data-house]'))) { showHouse(b.dataset.house); return; }
+    if ((b = t.closest('[data-mapk]'))) { const p = PBYK.get(b.dataset.mapk); if (p) pickPerson(p); return; }
+    if ((b = t.closest('[data-root]'))) { const k = +b.dataset.root; setPerson(k); return; }
+    if ((b = t.closest('#panel .dt-btn[data-line]'))) { if (compact()) setPanel(false); showLine(b.dataset.line); return; }
+  });
+  document.getElementById('people').addEventListener('click', e => { const b = e.target.closest('.person'); if (!b) return; const r = ROWS.find(x => x.i === +b.dataset.i); if (r) SEL = r.k; }, true);
+
+
+  // ---------- place names (always available) ----------
+  const PLACES = [
+    { n: 'Ruja', s: 'Roseln', ll: [24.6497, 46.0113], z: [11.5, 15.2] },
+    { n: 'Agnita', s: 'Agnetheln', ll: [24.6172, 45.9733], z: [9.5, 22] },
+    { n: 'Iacobeni', s: 'Jakobsdorf', ll: [24.7125, 46.0511], z: [10.5, 22] },
+    { n: 'Stejărișu', s: 'Probstdorf', ll: [24.6764, 46.0386], z: [10.5, 22] },
+    { n: 'Netuș', s: 'Neithausen', ll: [24.7845, 46.0587], z: [10.5, 22] },
+    { n: 'Retiș', s: 'Retersdorf', ll: [24.8512, 46.0434], z: [10.5, 22] },
+    { n: 'Apoș', s: 'Abtsdorf', ll: [24.5461, 46.0139], z: [10.5, 22] },
+    { n: 'Nou Săsesc', s: 'Neudorf', ll: [24.6042, 46.1111], z: [10, 22] },
+    { n: 'Sântioana', s: 'Johannisdorf', ll: [24.5513, 46.2837], z: [9.5, 22] },
+    { n: 'Ormeniș', s: 'Irmesch', ll: [24.5451, 46.3285], z: [9.5, 22] },
+    { n: 'Dumbrăveni', s: 'Elisabethstadt', ll: [24.5758, 46.2275], z: [9.5, 22] },
+    { n: 'Sibiu', s: 'Hermannstadt', ll: [24.1520, 45.7983], z: [6.5, 22] },
+    { n: 'Sighișoara', s: 'Schäßburg', ll: [24.7911, 46.2197], z: [8, 22] },
+    { n: 'Mediaș', s: 'Mediasch', ll: [24.3510, 46.1640], z: [8, 22] },
+    { n: 'Siebenbürgen', s: 'Rumänien', ll: [24.6, 46.45], z: [4.5, 8.5], cls: 'region' },
+    { n: 'Tillsonburg', ll: [-80.7308, 42.8681], z: [8.5, 22] },
+    { n: 'Youngstown', s: 'Ohio', ll: [-80.6492, 41.0964], z: [7, 22] },
+    { n: 'New Castle', s: 'Pennsylvania', ll: [-80.3444, 40.9972], z: [7.5, 22] },
+    { n: 'Ontario', s: 'Kanada', ll: [-80.6, 43.9], z: [4.5, 8], cls: 'region' }
+  ];
+  const lblOn = document.getElementById('lbl-on');
+  const placeMarkers = PLACES.map(p => {
+    const el = document.createElement('div'); el.className = 'place-lbl' + (p.cls ? ' ' + p.cls : '');
+    el.innerHTML = esc(p.n) + (p.s ? `<small>${esc(p.s)}</small>` : '');
+    const m = new maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat(p.ll).addTo(map);
+    m._p = p; return m;
+  });
+  function showPlaces() {
+    const z = map.getZoom();
+    // When the live Esri names/borders layer is showing (zoomed out, Netlify version), let it name the towns
+    // and keep only our own region/county labels, so no place is labelled twice.
+    const esriNames = !!map.getLayer('ref') && lblOn.checked && z < 10.4;
+    placeMarkers.forEach(m => {
+      const p = m._p, own = p.cls === 'county' || p.n === 'Siebenbürgen';
+      m.getElement().style.display = lblOn.checked && z >= p.z[0] && z <= p.z[1] && (!esriNames || own) ? '' : 'none';
+    });
+    if (map.getLayer('ref')) map.setLayoutProperty('ref', 'visibility', lblOn.checked ? 'visible' : 'none');
+  }
+  map.on('zoom', showPlaces); lblOn.addEventListener('change', showPlaces); showPlaces();
+
+
+  // ---------- keep the timeline clear of any host badge (e.g. Netlify's) ----------
+  function fitBadge() {
+    let h = 0;
+    document.querySelectorAll('#nl-badge-frame, [id^="nl-badge"], iframe[title*="Netlify" i]').forEach(f => {
+      const b = f.getBoundingClientRect();
+      if (b.height > 0 && b.width > 0 && getComputedStyle(f).display !== 'none' && b.top > innerHeight * 0.5) h = Math.max(h, innerHeight - b.top + 6);
+    });
+    document.documentElement.style.setProperty('--badge', h + 'px');
+  }
+  new MutationObserver(fitBadge).observe(document.body, { childList: true, subtree: false });
+  window.addEventListener('resize', fitBadge);
+  [300, 1200, 3000, 6000].forEach(t => setTimeout(fitBadge, t));
+
+  // ---------- region badges ----------
+  function inBox(r, b) { return r.x >= b[0][0] && r.x <= b[1][0] && r.y >= b[0][1] && r.y <= b[1][1]; }
+  function renderBadges(act) {
+    const ppl = f => new Set(act.filter(f).map(r => r.k)).size || '';
+    document.getElementById('b-village').textContent = ppl(r => Math.abs(r.x - 24.649) < 0.01 && Math.abs(r.y - 46.009) < 0.01);
+    document.getElementById('b-valley').textContent = ppl(r => inBox(r, VIEWS.valley.bounds) && !(Math.abs(r.x - 24.649) < 0.01 && Math.abs(r.y - 46.009) < 0.01));
+    document.getElementById('b-mures').textContent = ppl(r => inBox(r, VIEWS.mures.bounds));
+    document.getElementById('b-america').textContent = ppl(r => r.x < -60);
+  }
+  document.querySelectorAll('.jump').forEach(b => b.addEventListener('click', () => {
+    const v = VIEWS[b.dataset.go];
+    if (v.bounds) map.fitBounds(v.bounds, { padding: 60, duration: 1000 }); else map.flyTo({ center: v.center, zoom: v.zoom, duration: 1000 });
+  }));
+
+  // ---------- legend toggles ----------
+  document.querySelectorAll('.legend-item[data-side]').forEach(el => {
+    const t = () => { const s = el.dataset.side; hidden.has(s) ? hidden.delete(s) : hidden.add(s); el.classList.toggle('off', hidden.has(s)); render(); drawSpark(); };
+    el.addEventListener('click', t); el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t(); } });
+  });
+
+  // ---------- timeline ----------
+  const slider = document.getElementById('slider');
+  function renderYear(act) {
+    document.getElementById('year').textContent = lineMode ? 'Linie' : allMode ? 'Alle Jahre' : year;
+    if (lineMode) { const r = lineMode.routes[lineMode.sel]; document.getElementById('gens').textContent = `${r.length} Generationen` + (lineMode.routes.length > 1 ? ` · ${lineMode.routes.length} Wege` : ''); document.getElementById('timeline').classList.add('all-on'); return; }
+    document.getElementById('timeline').classList.toggle('all-on', allMode);
+    const gs = [...new Set(act.map(r => r.g))].sort((a, b) => a - b);
+    if (allMode) { document.getElementById('gens').textContent = gs.length ? `Generationen ${gs[0]}–${gs[gs.length - 1]} · ${Y0}–${Y1}` : 'Nichts zu zeigen'; return; }
+    document.getElementById('gens').textContent = gs.length ? (gs.length === 1 ? `Generation ${gs[0]}` : `Generationen ${gs[0]}–${gs[gs.length - 1]}`) + ` von ${MAXG}` : 'Keine Einträge in diesem Jahr';
+  }
+  function counts() {
+    const out = [];
+    for (let y = Y0; y <= Y1; y++) out.push(new Set(ROWS.filter(r => r.y0 <= y && y <= r.y1 && !hidden.has(r.s)).map(r => r.k)).size);
+    return out;
+  }
+  const spark = document.getElementById('spark');
+  function drawSpark() {
+    const cs = counts(), dpr = window.devicePixelRatio || 1;
+    const w = spark.clientWidth, h = spark.clientHeight;
+    spark.width = w * dpr; spark.height = h * dpr;
+    const ctx = spark.getContext('2d'); ctx.scale(dpr, dpr); ctx.clearRect(0, 0, w, h);
+    const max = Math.max(...cs, 1);
+    // thumb inset so the curve lines up with the range input's thumb travel
+    const inset = 8, X = i => inset + (w - 2 * inset) * i / (cs.length - 1), Yv = v => h - 2 - (h - 6) * v / max;
+    ctx.beginPath(); ctx.moveTo(X(0), h);
+    cs.forEach((v, i) => ctx.lineTo(X(i), Yv(v)));
+    ctx.lineTo(X(cs.length - 1), h); ctx.closePath();
+    ctx.fillStyle = 'rgba(31,75,74,0.16)'; ctx.fill();
+    ctx.beginPath(); cs.forEach((v, i) => i ? ctx.lineTo(X(i), Yv(v)) : ctx.moveTo(X(i), Yv(v)));
+    ctx.strokeStyle = '#1f4b4a'; ctx.lineWidth = 1.4; ctx.stroke();
+    // grid
+    ctx.strokeStyle = 'rgba(44,38,32,0.12)'; ctx.lineWidth = 1;
+    for (let y = Math.ceil(Y0 / 50) * 50; y <= Y1; y += 50) { const x = X(y - Y0); ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+    // current year marker (hidden in all-years mode)
+    if (allMode) { spark._cs = cs; return; }
+    const cx = X(year - Y0); ctx.fillStyle = '#1f4b4a'; ctx.beginPath(); ctx.arc(cx, Yv(cs[year - Y0]), 3, 0, Math.PI * 2); ctx.fill();
+    spark._cs = cs;
+  }
+  function drawTicks() {
+    const box = document.getElementById('ticks'), inset = 8;
+    const w = box.clientWidth, span = Y1 - Y0, stepY = span > 250 || w < 520 ? 100 : 50;
+    const labels = [];
+    for (let y = Math.ceil((Y0 + 5) / stepY) * stepY; y <= Y1 - 5; y += stepY) labels.push([y, '']);
+    box.innerHTML = labels.map(([y, t]) =>
+      `<span class="${t ? 'ev' : ''}" style="left:${inset + (w - 2 * inset) * (y - Y0) / (Y1 - Y0)}px">${t ? t + ' ' + y : y}</span>`).join('');
+  }
+  let raf = 0;
+  const allBtn = document.getElementById('all-btn');
+  function setAll(on) {
+    allMode = on; allBtn.classList.toggle('on', on); allBtn.setAttribute('aria-pressed', on);
+    if (on) { setPlaying(false); fitFamily(); }
+    render(); drawSpark();
+  }
+  allBtn.addEventListener('click', () => { if (story >= 0) closeStory(); if (lineMode) { exitLine(false); setAll(true); return; } setAll(!allMode); });
+  function setYear(y) {
+    if (lineMode) exitLine(false);
+    if (allMode) { allMode = false; allBtn.classList.remove('on'); allBtn.setAttribute('aria-pressed', 'false'); }
+    year = Math.max(Y0, Math.min(Y1, Math.round(y)));
+    slider.value = year;
+    cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { render(); drawSpark(); });
+  }
+  slider.addEventListener('input', () => { if (story >= 0) closeStory(); setYear(+slider.value); });
+  window.addEventListener('resize', () => { drawSpark(); drawTicks(); drawMarks(); });
+
+  // play
+  let playing = false, speed = 10, last = 0, acc = 0;
+  const playBtn = document.getElementById('play'), ico = document.getElementById('play-ico');
+  function setPlaying(p) {
+    playing = p;
+    ico.innerHTML = p ? '<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>' : '<path d="M8 5.5v13l10.5-6.5z"/>';
+    playBtn.setAttribute('aria-label', p ? 'Pause' : 'Durch die Jahre abspielen');
+    if (p) {
+      if (story >= 0) closeStory();
+      if (lineMode) exitLine(false);
+      if (allMode) { allMode = false; allBtn.classList.remove('on'); allBtn.setAttribute('aria-pressed', 'false'); render(); drawSpark(); }
+      if (year >= Y1) setYear(Y0);
+      follow(true);
+      last = performance.now(); acc = 0; requestAnimationFrame(tick);
+    }
+  }
+  // While playing, the camera follows the family: if nobody on the map is in view, it flies to where they are.
+  function fitRows(rs, maxZoom = 15.5, duration = 1400) {
+    if (!rs.length) return;
+    const b = rs.reduce((m, r) => [[Math.min(m[0][0], r.x), Math.min(m[0][1], r.y)], [Math.max(m[1][0], r.x), Math.max(m[1][1], r.y)]], [[rs[0].x, rs[0].y], [rs[0].x, rs[0].y]]);
+    map.fitBounds(b, { padding: compact() ? { top: 60, bottom: (document.getElementById('timeline').offsetHeight || 90) + 40, left: 40, right: 40 } : { top: 90, bottom: 170, left: panel.classList.contains('collapsed') ? 80 : 340, right: 300 }, maxZoom, duration });
+  }
+  function fitFamily(duration = 900) { // Roseln if most of the family lived there, otherwise everyone in Transylvania
+    const east = ROWS.filter(r => r.x > 0); if (!east.length) { fitRows(ROWS, 9, duration); return; }
+    const vil = east.filter(r => Math.abs(r.x - 24.649) < 0.012 && Math.abs(r.y - 46.009) < 0.009);
+    fitRows(vil.length >= east.length * 0.6 ? vil : east, 16, duration);
+  }
+  let lastFollow = 0;
+  function follow(force) {
+    const act = active(year); if (!act.length) return;
+    const bb = map.getBounds(), inView = act.filter(r => bb.contains([r.x, r.y]));
+    const now = performance.now();
+    if (force || (!inView.length && now - lastFollow > 2500)) {
+      lastFollow = now;
+      const west = act.filter(r => r.x < -30), east = act.filter(r => r.x > 0);
+      const grp = east.length >= west.length ? east : west;
+      fitRows(grp, grp === west ? 9 : 16, 2200);
+      if (grp === west && !force) toast(`${titleName(west[0].n)} in ${west[0].pl}`);
+    }
+  }
+  function goTo(key) {
+    const v = VIEWS[key];
+    if (v.bounds) map.fitBounds(v.bounds, { padding: 60, duration: 2200 }); else map.flyTo({ center: v.center, zoom: v.zoom, duration: 2200 });
+  }
+  function tick(now) {
+    if (!playing) return;
+    acc += (now - last) / 1000 * speed; last = now;
+    if (acc >= 1) {
+      const step = Math.floor(acc), prev = year; acc -= step; setYear(year + step);
+      follow(false);
+      if (year >= Y1) { setPlaying(false); return; }
+    }
+    requestAnimationFrame(tick);
+  }
+  const toastEl = document.createElement('div'); toastEl.id = 'toast'; toastEl.className = 'glass'; toastEl.setAttribute('role', 'status');
+  document.getElementById('app').appendChild(toastEl);
+  let toastT = 0;
+  function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('show'), 4200); }
+  playBtn.addEventListener('click', () => setPlaying(!playing));
+  document.querySelectorAll('.sp[data-sp]').forEach(b => b.addEventListener('click', () => {
+    speed = +b.dataset.sp; document.querySelectorAll('.sp[data-sp]').forEach(x => x.classList.toggle('on', x === b));
+  }));
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, textarea')) return;
+    if (e.key === ' ' && e.target === document.body) { e.preventDefault(); setPlaying(!playing); }
+  });
+
+
+  map.on('click', () => { if (openPopup) { openPopup.remove(); openPopup = null; } });
+  boot();
+}).catch(err => { const d = document.createElement('div'); d.className = 'load-err'; d.innerHTML = 'Die Familiendaten (data/people.json) konnten nicht geladen werden. Wenn Sie die Datei direkt vom Computer geöffnet haben, öffnen Sie sie stattdessen über die Website oder einen lokalen Webserver.'; document.body.appendChild(d); console.error(err); });
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+</script>
+</body>
+</html>
