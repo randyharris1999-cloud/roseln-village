@@ -1,10 +1,12 @@
 // Offline support for Roseln Village (index.html) and its map (map.html).
 // Bump VERSION whenever you upload a new build so phones pick up the change.
-const VERSION = 'roseln-village-v1';
+const VERSION = 'roseln-village-v2';
 const CORE = ['./', 'index.html', 'familien.html', 'map.html', 'karte.html', 'data/de_karte.json', 'arms.svg', 'manifest-de.webmanifest', 'data/records_de.json', 'data/de.json', 'vorfahren.html', 'manifest.webmanifest', 'manifest-map.webmanifest', 'roseln1869.png',
   'data/people.json', 'data/records.json',
   'sat_village.jpg', 'sat_valley.jpg', 'sat_mures.jpg', 'sat_ontario.jpg',
-  'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',
+  'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/icon-maskable-512.png',
+  'fonts/ebgaramond-Regular.woff', 'fonts/ebgaramond-Italic.woff', 'fonts/ebgaramond-Medium.woff', 'fonts/ebgaramond-SemiBold.woff', 'fonts/ebgaramond-SemiBoldItalic.woff',
+  'fonts/inter-Regular.woff', 'fonts/inter-Medium.woff', 'fonts/inter-SemiBold.woff', 'fonts/inter-Bold.woff',
   'photos/anna_hartel_1859.jpg', 'photos/michael_thoma_1838.jpg', 'photos/johann_balthes_1884.jpg',
   'photos/mathilde_balthes_1926.jpg', 'photos/sophia_hermann_1850.jpg', 'photos/sofia_thome_1890.jpg',
   'https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js'];

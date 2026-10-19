@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Roseln Village">
-<meta name="theme-color" content="#faf7f1">
+<meta name="theme-color" content="#f6f2e9">
 <script>
 /* language: the splash screen remembers English or German (localStorage), or for this visit only (sessionStorage) */
 window.RLANG = {
@@ -22,15 +22,23 @@ document.addEventListener('click', e => { const a = e.target.closest('[data-lang
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <title>Roseln Village</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ebgaramond-Regular.woff) format('woff')}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400 500;font-display:swap;src:url(fonts/ebgaramond-Italic.woff) format('woff')}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ebgaramond-Medium.woff) format('woff')}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:600 700;font-display:swap;src:url(fonts/ebgaramond-SemiBold.woff) format('woff')}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:600 700;font-display:swap;src:url(fonts/ebgaramond-SemiBoldItalic.woff) format('woff')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-Regular.woff) format('woff')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/inter-Medium.woff) format('woff')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-SemiBold.woff) format('woff')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-Bold.woff) format('woff')}
+</style>
 <style>
 :root{
   --paper:#faf7f1;--card:#fffdf8;--ink:#2c2620;--soft:#6b6255;--faint:#9a917f;--line:#e2d9c6;--line2:#efe8d9;
-  --accent:#1f4b4a;--accent2:#2f6b69;--accent-soft:rgba(31,75,74,.08);
+  --accent:#1c3868;--accent2:#2a5294;--accent-soft:rgba(28,56,104,.08);
   --fa:#1f78b4;--mo:#d4891a;
-  --t-ch:#1f4b4a;--b-ch:#e2ecea;--t-we:#94581a;--b-we:#f5e9d6;--t-mg:#6c3d6c;--b-mg:#f1e6f0;--t-gd:#45557a;--b-gd:#e7ebf3;
+  --t-ch:#1c3868;--b-ch:#e2ecea;--t-we:#94581a;--b-we:#f5e9d6;--t-mg:#6c3d6c;--b-mg:#f1e6f0;--t-gd:#45557a;--b-gd:#e7ebf3;
   --serif:'Fraunces',Georgia,'Times New Roman',serif;--ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --tabh:62px;color-scheme:light}
 *{box-sizing:border-box}
@@ -89,7 +97,7 @@ h2{font:600 22px/1.15 var(--serif);margin:0}
 .src{color:var(--soft);font-size:12px}
 .src i{font-family:var(--serif)}
 .empty{color:var(--soft);font-style:italic;padding:14px 4px}
-.lnk{color:var(--accent2);font-weight:600;text-decoration:underline;text-decoration-color:rgba(47,107,105,.35);text-underline-offset:2px}
+.lnk{color:var(--accent2);font-weight:600;text-decoration:underline;text-decoration-color:rgba(42,82,148,.35);text-underline-offset:2px}
 .btn{display:inline-flex;align-items:center;gap:6px;font:600 13px var(--ui);padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -107,7 +115,7 @@ details>summary{cursor:pointer}
 
 /* ---------- find ---------- */
 .find-top{padding:16px 0 0}
-.search{margin:16px 0 0;height:50px;border-radius:14px;background:var(--card);border:1.5px solid var(--accent);display:flex;align-items:center;padding:0 12px 0 14px;gap:10px;box-shadow:0 2px 10px rgba(31,75,74,.07)}
+.search{margin:16px 0 0;height:50px;border-radius:14px;background:var(--card);border:1.5px solid var(--accent);display:flex;align-items:center;padding:0 12px 0 14px;gap:10px;box-shadow:0 2px 10px rgba(28,56,104,.07)}
 .search input{flex:1;min-width:0;border:0;background:transparent;font:16px var(--ui);color:var(--ink);outline:none}
 input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
 .search .x{width:22px;height:22px;border-radius:50%;background:#cfc7b6;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
@@ -155,7 +163,7 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
 .ptabs{display:flex;margin-top:14px;border-bottom:1px solid var(--line);position:sticky;top:calc(48px + env(safe-area-inset-top,0px));background:var(--paper);z-index:4}
 .ptabs a{flex:1;text-align:center;padding:10px 0 11px;font:600 14px var(--ui);color:var(--faint);position:relative;text-decoration:none}
 /* how are we related */
-.relme{display:inline-block;margin-top:5px;font:600 12.5px var(--ui);color:var(--accent);background:rgba(31,75,74,.08);border-radius:999px;padding:3px 10px;text-decoration:none}
+.relme{display:inline-block;margin-top:5px;font:600 12.5px var(--ui);color:var(--accent);background:rgba(28,56,104,.08);border-radius:999px;padding:3px 10px;text-decoration:none}
 .rel-intro{margin:0 0 10px;font-size:13.5px;line-height:1.5;color:var(--soft)}
 .rel-s input{width:100%;box-sizing:border-box;font:15px var(--ui);padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
 .rel-s input:focus{outline:2px solid var(--accent);outline-offset:1px}
@@ -164,7 +172,7 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
 .rel-chips a.chip{text-decoration:none}
 .rel-rl{font:600 11px var(--ui);text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin:0 2px 0 6px}
 .rel-me{margin-top:10px;background:none;border:1px dashed var(--line);border-radius:999px;padding:6px 12px;font:600 12.5px var(--ui);color:var(--accent);cursor:pointer}
-.rel-me[aria-pressed=true]{border-style:solid;background:rgba(31,75,74,.08)}
+.rel-me[aria-pressed=true]{border-style:solid;background:rgba(28,56,104,.08)}
 .rel-res{margin-top:16px;padding:14px 16px;border-left:4px solid var(--accent)}
 .rel-t{font:600 21px var(--serif);color:var(--ink);line-height:1.25}
 .rel-t:first-letter{text-transform:uppercase}
@@ -346,8 +354,8 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
 .pv-in{position:absolute;left:0;top:0;transform-origin:0 0;background:#faf6ec}
 .pv-in img{display:block;pointer-events:none}
 .pv-d{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;transform:scale(var(--k,1));padding:0}
-.pv-d:after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:rgba(31,75,74,.8);border:1.5px solid #fff;box-sizing:border-box}
-.pv-d.sel:after{width:30px;height:30px;margin:-15px 0 0 -15px;background:rgba(31,75,74,.18);border:3.5px solid var(--accent);box-shadow:0 0 0 2px #fff}
+.pv-d:after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:rgba(28,56,104,.8);border:1.5px solid #fff;box-sizing:border-box}
+.pv-d.sel:after{width:30px;height:30px;margin:-15px 0 0 -15px;background:rgba(28,56,104,.18);border:3.5px solid var(--accent);box-shadow:0 0 0 2px #fff}
 .pv-zoom{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);z-index:2}
 .pv-zoom button{width:40px;height:40px;font:500 20px var(--ui);color:var(--accent);text-align:center}
 .pv-zoom button+button{border-top:1px solid var(--line)}
@@ -355,7 +363,7 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
 .gopill svg{width:16px;height:16px;flex:none;stroke:var(--accent);fill:none;stroke-width:2.2;stroke-linecap:round}
 .gopill input{border:0;background:transparent;font:14px var(--ui);color:var(--ink);outline:none;width:100%;min-width:0;padding:2px 0}
 .pvleg{position:absolute;left:12px;bottom:12px;z-index:2;background:rgba(255,253,248,.92);border-radius:10px;padding:5px 9px;font-size:11.5px;color:var(--soft);display:flex;align-items:center;gap:6px}
-.pvleg i{width:10px;height:10px;border-radius:50%;background:rgba(31,75,74,.8);border:1.5px solid #fff;display:inline-block}
+.pvleg i{width:10px;height:10px;border-radius:50%;background:rgba(28,56,104,.8);border:1.5px solid #fff;display:inline-block}
 .pvsheet{position:absolute;left:10px;right:10px;bottom:10px;z-index:3;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px 13px;box-shadow:0 6px 24px rgba(40,30,20,.18)}
 .pvsheet h3{font:600 18px var(--serif);margin:0;padding-right:30px}
 .pvsheet p{font-size:13px;color:var(--soft);margin:3px 0 0;line-height:1.4}
@@ -408,20 +416,69 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
 #splash .rem{margin-top:14px;font:400 12.5px var(--ui);color:var(--faint);display:flex;gap:7px;align-items:center;cursor:pointer}
 #splash .rem input{width:15px;height:15px;accent-color:var(--accent);margin:0}
 #splash .foot{margin:auto 0 0;padding-top:26px;font:400 11.5px/1.5 var(--ui);color:var(--faint)}
+#splash{background:radial-gradient(120% 60% at 50% 22%,#fffdf8 0%,var(--paper) 60%,#efe7d6 100%)}
+#splash .kick{color:var(--red)}
+#splash h1{font:500 52px/1 var(--serif);color:var(--accent)}
+#splash .s1{font-size:18px;color:var(--ink)}
+#splash .rule.stitch{width:168px;height:14px;margin:24px auto 0;opacity:1;border-left:1px solid #b48a3c;border-right:1px solid #b48a3c;background:#f3ead6 var(--stitch) repeat-x center}
+#splash .btns button.p{background:var(--accent);border-color:var(--accent);box-shadow:0 6px 16px rgba(28,56,104,.22)}
 /*/SPLASH*/
+
+/* ===== Saxon look (2026-10) ===== */
+:root{--paper:#f6f2e9;--card:#fffdf8;--ink:#1f2433;--soft:#5d6273;--faint:#8d8c88;--line:#e3dccb;--line2:#eee8da;
+  --accent:#1c3868;--accent2:#2a5294;--accent-soft:rgba(28,56,104,.08);--red:#9c1d22;--gold:#b48a3c;
+  --t-ch:#1c3868;--b-ch:#e3e9f4;
+  --serif:'EB Garamond',Georgia,'Times New Roman',serif;--stitch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14' viewBox='0 0 28 14'%3E%3Cg fill='%239c1d22'%3E%3Crect x='12' y='1' width='4' height='4'/%3E%3Crect x='8' y='5' width='4' height='4'/%3E%3Crect x='16' y='5' width='4' height='4'/%3E%3Crect x='12' y='9' width='4' height='4'/%3E%3C/g%3E%3Cg fill='%231c3868'%3E%3Crect x='12' y='5' width='4' height='4'/%3E%3Crect x='0' y='5' width='4' height='4'/%3E%3Crect x='24' y='5' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E")}
+body{background:var(--paper)}
+#loading .bar{position:static;height:4px;display:block;padding:0;background:var(--line);backdrop-filter:none;-webkit-backdrop-filter:none}
+.find-top{display:none}
+.hero{position:relative;margin:0 -16px;padding:calc(22px + env(safe-area-inset-top,0px)) 20px 30px;background:linear-gradient(165deg,#1a3462 0%,#21427a 70%,#25498a 100%);color:#fff;overflow:hidden}
+.hero .church{position:absolute;right:-10px;bottom:0;width:210px;height:auto;opacity:.15;pointer-events:none}
+.hero .crest{display:flex;align-items:center;gap:9px;position:relative}
+.hero .crest svg{width:34px;height:34px;flex:none}
+.hero .kick{font:600 10.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#e8cf95}
+.hero .kick b{display:block;font-weight:500;letter-spacing:.14em;color:rgba(255,255,255,.62);margin-top:2px}
+.hero h1{position:relative;font:500 33px/1.08 var(--serif);margin:18px 0 8px;color:#fff;letter-spacing:-.005em;max-width:260px}
+.hero .sub{position:relative;color:rgba(255,255,255,.8);font-size:13.5px;max-width:300px}
+.hero .sub a{color:#f0d79c;text-decoration-color:rgba(240,215,156,.45)}
+.stitch{height:14px;margin:0 -16px;background:#f3ead6 var(--stitch) repeat-x center;border-top:1px solid #b48a3c;border-bottom:1px solid #b48a3c}
+.search{position:relative;z-index:2;margin:18px 0 0;height:54px;border-radius:14px;border:1px solid #d9d1bd;background:#fff;box-shadow:0 8px 22px rgba(20,34,66,.14),0 1px 2px rgba(20,34,66,.08);cursor:text}
+.search svg{stroke:#1c3868}
+.search input{-webkit-user-select:text;user-select:text;touch-action:manipulation;font-size:16px;height:100%}
+.search input::placeholder{color:#8a8a8f}
+.chip{border-color:#ddd5c2}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent)}
+.lbl{color:var(--red);letter-spacing:.14em}
+.lbl:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(180,138,60,.55),rgba(180,138,60,0));margin-left:10px;align-self:center}
+.lbl span{order:3;margin-left:8px;color:var(--accent2)}
+.faces .av{box-shadow:0 0 0 1.5px var(--gold);border-width:3px}
+.faces a{font-family:var(--serif);font-size:13.5px;font-weight:600}
+.eyebrow{color:var(--red)}
+#tabbar{border-top:1px solid #e3dccb}
+#tabbar a{position:relative}
+#tabbar a[aria-current=page]{color:var(--accent)}
+#tabbar a[aria-current=page]:before{content:"";position:absolute;top:-7px;width:28px;height:2.5px;border-radius:0 0 3px 3px;background:var(--red)}
+.bar a#pback{max-width:46%;overflow:hidden}
+.bar a#pback span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+/* photo galleries that scroll in their own window */
+.galwin{position:relative;margin-top:4px}
+.galwin .gal{max-height:min(62vh,560px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border:1px solid var(--line);border-radius:12px;padding:10px;background:#fbf8f1;margin-top:0;scrollbar-width:thin}
+.galwin:after{content:"";position:absolute;left:1px;right:1px;bottom:1px;height:34px;border-radius:0 0 12px 12px;background:linear-gradient(rgba(251,248,241,0),#fbf8f1);pointer-events:none}
+.ghint{display:block;font:600 11.5px var(--ui);color:var(--accent2);margin:6px 2px 0;text-align:right}
+@media (min-width:1000px){.hero{margin:0 -16px;padding-top:26px}}
 </style>
 </head>
 <body data-route="find">
-<!--SPLASH--><div id="splash" role="dialog" aria-label="Choose your language · Sprache wählen" hidden>
+<!--SPLASH--><div id="splash" role="dialog" aria-label="Sprache wählen · Choose your language" hidden lang="de">
   <img class="arms" src="arms.svg" alt="Coat of arms of Transylvania · Wappen Siebenbürgens">
   <div class="kick">Siebenbürgen · Transylvania</div>
   <h1>Roseln</h1>
-  <p class="s1">Families of a Transylvanian Saxon village<b>Familien eines siebenbürgisch-sächsischen Dorfes</b></p>
-  <div class="rule"></div>
-  <p class="ask">Choose your language · Sprache wählen</p>
-  <div class="btns"><button type="button" class="p" data-pick="en" lang="en">English</button><button type="button" data-pick="de" lang="de">Deutsch</button></div>
-  <label class="rem"><input type="checkbox" id="splash-keep" checked>Remember my choice · Auswahl merken</label>
-  <p class="foot">Ortsfamilienbuch Roseln · Ortsfamilienbuch Magarei · Weiss, <i>Roseln mitten in Siebenbürgen</i><br>8,224 people · 124 houses · photographs and headstones</p>
+  <p class="s1">Familien eines siebenbürgisch-sächsischen Dorfes<b lang="en">Families of a Transylvanian Saxon village</b></p>
+  <div class="rule stitch"></div>
+  <p class="ask">Sprache wählen · <span lang="en">Choose your language</span></p>
+  <div class="btns"><button type="button" class="p" data-pick="de" lang="de">Deutsch</button><button type="button" data-pick="en" lang="en">English</button></div>
+  <label class="rem"><input type="checkbox" id="splash-keep" checked>Auswahl merken · <span lang="en">Remember my choice</span></label>
+  <p class="foot">Ortsfamilienbuch Roseln · Ortsfamilienbuch Magarei · Weiss, <i>Roseln mitten in Siebenbürgen</i><br>8.224 Personen · 124 Häuser · Fotografien und Grabsteine</p>
 </div>
 <script>
 (function () {
@@ -653,6 +710,35 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
     };
   }
 
+
+  // ---------------- in-app history (for the Back button) ----------------
+  const NAV = { stack: [], pend: null };
+  const normHash = h => (!h || h === '#') ? '#find' : h;
+  function navTrack() {
+    const h = normHash(location.hash), st = NAV.stack;
+    if (NAV.pend != null) { st.length = NAV.pend + 1; st[NAV.pend] = h; NAV.pend = null; }
+    else if (st.length > 1 && st[st.length - 2] === h) st.pop();
+    else if (st[st.length - 1] !== h) st.push(h);
+  }
+  const hashP = h => { const m = /[#&]p=([^&]*)/.exec(h); return m ? decodeURIComponent(m[1]) : null; };
+  function backLink(i) {
+    const st = NAV.stack, me = IDS[i];
+    for (let k = st.length - 2; k >= 0; k--) {
+      const h = st[k], p = hashP(h);
+      if (p === me) continue;
+      let lab = 'Find';
+      if (p != null && IDX.has(p)) lab = nm(IDX.get(p)).split(' ')[0];
+      else if (/^#h=/.test(h) || /^#village/.test(h)) lab = 'Village';
+      else if (/^#books/.test(h)) lab = 'Books';
+      return `<a href="${esc(h)}" id="pback" data-k="${k}" aria-label="Back: ${esc(lab)}">${ICO.back}<span>${esc(lab)}</span></a>`;
+    }
+    return `<a href="#find" id="pback" aria-label="Back">${ICO.back}<span>Find</span></a>`;
+  }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('#pback[data-k]'); if (!a) return;
+    e.preventDefault(); const k = +a.dataset.k, n = NAV.stack.length - 1 - k;
+    if (n > 0) { NAV.pend = k; history.go(-n); } else location.hash = '#find';
+  });
   // ---------------- routing ----------------
   const ST = { q: '', filter: 'all', sort: 'name', shown: 60, last: null, tab: {}, famMode: 'family', lifeFilter: 'all', vMode: 'plan', vq: '', vSel: null };
   function parseHash() {
@@ -668,6 +754,7 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
     else if (r.h != null && H[r.h]) name = 'house';
     else if ('village' in r) name = 'village';
     else if ('books' in r) name = 'books';
+    navTrack();
     document.body.dataset.route = name;
     const tabName = name === 'house' ? 'village' : name;
     document.querySelectorAll('#tabbar a, .topnav a').forEach(a => { if (a.dataset.tab === tabName) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
@@ -696,14 +783,15 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
   function renderFindShell() {
     const f = $('#find');
     f.innerHTML = `<div class="topnav"><a href="#find" data-tab="find">Find</a><a href="#village" data-tab="village">Village</a><a href="#books" data-tab="books">Books</a></div>
-      <div class="wrap"><div class="find-top"><div class="eyebrow">Roseln Village</div><h1>Who are you looking for?</h1>
-      <div class="sub">${PP.length.toLocaleString('en')} people from three books, in English · <a class="lnk" href="familien.html" data-lang="de" lang="de">Deutsch</a></div></div>
-      <label class="search"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#1f4b4a" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-      <input id="q" type="search" placeholder="Name, nickname or family number" autocomplete="off" autocapitalize="words" spellcheck="false" aria-label="Search people"><button type="button" class="x" id="qx" aria-label="Clear" hidden>✕</button></label>
+      <div class="wrap"><header class="hero"><svg class="church" viewBox="0 0 220 140" fill="#fff" aria-hidden="true"><path d="M92 140V68h26v72z"/><path d="M89 68h32v-5H89z"/><path d="M89 63l16-40.3L121 63z"/><path d="M89 63l2-11 2 11zM117 63l2-11 2 11z"/><rect x="104.2" y="15.7" width="1.6" height="8"/><path d="M118 140V88l30-22 30 22v52z"/><path d="M60 140V100l18-14 14 10v44z"/><path d="M0 140V112h5v-4h5v4h5v-4h5v4h5v-4h5v4h5v-4h5v4H52V140zM180 140V112h5v-4h5v4h5v-4h5v4h5v-4h5v4h5v-4h5v4H220V140z"/><path d="M40 140V96h14v44zM37 96l10-16 10 16zM196 140V92h14v48zM193 92l10-17 10 17z"/></svg><div class="crest"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x=".75" y=".75" width="32.5" height="32.5" rx="8" fill="#9c1d22" stroke="#e8cf95" stroke-width="1.5"/><g fill="#e8cf95"><path d="M13 28V15h8v13z"/><path d="M11.5 15h11v-2h-11z"/><path d="M11.5 13L17 4l5.5 9z"/><path d="M11.5 13l1-4 1 4zM20.5 13l1-4 1 4z"/></g><path d="M15.6 28v-3.2a1.4 1.4 0 0 1 2.8 0V28z" fill="#9c1d22"/></svg><div class="kick">Roseln Village<b>Ruja · Siebenbürgen</b></div></div><h1>Who are you looking for?</h1><div class="sub">${PP.length.toLocaleString('en')} people from three books, in English · <a class="lnk" href="familien.html" data-lang="de" lang="de">Deutsch</a></div></header><div class="stitch"></div>
+      <div class="search" id="qbox"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#1c3868" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input id="q" type="search" inputmode="search" enterkeyhint="search" placeholder="Name, nickname or family number" autocomplete="off" autocapitalize="words" spellcheck="false" aria-label="Search people"><button type="button" class="x" id="qx" aria-label="Clear" hidden>✕</button></div>
       <div class="chips" id="fchips" role="group" aria-label="Filter">${FILTERS.map(([k, t]) => `<button type="button" class="chip" data-f="${k}" aria-pressed="${ST.filter === k}">${t}</button>`).join('')}</div>
       <div id="results"></div></div>`;
     const q = $('#q'); q.value = ST.q;
     q.addEventListener('input', () => { ST.q = q.value; ST.shown = 60; renderResults(); });
+    $('#qbox').addEventListener('click', e => { if (e.target !== q && !e.target.closest('#qx')) q.focus(); });
+    q.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); q.blur(); } });
     $('#qx').addEventListener('click', () => { q.value = ST.q = ''; renderResults(); q.focus(); });
     $('#fchips').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; ST.filter = b.dataset.f; ST.shown = 60; document.querySelectorAll('#fchips .chip').forEach(c => c.setAttribute('aria-pressed', c === b)); renderResults(); });
     $('#results').addEventListener('click', e => {
@@ -772,7 +860,7 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
     const life = [b ? `${b}${bAt ? ', ' + bAt : ''}` : (bAt ? 'Born in ' + bAt : ''), d ? `${d}${dAt ? ', ' + dAt : ''}` : (dAt && dAt !== bAt ? 'died in ' + dAt : '')].filter(Boolean);
     const line = [l.occ, main ? houseName(main.h) : '', isTree(i) ? 'Family tree' : 'family ' + (o.src || p[6])].filter(Boolean).join(' · ');
     const tabs = [['family', 'Family'], ['life', 'Life'], ['records', 'Records'], ['homes', 'Homes'], ['rel', REL.ui.tab]];
-    return `<div class="bar" id="pbar"><a href="#find" aria-label="Back to Find">${ICO.back}<span>Find</span></a><span class="t">${esc(nm(i))}</span><button type="button" id="share" aria-label="Share a link to ${esc(nm(i))}">${ICO.share}</button></div>
+    return `<div class="bar" id="pbar">${backLink(i)}<span class="t">${esc(nm(i))}</span><button type="button" id="share" aria-label="Share a link to ${esc(nm(i))}">${ICO.share}</button></div>
       <div class="ph">${av(i)}<div style="min-width:0"><h2>${esc(nm(i))}</h2>${nick(i) ? `<span class="nick">„${esc(nick(i))}“</span>` : ''}
       <div class="d">${esc(life.join(' – ')) || (LV.has(i) ? 'Living' : 'Dates not recorded')}</div><div class="d2">${esc(line)}</div>${relMe(i)}</div></div>
       <div class="acts">${isTree(i) ? '' : `<a class="btn" href="${mapP(i)}">${ICO.map}Show on the map</a>`}${PHBY.has(i) ? `<button type="button" class="btn" data-phl="${i}">${ICO.photo}${PHBY.get(i).length === 1 ? 'In a photograph' : `In ${PHBY.get(i).length} photographs`}</button>` : ''}${HSBY.has(i) ? `<button type="button" class="btn" data-hsl="${i}">${ICO.photo}${HSBY.get(i).length === 1 ? 'Headstone' : `Headstone (${HSBY.get(i).length} photos)`}</button>` : ''}${p[4] >= 0 || p[5] >= 0 || kidsOf(i).length ? `<a class="btn" href="#p=${encodeURIComponent(IDS[i])}&t=family&m=pedigree">Pedigree</a>` : ''}</div>
@@ -1399,7 +1487,7 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
   const galGrid = list => `<div class="gal" data-phset="${list.map(w => w.id).join(',')}">${list.map(w => `<button type="button" class="gal-i" data-ph="${w.id}"><img src="${w.f}" alt="" loading="lazy"><span>${w.y ? `<b>${w.y}</b> · ` : ''}${esc((w.sub || w.en.split(/[.:;]/)[0]).replace(/^./, c => c.toUpperCase()))}</span></button>`).join('')}</div>`;
   const gallery = () => { const f = GF[ST.gf || 'all'], all = WEISS().filter(f[1]);
     return `<div class="chips" role="group" aria-label="Show" style="margin-bottom:10px">${Object.entries(GF).map(([k, [t, fn]]) => `<button type="button" class="chip" data-gf="${k}" aria-pressed="${(ST.gf || 'all') === k}">${t}<i>${WEISS().filter(fn).length}</i></button>`).join('')}</div>
-    <div class="gal" data-phset="${all.map(w => w.id).join(',')}">${all.map(w => `<button type="button" class="gal-i" data-ph="${w.id}"><img src="${w.f}" alt="" loading="lazy"><span>${w.y ? `<b>${w.y}</b> · ` : ''}${esc((w.sub || w.en.split(/[.:;]/)[0]).replace(/^./, c => c.toUpperCase()))}</span></button>`).join('')}</div>`; };
+    <div class="galwin"><div class="gal" data-phset="${all.map(w => w.id).join(',')}">${all.map(w => `<button type="button" class="gal-i" data-ph="${w.id}"><img src="${w.f}" alt="" loading="lazy"><span>${w.y ? `<b>${w.y}</b> · ` : ''}${esc((w.sub || w.en.split(/[.:;]/)[0]).replace(/^./, c => c.toUpperCase()))}</span></button>`).join('')}</div></div>${all.length > 6 ? `<span class="ghint">Scroll the photographs ↓</span>` : ''}`; };
   function stats() {
     let ch = 0, we = 0, mg = 0, gd = 0, notes = 0, wn = 0;
     PP.forEach((p, i) => { const hs = has(i); if (hs.ch) ch++; if (hs.we) we++; if (hs.mg) mg++; if (hs.gd) gd++; });
@@ -1429,7 +1517,7 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display
       <div class="box book"><div class="bar2" style="background:var(--t-gd)"></div><b>Saxon cemetery, Roseln</b>
         <p>Headstones in the Saxon cemetery at Roseln, photographed by Randy Harris in 2016 and 2018, with their inscriptions and links to the people in the church book.</p>
         <div class="stats"><div><b>${(D.WP || []).filter(w => w.hs).length}</b>photographs</div></div>
-        <div class="lbl">Headstones, Roseln Saxon cemetery (Randy Harris, 2016 &amp; 2018)</div>${galGrid((D.WP || []).filter(w => w.hs))}</div>
+        <div class="lbl">Headstones, Roseln Saxon cemetery (Randy Harris, 2016 &amp; 2018)</div><div class="galwin">${galGrid((D.WP || []).filter(w => w.hs))}</div><span class="ghint">Scroll the photographs ↓</span></div>
       <div class="prose"><div class="lbl">About the translations</div>
         <p>The notes in both church books are in German, with older entries in Latin. They are shown in English first; tap “German original” under any note to read the book's own words.</p>
         <div class="lbl">Privacy</div><p>The Roseln book stops at births in 1925, so almost everyone in it has died. Some later dates are withheld in the book itself and are shown as “date withheld”. On the headstone photographs, anyone born after 1925 is named by surname only.</p>
